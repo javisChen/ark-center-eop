@@ -1,6 +1,6 @@
-package com.kt.cloud.codeproject.generate;
+package com.kt.cloud.codeproject.infrastructure.generate;
 
-import com.kt.cloud.codeproject.generate.model.JavaProjectGenerateParam;
+import com.kt.cloud.codeproject.infrastructure.generate.model.JavaProjectGenerateParam;
 import org.junit.Test;
 
 public class JavaProjectGeneratorTest {

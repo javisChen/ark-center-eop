@@ -1,4 +1,4 @@
-package com.kt.cloud.codeproject.generate;
+package com.kt.cloud.codeproject.infrastructure.generate;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
@@ -6,7 +6,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import com.kt.cloud.codeproject.generate.model.JavaProjectGenerateParam;
+import com.kt.cloud.codeproject.infrastructure.generate.model.JavaProjectGenerateParam;
 import org.beetl.core.Configuration;
 import org.beetl.core.GroupTemplate;
 import org.beetl.core.Template;
@@ -24,7 +24,7 @@ public class JavaProjectGenerator implements ProjectGenerator<JavaProjectGenerat
     private List<String> filterDict = CollectionUtil.newArrayList(".git");
 
     @Override
-    public boolean generator(JavaProjectGenerateParam projectGenerateParam) {
+    public File generator(JavaProjectGenerateParam projectGenerateParam) {
         // 获取脚手架
         File scaffold = getScaffold();
 
@@ -37,7 +37,7 @@ public class JavaProjectGenerator implements ProjectGenerator<JavaProjectGenerat
 
         doProcess(rootProject, projectGenerateParam);
 
-        return true;
+        return rootProject;
     }
 
     private File getScaffold() {

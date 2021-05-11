@@ -1,4 +1,4 @@
-package com.kt.cloud.codeproject.generate;
+package com.kt.cloud.codeproject.infrastructure.generate;
 
 public class GenerateException extends RuntimeException{
 
