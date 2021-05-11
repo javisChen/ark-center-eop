@@ -1,7 +1,6 @@
-package com.kt.cloud.codeproject.infrastructure.git.gateway.impl.http.request;
+package com.kt.cloud.codeproject.manager.git.gitee.request;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
 public class GiteeGetTokenRequest {

@@ -1,10 +1,10 @@
-package com.kt.cloud.codeproject.infrastructure.git.gateway.impl.http;
+package com.kt.cloud.codeproject.manager.git.gitee;
 
-import cn.hutool.core.io.IoUtil;
+
 import cn.hutool.core.util.RuntimeUtil;
-import com.kt.cloud.codeproject.infrastructure.git.gateway.impl.http.request.GiteeCreateReposRequest;
-import com.kt.cloud.codeproject.infrastructure.git.gateway.impl.http.request.GiteeGetTokenRequest;
-import com.kt.cloud.codeproject.infrastructure.git.gateway.impl.http.response.GiteeGetTokenResponse;
+import com.kt.cloud.codeproject.manager.git.gitee.request.GiteeCreateReposRequest;
+import com.kt.cloud.codeproject.manager.git.gitee.request.GiteeGetTokenRequest;
+import com.kt.cloud.codeproject.manager.git.gitee.response.GiteeGetTokenResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.util.StreamUtils;

@@ -8,13 +8,9 @@
     <artifactId>kt-cloud-code-project</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>kt-cloud-code-project-infrastructure</module>
-        <module>kt-cloud-code-project-domain</module>
         <module>kt-cloud-code-project-client</module>
         <module>kt-cloud-code-project-manager</module>
         <module>kt-cloud-code-project-service</module>
-        <module>kt-cloud-code-project-app</module>
-        <module>kt-cloud-code-project-adapter</module>
         <module>kt-cloud-code-project-start</module>
     </modules>
     <packaging>pom</packaging>
@@ -36,6 +32,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+
         </dependency>
 
         <dependency>
@@ -56,27 +53,7 @@
             </dependency>
             <dependency>
                 <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-code-project-adapter</artifactId>
-                <version>${version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-code-project-domain</artifactId>
-                <version>${version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kt.cloud</groupId>
                 <artifactId>kt-cloud-code-project-client</artifactId>
-                <version>${version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-code-project-app</artifactId>
-                <version>${version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-code-project-infrastructure</artifactId>
                 <version>${version}</version>
             </dependency>
             <dependency>

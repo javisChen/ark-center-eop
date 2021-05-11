@@ -1,24 +1,24 @@
-package com.kt.cloud.codeproject.infrastructure.git.gateway.impl.http.response;
+package com.kt.cloud.codeproject.manager.git.gitee.response;
+
 
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 @Data
 public class GiteeGetTokenResponse {
 
-
-    @JsonProperty("access_token")
+    @JSONField(name = "access_token")
     private String accessToken;
-    @JsonProperty("token_type")
+    @JSONField(name = "token_type")
     private String tokenType;
-    @JsonProperty("expires_in")
+    @JSONField(name = "expires_in")
     private int expiresIn;
-    @JsonProperty("refresh_token")
+    @JSONField(name = "refresh_token")
     private String refreshToken;
-    @JsonProperty("scope")
+    @JSONField(name = "scope")
     private String scope;
-    @JsonProperty("created_at")
+    @JSONField(name = "created_at")
     private int createdAt;
 
     public static GiteeGetTokenResponse fromString(String s) {

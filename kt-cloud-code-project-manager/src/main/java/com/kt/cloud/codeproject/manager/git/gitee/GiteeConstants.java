@@ -6,4 +6,5 @@ package com.kt.cloud.codeproject.manager.git.gitee;
 public interface GiteeConstants {
 
     String CREATE_REPOS_URI = "https://gitee.com/api/v5/user/repos";
+    String GET_TOKEN_URI = "https://gitee.com/oauth/token";
 }
