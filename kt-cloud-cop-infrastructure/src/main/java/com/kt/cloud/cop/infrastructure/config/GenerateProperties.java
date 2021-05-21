@@ -4,15 +4,11 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-@ConfigurationProperties(prefix = "biz-module.git")
+@ConfigurationProperties(prefix = "biz-module.generate")
 @Data
 @Configuration
-public class GitProperties {
+public class GenerateProperties {
 
-    private String email;
-    private String password;
-    private String clientId;
-    private String clientSecret;
-    private String scope;
+    private String tempDir;
 
 }

@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.module.codeproject;
+package com.kt.cloud.cop;
 
 import com.kt.cloud.cop.Application;
 import org.junit.Test;

@@ -3,17 +3,15 @@ package com.kt.cloud.cop.module.codeproject.service;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
-import com.kt.cloud.cop.infrastructure.generate.model.CodeGenerateModel;
+import com.alibaba.fastjson.JSONObject;
 import com.kt.cloud.cop.infrastructure.generate.model.JavaProjectGenerateParam;
-import com.kt.cloud.cop.module.codeproject.BaseTests;
+import com.kt.cloud.cop.BaseTests;
 import com.kt.cloud.cop.module.codeproject.GenCodeProjectDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CodeProjectServiceTest extends BaseTests {
 
@@ -27,13 +25,14 @@ public class CodeProjectServiceTest extends BaseTests {
     @Test
     public void genCodeProject() {
         GenCodeProjectDTO genCodeProjectDTO = new GenCodeProjectDTO();
-        String artifactId = "test-demo";
+        String artifactId = "success-demo";
         String groupId = "com.kt.cloud";
         String packageName = "com.kt.cloud";
         genCodeProjectDTO.setName(artifactId);
         genCodeProjectDTO.setType("java");
         genCodeProjectDTO.setDescription("demo1237");
         genCodeProjectDTO.setDeleteTempFileAfterGen(false);
+        genCodeProjectDTO.setCreateGitRepos(false);
 
         JavaProjectGenerateParam javaProjectGenerateParam = new JavaProjectGenerateParam();
         javaProjectGenerateParam.setArtifactId(artifactId);
@@ -44,9 +43,12 @@ public class CodeProjectServiceTest extends BaseTests {
         javaProjectGenerateParam.setDsPassword("Root1234!@#$");
         javaProjectGenerateParam.setGenDaoCode(true);
 
-        genCodeProjectDTO.setExtProperties(JSON.toJSONString(BeanUtil.beanToMap(javaProjectGenerateParam)));
+        String extProperties = JSON.toJSONString(BeanUtil.beanToMap(javaProjectGenerateParam));
+        genCodeProjectDTO.setExtProperties(extProperties);
 
-        iCodeProjectService.genCodeProject(genCodeProjectDTO);
+        System.out.println(JSONObject.toJSONString(genCodeProjectDTO));
+
+//        iCodeProjectService.genCodeProject(genCodeProjectDTO);
     }
 
     @Test

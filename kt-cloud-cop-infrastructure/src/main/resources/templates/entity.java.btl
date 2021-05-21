@@ -1,6 +1,4 @@
-package templates;
-
-{package.Entity};
+package ${package.Entity};
 <% for(pkg in table.importPackages){ %>
 import ${pkg};
 <% } %>
@@ -11,6 +9,8 @@ import io.swagger.annotations.ApiModelProperty;
 <% if(entityLombokModel){ %>
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 <% if(chainModel){ %>
 import lombok.experimental.Accessors;
 <% } %>
@@ -166,36 +166,25 @@ public class ${entity} implements Serializable {
         "}";
     }
 <% } %>
-
 <% for(field in table.fields){ %>
     <% if(strutil.contain(field.comment,"enums")){ %>
-        <%
-            var start = strutil.index(field.comment,"[") + 1;
-            var end = strutil.index(field.comment,"]");
-            var content = strutil.subStringTo(field.comment, start, end);
-            var arr = strutil.split(content, ";");
-        %>
-        public enum ${strutil.toUpperCase(strutil.subStringTo(field.propertyName, 0, 1))}${strutil.subString(field.propertyName, 1)} {
-        <% for(user in arr) {
-            var arr2 = strutil.split(user, ",");
-            var enumName = arr2[0];
-            var text = arr2[1];
-            var value = arr2[2];
-        %>
-            ${enumName}(${value}, ${text}),
-        <% } %>
-            ;
-            @Getter
-            private Integer value;
-            @Getter
-            private String text;
-
-            ${strutil.toUpperCase(strutil.subStringTo(field.propertyName, 0, 1))}${strutil.subString(field.propertyName, 1)}(Integer value, String text) {
-                this.value = value;
-                this.text = text;
-            }
-
-        }
+        <% var start = strutil.index(field.comment,"[") + 1; var end = strutil.index(field.comment,"]"); var content = strutil.subStringTo(field.comment, start, end);
+            var arr = strutil.split(content, ";"); %>
+    @Getter
+    @AllArgsConstructor
+    public enum ${strutil.toUpperCase(strutil.subStringTo(field.propertyName, 0, 1))}${strutil.subString(field.propertyName, 1)} {
+    <% for(user in arr) {
+    var arr2 = strutil.split(user, ",");
+    var enumName = arr2[0];
+    var text = arr2[1];
+    var value = arr2[2];
+    %>
+        ${enumName}(${value}, "${text}"),
+        <% } %>;
+        private final Integer value;
+        private final String text;
+    }
     <% } %>
+
  <% } %>
 }

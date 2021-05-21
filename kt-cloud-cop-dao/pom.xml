@@ -20,7 +20,6 @@
         <dependency>
             <groupId>com.kt</groupId>
             <artifactId>kt-component-db-spring-boot-starter</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>

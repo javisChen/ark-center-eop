@@ -5,9 +5,11 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.IdUtil;
+import com.kt.cloud.cop.infrastructure.config.GenerateProperties;
 import com.kt.cloud.cop.infrastructure.generate.GenerateException;
 import com.kt.cloud.cop.infrastructure.generate.engine.TemplateEngine;
 import com.kt.component.exception.BizException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +22,8 @@ import java.util.Map;
 @Component
 public  abstract class AbstractProjectGenerator implements ProjectGenerator {
 
-    private String temp = "/Users/chenjiawei/code/myself/kt-cloud-cop";
+    @Autowired
+    private GenerateProperties properties;
 
     @Autowired
     private TemplateEngine templateEngine;
@@ -85,7 +88,7 @@ public  abstract class AbstractProjectGenerator implements ProjectGenerator {
      * 2.把脚手架内容复制到临时目录
      */
     private File copyToTemp(File scaffoldFile) {
-        File tempDir = new File(temp + File.separator + IdUtil.fastSimpleUUID());
+        File tempDir = new File(getTempDir() + File.separator + IdUtil.fastSimpleUUID());
         if (tempDir.exists()) {
             FileUtil.del(tempDir);
         }
@@ -95,6 +98,13 @@ public  abstract class AbstractProjectGenerator implements ProjectGenerator {
         }
         FileUtil.copyContent(scaffoldFile, tempDir, true);
         return tempDir;
+    }
+
+    private String getTempDir() {
+        if (StringUtils.isNotEmpty(properties.getTempDir())) {
+            return properties.getTempDir();
+        }
+        return System.getProperty("user.dir");
     }
 
     protected void processFile(File subFile, Map<String, Object> params) {

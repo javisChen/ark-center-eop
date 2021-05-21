@@ -1,8 +1,12 @@
 package com.kt.cloud.cop.module.codeproject.service;
+import java.time.LocalDateTime;
 
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.kt.cloud.cop.dao.entity.ProjectBasic;
+import com.kt.cloud.cop.dao.service.IProjectBasicService;
+import com.kt.cloud.cop.module.codeproject.vo.CodeProjectGenVo;
 import com.kt.cloud.cop.module.git.GitCreate;
 import com.kt.cloud.cop.module.git.GitReposInfo;
 import com.kt.cloud.cop.module.git.GitService;
@@ -25,8 +29,11 @@ public class CodeProjectService implements ICodeProjectService {
     @Autowired
     private Map<String, ProjectGenerator> projectGeneratorMap;
 
+    @Autowired
+    private IProjectBasicService iProjectBasicService;
+
     @Override
-    public void genCodeProject(GenCodeProjectDTO genCodeProjectDTO) {
+    public CodeProjectGenVo createCodeProject(GenCodeProjectDTO genCodeProjectDTO) {
         ProjectGenerator projectGenerator = getProjectGenerator(genCodeProjectDTO);
         if (projectGenerator == null) {
             throw new BizException("不存在该类型的工程");
@@ -36,14 +43,24 @@ public class CodeProjectService implements ICodeProjectService {
 
         GitCreate gitCreate = CodeProjectConvertor.convertForCreate(genCodeProjectDTO);
 
+        String gitReposUrl = "";
         if (genCodeProjectDTO.getCreateGitRepos()) {
             GitReposInfo gitReposInfo = gitService.createRepository(gitCreate);
+            gitReposUrl = gitReposInfo.getReposUrl();
             gitService.intiAndPushToRepos(codeProject, gitReposInfo);
         }
 
         if (genCodeProjectDTO.getDeleteTempFileAfterGen()) {
             FileUtil.del(codeProject);
         }
+
+        ProjectBasic entity = new ProjectBasic();
+        entity.setName("");
+        entity.setDescription("");
+        entity.setGitReposUrl(gitReposUrl);
+        iProjectBasicService.save(entity);
+
+        return new CodeProjectGenVo(gitReposUrl);
 
     }
 

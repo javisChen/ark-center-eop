@@ -20,6 +20,15 @@ public class CodeGenerator {
     private final String[] superEntityColumns = new String[] {"id", "gmt_create", "gmt_modified", "creator", "modifier"};
     private final String author = "COP";
 
+    public static void main(String[] args) {
+        CodeGenerateModel model = new CodeGenerateModel();
+        model.setUrl("jdbc:mysql://localhost:3306/cop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True");
+        model.setUsername("root");
+        model.setPassword("Root1234!@#$");
+        model.setOutputDir("/Users/chenjiawei/code/myself/kt-cloud-cop/kt-cloud-cop-dao/src/main/java");
+        model.setParent("com.kt.cloud.cop.dao");
+        new CodeGenerator().execute(model);
+    }
 
     public void execute(CodeGenerateModel model) {
         // 代码生成器

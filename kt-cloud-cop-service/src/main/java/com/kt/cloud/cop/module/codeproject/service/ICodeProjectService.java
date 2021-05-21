@@ -1,9 +1,10 @@
 package com.kt.cloud.cop.module.codeproject.service;
 
 import com.kt.cloud.cop.module.codeproject.GenCodeProjectDTO;
+import com.kt.cloud.cop.module.codeproject.vo.CodeProjectGenVo;
 
 public interface ICodeProjectService {
 
-    void genCodeProject(GenCodeProjectDTO genCodeProjectDTO);
+    CodeProjectGenVo createCodeProject(GenCodeProjectDTO genCodeProjectDTO);
 
 }
