@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.kt.cloud.cop.dao")
+@MapperScan("com.kt.cloud.cop.dao.mapper")
 public class Application {
 
     public static void main(String[] args) {
