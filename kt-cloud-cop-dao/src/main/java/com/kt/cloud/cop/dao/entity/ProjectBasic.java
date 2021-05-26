@@ -19,7 +19,6 @@ public class ProjectBasic extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-
     /**
      * 工程名称
      */
@@ -41,7 +40,7 @@ public class ProjectBasic extends BaseEntity {
      * 工程类型 enums[BACKEND,后端应用,1 ;FRONTEND,前端应用,2]
      */
     @TableField("`type`")
-    private Boolean type;
+    private Integer type;
 
     /**
      * Git仓库地址
@@ -49,13 +48,11 @@ public class ProjectBasic extends BaseEntity {
     private String gitReposUrl;
 
 
-
-
     @Getter
     @AllArgsConstructor
     public enum Type {
         BACKEND(1 , "后端应用"),
-                FRONTEND(2, "前端应用"),
+        FRONTEND(2, "前端应用")
         ;
         private final Integer value;
         private final String text;

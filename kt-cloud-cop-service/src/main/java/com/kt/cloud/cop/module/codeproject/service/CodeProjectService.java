@@ -1,18 +1,21 @@
 package com.kt.cloud.cop.module.codeproject.service;
-import java.time.LocalDateTime;
 
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kt.cloud.cop.dao.entity.ProjectBasic;
 import com.kt.cloud.cop.dao.service.IProjectBasicService;
 import com.kt.cloud.cop.module.codeproject.vo.CodeProjectGenVo;
+import com.kt.cloud.cop.module.codeproject.vo.CodeProjectListVo;
 import com.kt.cloud.cop.module.git.GitCreate;
 import com.kt.cloud.cop.module.git.GitReposInfo;
 import com.kt.cloud.cop.module.git.GitService;
 import com.kt.cloud.cop.infrastructure.generate.project.ProjectGenerator;
 import com.kt.cloud.cop.module.codeproject.GenCodeProjectDTO;
 import com.kt.cloud.cop.module.codeproject.convertor.CodeProjectConvertor;
+import com.kt.component.dto.PagingDTO;
 import com.kt.component.exception.BizException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +65,12 @@ public class CodeProjectService implements ICodeProjectService {
 
         return new CodeProjectGenVo(gitReposUrl);
 
+    }
+
+    @Override
+    public IPage<CodeProjectListVo> listVos(PagingDTO pagingDTO) {
+        return iProjectBasicService.page(new Page<>(pagingDTO.getCurrent(), pagingDTO.getSize()))
+                .convert(CodeProjectConvertor::convertToCodeProjectListVo);
     }
 
     private Map<String, Object> convertToMap(String extProperties) {

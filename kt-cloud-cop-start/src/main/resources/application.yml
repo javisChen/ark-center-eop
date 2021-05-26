@@ -1,13 +1,13 @@
 server:
-  port: 8081
+  port: 8080
   servlet:
-    context-path: /demo
+    context-path: /cop
 spring:
   application:
-    name: demo
+    name: cop
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/kt?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True
+      url: jdbc:mysql://localhost:3306/cop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True
       username: root
       password: Root1234!@#$
       name: defaultDataSource
