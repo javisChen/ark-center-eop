@@ -13,7 +13,7 @@ import com.kt.cloud.cop.infrastructure.generate.model.CodeGenerateModel;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CodeGenerator {
+public class DAOCodeGenerator {
 
     private final String superEntityClass = "com.kt.component.db.base.BaseEntity";
     private final String superControllerClass = "com.kt.component.web.base.BaseController";
@@ -27,7 +27,7 @@ public class CodeGenerator {
         model.setPassword("Root1234!@#$");
         model.setOutputDir("/Users/chenjiawei/code/myself/kt-cloud-cop/kt-cloud-cop-dao/src/main/java");
         model.setParent("com.kt.cloud.cop.dao");
-        new CodeGenerator().execute(model);
+        new DAOCodeGenerator().execute(model);
     }
 
     public void execute(CodeGenerateModel model) {

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CodeProjectCreateVo {
+public class CodeProjectCreateVO1 {
 
     private String gitReposUrl;
 }

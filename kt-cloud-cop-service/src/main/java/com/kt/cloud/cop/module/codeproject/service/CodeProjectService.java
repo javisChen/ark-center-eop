@@ -3,12 +3,13 @@ package com.kt.cloud.cop.module.codeproject.service;
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
 import com.kt.cloud.cop.client.codeproject.enums.ReposSourceEnums;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectCreateVo;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVo;
+import com.kt.cloud.cop.client.codeproject.vo.CodeProjectCreateVO1;
+import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO1;
 import com.kt.cloud.cop.dao.entity.ProjectBasic;
 import com.kt.cloud.cop.dao.service.IProjectBasicService;
 import com.kt.cloud.cop.infrastructure.generate.project.ProjectGenerator;
@@ -40,7 +41,7 @@ public class CodeProjectService implements ICodeProjectService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public CodeProjectCreateVo createCodeProject(CodeProjectCreateCmd codeProjectCmd) {
+    public CodeProjectCreateVO1 createCodeProject(CodeProjectCreateCmd codeProjectCmd) {
         ProjectGenerator projectGenerator = getProjectGenerator(codeProjectCmd);
         if (projectGenerator == null) {
             throw new BizException("不存在该类型的工程");
@@ -61,7 +62,7 @@ public class CodeProjectService implements ICodeProjectService {
         // 持久化到存储
         saveProject(codeProjectCmd, gitReposUrl);
 
-        return new CodeProjectCreateVo(gitReposUrl);
+        return new CodeProjectCreateVO1(gitReposUrl);
 
     }
 
@@ -88,8 +89,10 @@ public class CodeProjectService implements ICodeProjectService {
     }
 
     @Override
-    public IPage<CodeProjectListVo> pageListCodeProject(PagingQuery pagingQuery) {
-        return iProjectBasicService.page(new Page<>(pagingQuery.getCurrent(), pagingQuery.getSize()))
+    public IPage<CodeProjectListVO1> pageListCodeProject(PagingQuery pagingQuery) {
+        LambdaQueryWrapper<ProjectBasic> qw = new LambdaQueryWrapper<>();
+        qw.orderByDesc(ProjectBasic::getGmtCreate);
+        return iProjectBasicService.page(new Page<>(pagingQuery.getCurrent(), pagingQuery.getSize()), qw)
                 .convert(CodeProjectConvertor::convertToCodeProjectListVo);
     }
 

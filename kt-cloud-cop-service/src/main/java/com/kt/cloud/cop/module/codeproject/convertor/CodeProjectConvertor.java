@@ -2,7 +2,7 @@ package com.kt.cloud.cop.module.codeproject.convertor;
 
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
 import com.kt.cloud.cop.dao.entity.ProjectBasic;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVo;
+import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO1;
 import com.kt.cloud.cop.module.git.GitCreate;
 
 public class CodeProjectConvertor {
@@ -14,8 +14,8 @@ public class CodeProjectConvertor {
         return gitCreate;
     }
 
-    public static CodeProjectListVo convertToCodeProjectListVo(ProjectBasic projectBasic) {
-        CodeProjectListVo vo = new CodeProjectListVo();
+    public static CodeProjectListVO1 convertToCodeProjectListVo(ProjectBasic projectBasic) {
+        CodeProjectListVO1 vo = new CodeProjectListVO1();
         vo.setId(projectBasic.getId());
         vo.setName(projectBasic.getName());
         vo.setCode(projectBasic.getCode());
@@ -27,12 +27,13 @@ public class CodeProjectConvertor {
         return vo;
     }
 
-    public static ProjectBasic convertToProjectBasic(CodeProjectCreateCmd codeProjectCmd, String gitReposUrl) {
+    public static ProjectBasic convertToProjectBasic(CodeProjectCreateCmd cmd, String gitReposUrl) {
         ProjectBasic entity = new ProjectBasic();
-        entity.setName(codeProjectCmd.getName());
-        entity.setCode(codeProjectCmd.getCode());
-        entity.setDescription(codeProjectCmd.getDescription());
+        entity.setName(cmd.getName());
+        entity.setCode(cmd.getCode());
+        entity.setDescription(cmd.getDescription());
         entity.setGitReposUrl(gitReposUrl);
+        entity.setExtProperties(cmd.getExtProperties());
         return entity;
     }
 }

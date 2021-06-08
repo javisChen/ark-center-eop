@@ -1,6 +1,7 @@
 package com.kt.cloud.cop.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.kt.component.db.base.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -57,6 +58,14 @@ public class ProjectBasic extends BaseEntity {
      * Git仓库地址
      */
     private String gitReposUrl;
+
+    /**
+     * 工程的独有属性JSON
+     */
+    private String extProperties;
+
+    @TableLogic
+    private Integer isDeleted;
 
 
 

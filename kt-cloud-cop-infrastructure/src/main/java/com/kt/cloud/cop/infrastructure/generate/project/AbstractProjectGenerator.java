@@ -39,6 +39,7 @@ public  abstract class AbstractProjectGenerator implements ProjectGenerator {
 
         doProcess(rootProject, extProperties);
 
+        // 后置处理，主工程处理完可以实现这个方法做一些定制操作
         postProcess(rootProject, extProperties);
 
         return rootProject;

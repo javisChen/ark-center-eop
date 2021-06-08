@@ -7,7 +7,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
-import com.kt.cloud.cop.infrastructure.generate.code.CodeGenerator;
+import com.kt.cloud.cop.infrastructure.generate.code.DAOCodeGenerator;
 import com.kt.cloud.cop.infrastructure.generate.model.CodeGenerateModel;
 import com.kt.cloud.cop.infrastructure.generate.model.JavaProjectGenerateParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 public class SpringCloudProjectGenerator extends AbstractProjectGenerator {
 
     @Autowired
-    private CodeGenerator codeGenerator;
+    private DAOCodeGenerator codeGenerator;
 
     @Override
     protected void postProcess(File rootProject, Map<String, Object> extProperties) {

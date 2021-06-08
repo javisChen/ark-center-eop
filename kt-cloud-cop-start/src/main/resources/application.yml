@@ -37,3 +37,9 @@ biz-module:
 logging:
   level:
     root: debug
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: is_deleted
+      logic-not-delete-value: 0
