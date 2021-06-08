@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CodeProjectListVO1 {
+public class CodeProjectListVO {
 
     private Long id;
 

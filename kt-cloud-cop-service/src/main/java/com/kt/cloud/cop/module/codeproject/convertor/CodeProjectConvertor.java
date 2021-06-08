@@ -1,8 +1,9 @@
 package com.kt.cloud.cop.module.codeproject.convertor;
 
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.cop.client.codeproject.vo.CodeProjectInfoVO;
 import com.kt.cloud.cop.dao.entity.ProjectBasic;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO1;
+import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO;
 import com.kt.cloud.cop.module.git.GitCreate;
 
 public class CodeProjectConvertor {
@@ -14,8 +15,8 @@ public class CodeProjectConvertor {
         return gitCreate;
     }
 
-    public static CodeProjectListVO1 convertToCodeProjectListVo(ProjectBasic projectBasic) {
-        CodeProjectListVO1 vo = new CodeProjectListVO1();
+    public static CodeProjectListVO convertToCodeProjectListVo(ProjectBasic projectBasic) {
+        CodeProjectListVO vo = new CodeProjectListVO();
         vo.setId(projectBasic.getId());
         vo.setName(projectBasic.getName());
         vo.setCode(projectBasic.getCode());
@@ -35,5 +36,17 @@ public class CodeProjectConvertor {
         entity.setGitReposUrl(gitReposUrl);
         entity.setExtProperties(cmd.getExtProperties());
         return entity;
+    }
+
+    public static CodeProjectInfoVO convertToCodeProjectInfoVO(ProjectBasic projectBasic) {
+        CodeProjectInfoVO vo = new CodeProjectInfoVO();
+        vo.setId(projectBasic.getId());
+        vo.setName(projectBasic.getName());
+        vo.setCode(projectBasic.getCode());
+        vo.setDescription(projectBasic.getDescription());
+        vo.setType(ProjectBasic.Type.getText(projectBasic.getType()));
+        vo.setScaffold(ProjectBasic.Scaffold.getText(projectBasic.getScaffold()));
+        vo.setGitReposUrl(projectBasic.getGitReposUrl());
+        return vo;
     }
 }

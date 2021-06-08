@@ -8,8 +8,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
 import com.kt.cloud.cop.client.codeproject.enums.ReposSourceEnums;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectCreateVO1;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO1;
+import com.kt.cloud.cop.client.codeproject.vo.CodeProjectCreateVO;
+import com.kt.cloud.cop.client.codeproject.vo.CodeProjectInfoVO;
+import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO;
 import com.kt.cloud.cop.dao.entity.ProjectBasic;
 import com.kt.cloud.cop.dao.service.IProjectBasicService;
 import com.kt.cloud.cop.infrastructure.generate.project.ProjectGenerator;
@@ -41,7 +42,7 @@ public class CodeProjectService implements ICodeProjectService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public CodeProjectCreateVO1 createCodeProject(CodeProjectCreateCmd codeProjectCmd) {
+    public CodeProjectCreateVO createCodeProject(CodeProjectCreateCmd codeProjectCmd) {
         ProjectGenerator projectGenerator = getProjectGenerator(codeProjectCmd);
         if (projectGenerator == null) {
             throw new BizException("不存在该类型的工程");
@@ -62,7 +63,7 @@ public class CodeProjectService implements ICodeProjectService {
         // 持久化到存储
         saveProject(codeProjectCmd, gitReposUrl);
 
-        return new CodeProjectCreateVO1(gitReposUrl);
+        return new CodeProjectCreateVO(gitReposUrl);
 
     }
 
@@ -89,11 +90,17 @@ public class CodeProjectService implements ICodeProjectService {
     }
 
     @Override
-    public IPage<CodeProjectListVO1> pageListCodeProject(PagingQuery pagingQuery) {
+    public IPage<CodeProjectListVO> pageListCodeProject(PagingQuery pagingQuery) {
         LambdaQueryWrapper<ProjectBasic> qw = new LambdaQueryWrapper<>();
         qw.orderByDesc(ProjectBasic::getGmtCreate);
         return iProjectBasicService.page(new Page<>(pagingQuery.getCurrent(), pagingQuery.getSize()), qw)
                 .convert(CodeProjectConvertor::convertToCodeProjectListVo);
+    }
+
+    @Override
+    public CodeProjectInfoVO getCodeProjectInfo(Long codeProjectId) {
+        ProjectBasic projectBasic = iProjectBasicService.getById(codeProjectId);
+        return CodeProjectConvertor.convertToCodeProjectInfoVO(projectBasic);
     }
 
     private Map<String, Object> convertToMap(String extProperties) {
