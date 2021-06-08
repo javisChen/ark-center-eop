@@ -54,7 +54,7 @@ public class GiteeManager implements GitManager {
             log.error(TAG + "[响应错误]");
             log.error(String.format(TAG + "[状态码]-[%s]", response.getStatus()));
             log.error(String.format(TAG + "[Body]-[%s]", response.body()));
-            throw new GitApiException(response.getStatus(), response.body());
+            throw new GitApiException(response.getStatus(), String.format("Git创建仓库失败：[%s]", response.body()));
         }
         logDebug(TAG + "成功");
         logDebug(TAG + "响应：" + response.body());

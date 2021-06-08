@@ -4,22 +4,20 @@ import com.kt.cloud.cop.infrastructure.config.GitProperties;
 import com.kt.cloud.cop.infrastructure.constant.RedisKeyConst;
 import com.kt.cloud.cop.infrastructure.util.CmdUtils;
 import com.kt.cloud.cop.manager.git.GitManager;
+import com.kt.cloud.cop.manager.git.gitee.GitApiException;
 import com.kt.cloud.cop.manager.git.gitee.request.GiteeCreateReposRequest;
 import com.kt.cloud.cop.manager.git.gitee.request.GiteeGetTokenRequest;
 import com.kt.cloud.cop.manager.git.gitee.response.GiteeCreateReposResponse;
 import com.kt.cloud.cop.manager.git.gitee.response.GiteeGetTokenResponse;
+import com.kt.component.exception.BizException;
 import com.kt.component.redis.RedisService;
-import com.kt.toolkit.log.Logs;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StreamUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +39,12 @@ public class GitService {
         giteeCreateReposRequest.setName(gitCreate.getName());
         giteeCreateReposRequest.setDescription(gitCreate.getDescription());
         giteeCreateReposRequest.setAccessToken(getAccessToken(gitProperties));
-        GiteeCreateReposResponse repos = gitManager.createRepos(giteeCreateReposRequest);
+        GiteeCreateReposResponse repos = null;
+        try {
+            repos = gitManager.createRepos(giteeCreateReposRequest);
+        } catch (GitApiException e) {
+            throw new BizException(e.getMessage());
+        }
         return new GitReposInfo(repos.getHtmlUrl(), gitCreate.getName());
     }
 

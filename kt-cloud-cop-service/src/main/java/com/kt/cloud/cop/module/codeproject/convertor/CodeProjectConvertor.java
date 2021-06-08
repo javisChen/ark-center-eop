@@ -16,6 +16,7 @@ public class CodeProjectConvertor {
 
     public static CodeProjectListVo convertToCodeProjectListVo(ProjectBasic projectBasic) {
         CodeProjectListVo vo = new CodeProjectListVo();
+        vo.setId(projectBasic.getId());
         vo.setName(projectBasic.getName());
         vo.setCode(projectBasic.getCode());
         vo.setDescription(projectBasic.getDescription());

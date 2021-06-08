@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.kt.cloud.cop.BaseTests;
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.cop.client.codeproject.enums.GenerateModeEnums;
 import com.kt.cloud.cop.dao.entity.ProjectBasic;
 import com.kt.cloud.cop.infrastructure.generate.model.JavaProjectGenerateParam;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +35,7 @@ public class CodeProjectServiceTest extends BaseTests {
         cmd.setScaffold(ProjectBasic.Scaffold.SpringCloud.getValue());
         cmd.setDescription("demo1237");
         cmd.setDeleteTempFileAfterGen(false);
-        cmd.setCreateGitRepos(true);
+        cmd.setGenerateMode(GenerateModeEnums.SCAFFOLD.getValue());
 
         JavaProjectGenerateParam javaProjectGenerateParam = new JavaProjectGenerateParam();
         javaProjectGenerateParam.setArtifactId(artifactId);
@@ -43,7 +44,7 @@ public class CodeProjectServiceTest extends BaseTests {
         javaProjectGenerateParam.setDsUrl("jdbc:mysql://localhost:3306/cop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True");
         javaProjectGenerateParam.setDsUsername("root");
         javaProjectGenerateParam.setDsPassword("Root1234!@#$");
-        javaProjectGenerateParam.setGenDaoCode(true);
+        javaProjectGenerateParam.setGenDAOCode(true);
 
         String extProperties = JSON.toJSONString(BeanUtil.beanToMap(javaProjectGenerateParam));
         cmd.setExtProperties(extProperties);

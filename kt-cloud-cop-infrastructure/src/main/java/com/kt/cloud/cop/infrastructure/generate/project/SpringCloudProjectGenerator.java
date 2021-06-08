@@ -27,7 +27,7 @@ public class SpringCloudProjectGenerator extends AbstractProjectGenerator {
     @Override
     protected void postProcess(File rootProject, Map<String, Object> extProperties) {
         JavaProjectGenerateParam param = convertToParam(extProperties);
-        if (param.getGenDaoCode()) {
+        if (param.getGenDAOCode()) {
             genDaoCode(rootProject, param);
         }
 
@@ -58,7 +58,7 @@ public class SpringCloudProjectGenerator extends AbstractProjectGenerator {
         codeGenerateModel.setUsername(extProperties.getDsUsername());
         codeGenerateModel.setPassword(extProperties.getDsPassword());
         codeGenerateModel.setOutputDir(absolutePath);
-        codeGenerateModel.setGenDaoCode(extProperties.getGenDaoCode());
+        codeGenerateModel.setGenDaoCode(extProperties.getGenDAOCode());
         codeGenerateModel.setParent(extProperties.getPackageName() + ".dao");
         codeGenerateModel.setInclude(extProperties.getInclude());
         return codeGenerateModel;

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.cop.client.codeproject.enums.ReposSourceEnums;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectCreateVo;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVo;
 import com.kt.cloud.cop.dao.entity.ProjectBasic;
@@ -72,7 +73,7 @@ public class CodeProjectService implements ICodeProjectService {
 
     private String attemptCreateGitRepos(CodeProjectCreateCmd codeProjectCmd, File codeProject) {
         String gitReposUrl = "";
-        if (codeProjectCmd.getCreateGitRepos()) {
+        if (codeProjectCmd.getReposSource().equals(ReposSourceEnums.CREATE_NEW.getValue())) {
             GitCreate gitCreate = CodeProjectConvertor.convertToGitCreate(codeProjectCmd);
             GitReposInfo gitReposInfo = gitService.createRepository(gitCreate);
             gitReposUrl = gitReposInfo.getReposUrl();

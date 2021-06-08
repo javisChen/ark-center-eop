@@ -13,7 +13,7 @@ public class JavaProjectGenerateParam extends ProjectGenerateParam {
     private String dsUrl;
     private String dsUsername;
     private String dsPassword;
-    private Boolean genDaoCode = false;
+    private Boolean genDAOCode = false;
     private String[] include;
 
 }

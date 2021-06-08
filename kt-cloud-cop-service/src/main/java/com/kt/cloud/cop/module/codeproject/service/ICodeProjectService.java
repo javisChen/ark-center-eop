@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectCreateVo;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVo;
-import com.kt.component.dto.PagingDTO;
 import com.kt.component.dto.PagingQuery;
 
 public interface ICodeProjectService {

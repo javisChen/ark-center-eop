@@ -39,9 +39,16 @@ public class CodeProjectCreateCmd {
     private String extProperties;
 
     /**
-     * 创建Git仓库
+     * 仓库来源
+     * @see com.kt.cloud.cop.client.codeproject.enums.ReposSourceEnums
      */
-    private Boolean createGitRepos = false;
+    private Integer reposSource;
+
+    /**
+     * 源码生成方式
+     * @see com.kt.cloud.cop.client.codeproject.enums.GenerateModeEnums
+     */
+    private Integer generateMode;
 
     /**
      * 生成完成后删除临时目录
