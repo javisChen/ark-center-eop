@@ -1,17 +1,22 @@
 package com.kt.cloud.cop.dao.entity;
-import com.kt.component.db.base.BaseEntity;
+
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.kt.component.db.base.BaseEntity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.Arrays;
+import java.util.Optional;
+
 /**
  * <p>
  * Java工程表
  * </p>
  *
  * @author COP
- * @since 2021-05-21
+ * @since 2021-06-03
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -64,6 +69,19 @@ public class ProjectJava extends BaseEntity {
         ;
         private final Integer value;
         private final String text;
+
+        public static Type getByValue(Integer value) {
+            return Arrays.stream(values())
+                    .filter(enums -> enums.getValue().equals(value))
+                    .findFirst()
+                    .orElse(null);
+        }
+
+        public static String getText(Integer value) {
+            return Optional.ofNullable(getByValue(value))
+                    .map(Type::getText)
+                    .orElse("");
+        }
     }
 
     @Getter
@@ -74,6 +92,19 @@ public class ProjectJava extends BaseEntity {
         ;
         private final Integer value;
         private final String text;
+
+        public static BuildMode getByValue(Integer value) {
+            return Arrays.stream(values())
+                    .filter(enums -> enums.getValue().equals(value))
+                    .findFirst()
+                    .orElse(null);
+        }
+
+        public static String getText(Integer value) {
+            return Optional.ofNullable(getByValue(value))
+                    .map(BuildMode::getText)
+                    .orElse("");
+        }
     }
 
 

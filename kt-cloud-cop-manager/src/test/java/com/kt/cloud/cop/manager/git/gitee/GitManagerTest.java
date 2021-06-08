@@ -5,8 +5,8 @@ import cn.hutool.core.util.RuntimeUtil;
 import com.kt.cloud.cop.manager.git.gitee.request.GiteeCreateReposRequest;
 import com.kt.cloud.cop.manager.git.gitee.request.GiteeGetTokenRequest;
 import com.kt.cloud.cop.manager.git.gitee.response.GiteeGetTokenResponse;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.util.StreamUtils;
 
 import java.io.File;
@@ -22,7 +22,7 @@ public class GitManagerTest {
     private String clientId = "dc7f80b02163e4f76fbcffb03eff926566aaf19f2c51a0339391a599d60b32ba";
     private String clientSecret = "b68bc45b2f30ee460e8dfa468242697f276b144778bfb9011e29ee4253e8d03d";
 
-    @Before
+    @BeforeAll
     public void setUp() throws Exception {
 
     }

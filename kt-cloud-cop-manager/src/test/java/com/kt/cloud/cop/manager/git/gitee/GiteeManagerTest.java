@@ -3,13 +3,9 @@ package com.kt.cloud.cop.manager.git.gitee;
 
 import com.kt.cloud.cop.manager.git.gitee.request.GiteeCreateReposRequest;
 import com.kt.cloud.cop.manager.git.gitee.response.GiteeCreateReposResponse;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class GiteeManagerTest {
-
-    @org.junit.Before
-    public void setUp() throws Exception {
-    }
 
     @Test
     public void testCreateRepos() {

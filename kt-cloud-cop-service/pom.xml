@@ -29,6 +29,11 @@
 
         <dependency>
             <groupId>com.kt.cloud</groupId>
+            <artifactId>kt-cloud-cop-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kt.cloud</groupId>
             <artifactId>kt-cloud-cop-manager</artifactId>
         </dependency>
 

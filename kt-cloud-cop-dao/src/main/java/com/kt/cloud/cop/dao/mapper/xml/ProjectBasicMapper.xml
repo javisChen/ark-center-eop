@@ -13,10 +13,7 @@
         <result column="code" property="code" />
         <result column="description" property="description" />
         <result column="type" property="type" />
+        <result column="scaffold" property="scaffold" />
         <result column="git_repos_url" property="gitReposUrl" />
     </resultMap>
-
-    <select id="selectList" resultType="com.kt.cloud.cop.dao.entity.ProjectBasic">
-        select * from project_basic;
-    </select>
 </mapper>

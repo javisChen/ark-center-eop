@@ -1,13 +1,12 @@
 package com.kt.cloud.cop.dao.mapper;
 
-import com.kt.cloud.cop.BaseTests;
 import com.kt.cloud.cop.dao.entity.ProjectBasic;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class ProjectBasicMapperTest {
     private ProjectBasicMapper projectBasicMapper;
     private SqlSessionFactory sqlSessionFactory;
 
-    @Before
+    @BeforeAll
     public void setup() {
         sqlSessionFactory = new SqlSessionFactoryBuilder()
                 .build(ProjectBasicMapperTest.class.getClassLoader().getResourceAsStream("mybatis-config.xml"));
@@ -30,9 +29,9 @@ public class ProjectBasicMapperTest {
 
     @Test
     public void test() {
-        List<ProjectBasic> projectBasics = projectBasicMapper.selectList();
+        List<ProjectBasic> projectBasics = projectBasicMapper.selectList(null);
         System.out.println(projectBasics);
-        Assert.assertNotNull(projectBasics);
+        Assert.notEmpty(projectBasics, "List为空");
     }
 
 }

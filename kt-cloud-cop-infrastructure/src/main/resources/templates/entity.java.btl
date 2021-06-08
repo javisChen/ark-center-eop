@@ -169,7 +169,9 @@ public class ${entity} implements Serializable {
 <% for(field in table.fields){ %>
     <% if(strutil.contain(field.comment,"enums")){ %>
         <% var start = strutil.index(field.comment,"[") + 1; var end = strutil.index(field.comment,"]"); var content = strutil.subStringTo(field.comment, start, end);
-            var arr = strutil.split(content, ";"); %>
+            var arr = strutil.split(content, ";");
+             var enumClassName = strutil.toUpperCase(strutil.subStringTo(field.propertyName, 0, 1)) + strutil.subString(field.propertyName, 1);
+             %>
     @Getter
     @AllArgsConstructor
     public enum ${strutil.toUpperCase(strutil.subStringTo(field.propertyName, 0, 1))}${strutil.subString(field.propertyName, 1)} {
@@ -183,8 +185,20 @@ public class ${entity} implements Serializable {
         <% } %>;
         private final Integer value;
         private final String text;
+
+        public static ${enumClassName} getByValue(Integer value) {
+            return Arrays.stream(values())
+                    .filter(enums -> enums.getValue().equals(value))
+                    .findFirst()
+                    .orElse(null);
+        }
+
+        public static String getText(Integer value) {
+            return Optional.ofNullable(getByValue(value))
+                    .map(${enumClassName}::getText)
+                    .orElse("");
+        }
     }
     <% } %>
-
  <% } %>
 }

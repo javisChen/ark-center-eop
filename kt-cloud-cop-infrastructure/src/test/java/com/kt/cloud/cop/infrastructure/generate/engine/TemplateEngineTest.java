@@ -5,15 +5,13 @@ import org.beetl.core.Configuration;
 import org.beetl.core.GroupTemplate;
 import org.beetl.core.Template;
 import org.beetl.core.resource.StringTemplateResourceLoader;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
 
 public class TemplateEngineTest {
 
@@ -21,7 +19,7 @@ public class TemplateEngineTest {
     private GroupTemplate groupTemplate;
     private final StringTemplateResourceLoader resourceLoader = new StringTemplateResourceLoader();
 
-    @Before
+    @BeforeAll
     public void before() {
 
         Configuration cfg = null;
@@ -36,7 +34,7 @@ public class TemplateEngineTest {
     @Test
     public void test() {
         Map<String, Object> map = new HashMap<>();
-        map.put("comment", "工程类型 enums[BACKEND,后端应用,1 ;FRONTEND,前端应用,2]");
+        map.put("comment", "脚手架 enums[SpringCloud,SpringCloud,1;]");
         String temp = FileUtil.readUtf8String("/Users/chenjiawei/code/myself/kt-cloud-cop/kt-cloud-cop-infrastructure/src/main/resources/templates/entity.java2.btl");;
         Template t = groupTemplate.getTemplate(temp);
         t.binding(map);

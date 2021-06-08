@@ -13,16 +13,13 @@ import com.kt.cloud.cop.infrastructure.generate.model.JavaProjectGenerateParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.swing.*;
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Component("javaProjectGenerator")
-public class JavaProjectGenerator extends AbstractProjectGenerator {
+@Component("SpringCloudProjectGenerator")
+public class SpringCloudProjectGenerator extends AbstractProjectGenerator {
 
     @Autowired
     private CodeGenerator codeGenerator;

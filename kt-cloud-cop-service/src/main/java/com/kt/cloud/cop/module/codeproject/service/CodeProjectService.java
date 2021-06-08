@@ -5,20 +5,21 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.cop.client.codeproject.vo.CodeProjectCreateVo;
+import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVo;
 import com.kt.cloud.cop.dao.entity.ProjectBasic;
 import com.kt.cloud.cop.dao.service.IProjectBasicService;
-import com.kt.cloud.cop.module.codeproject.vo.CodeProjectGenVo;
-import com.kt.cloud.cop.module.codeproject.vo.CodeProjectListVo;
+import com.kt.cloud.cop.infrastructure.generate.project.ProjectGenerator;
+import com.kt.cloud.cop.module.codeproject.convertor.CodeProjectConvertor;
 import com.kt.cloud.cop.module.git.GitCreate;
 import com.kt.cloud.cop.module.git.GitReposInfo;
 import com.kt.cloud.cop.module.git.GitService;
-import com.kt.cloud.cop.infrastructure.generate.project.ProjectGenerator;
-import com.kt.cloud.cop.module.codeproject.GenCodeProjectDTO;
-import com.kt.cloud.cop.module.codeproject.convertor.CodeProjectConvertor;
-import com.kt.component.dto.PagingDTO;
+import com.kt.component.dto.PagingQuery;
 import com.kt.component.exception.BizException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.util.Map;
@@ -35,41 +36,59 @@ public class CodeProjectService implements ICodeProjectService {
     @Autowired
     private IProjectBasicService iProjectBasicService;
 
+
     @Override
-    public CodeProjectGenVo createCodeProject(GenCodeProjectDTO genCodeProjectDTO) {
-        ProjectGenerator projectGenerator = getProjectGenerator(genCodeProjectDTO);
+    @Transactional(rollbackFor = Exception.class)
+    public CodeProjectCreateVo createCodeProject(CodeProjectCreateCmd codeProjectCmd) {
+        ProjectGenerator projectGenerator = getProjectGenerator(codeProjectCmd);
         if (projectGenerator == null) {
             throw new BizException("不存在该类型的工程");
         }
-        Map<String, Object> params = convertToMap(genCodeProjectDTO.getExtProperties());
+
+        // 转换工程扩展属性
+        Map<String, Object> params = convertToMap(codeProjectCmd.getExtProperties());
+
+        // 执行工程生成
         File codeProject = projectGenerator.generator(params);
 
-        GitCreate gitCreate = CodeProjectConvertor.convertForCreate(genCodeProjectDTO);
+        // 尝试生成Git仓库
+        String gitReposUrl = attemptCreateGitRepos(codeProjectCmd, codeProject);
 
+        // 判断生成工程后是否删除临时目录
+        attemptDeleteTempFileAfterGen(codeProjectCmd, codeProject);
+
+        // 持久化到存储
+        saveProject(codeProjectCmd, gitReposUrl);
+
+        return new CodeProjectCreateVo(gitReposUrl);
+
+    }
+
+    private void attemptDeleteTempFileAfterGen(CodeProjectCreateCmd codeProjectCmd, File codeProject) {
+        if (codeProjectCmd.getDeleteTempFileAfterGen()) {
+            FileUtil.del(codeProject);
+        }
+    }
+
+    private String attemptCreateGitRepos(CodeProjectCreateCmd codeProjectCmd, File codeProject) {
         String gitReposUrl = "";
-        if (genCodeProjectDTO.getCreateGitRepos()) {
+        if (codeProjectCmd.getCreateGitRepos()) {
+            GitCreate gitCreate = CodeProjectConvertor.convertToGitCreate(codeProjectCmd);
             GitReposInfo gitReposInfo = gitService.createRepository(gitCreate);
             gitReposUrl = gitReposInfo.getReposUrl();
             gitService.intiAndPushToRepos(codeProject, gitReposInfo);
         }
+        return gitReposUrl;
+    }
 
-        if (genCodeProjectDTO.getDeleteTempFileAfterGen()) {
-            FileUtil.del(codeProject);
-        }
-
-        ProjectBasic entity = new ProjectBasic();
-        entity.setName("");
-        entity.setDescription("");
-        entity.setGitReposUrl(gitReposUrl);
-        iProjectBasicService.save(entity);
-
-        return new CodeProjectGenVo(gitReposUrl);
-
+    private void saveProject(CodeProjectCreateCmd codeProjectCmd, String gitReposUrl) {
+        ProjectBasic projectBasic = CodeProjectConvertor.convertToProjectBasic(codeProjectCmd, gitReposUrl);
+        iProjectBasicService.save(projectBasic);
     }
 
     @Override
-    public IPage<CodeProjectListVo> listVos(PagingDTO pagingDTO) {
-        return iProjectBasicService.page(new Page<>(pagingDTO.getCurrent(), pagingDTO.getSize()))
+    public IPage<CodeProjectListVo> pageListCodeProject(PagingQuery pagingQuery) {
+        return iProjectBasicService.page(new Page<>(pagingQuery.getCurrent(), pagingQuery.getSize()))
                 .convert(CodeProjectConvertor::convertToCodeProjectListVo);
     }
 
@@ -77,7 +96,7 @@ public class CodeProjectService implements ICodeProjectService {
         return JSONObject.parseObject(extProperties, new TypeReference<Map<String, Object>>(){});
     }
 
-    private ProjectGenerator getProjectGenerator(GenCodeProjectDTO genCodeProjectDTO) {
-        return projectGeneratorMap.get(genCodeProjectDTO.getType() + "ProjectGenerator");
+    private ProjectGenerator getProjectGenerator(CodeProjectCreateCmd cmd) {
+        return projectGeneratorMap.get(ProjectBasic.Scaffold.getText(cmd.getScaffold()) + "ProjectGenerator");
     }
 }

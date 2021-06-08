@@ -1,9 +1,10 @@
-package com.kt.cloud.cop.module.codeproject.vo;
+package com.kt.cloud.cop.client.codeproject.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +17,12 @@ public class CodeProjectListVo {
 
     private String description;
 
-    private Integer type;
+    private String type;
+
+    private String scaffold;
 
     private String gitReposUrl;
+
+    private LocalDateTime createTime;
+
 }

@@ -9,6 +9,7 @@ import com.kt.cloud.cop.infrastructure.config.GenerateProperties;
 import com.kt.cloud.cop.infrastructure.generate.GenerateException;
 import com.kt.cloud.cop.infrastructure.generate.engine.TemplateEngine;
 import com.kt.component.exception.BizException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
+@Slf4j
 public  abstract class AbstractProjectGenerator implements ProjectGenerator {
 
     @Autowired
@@ -112,9 +114,8 @@ public  abstract class AbstractProjectGenerator implements ProjectGenerator {
         try {
             templateEngine.renderTo(params, template, new FileOutputStream(subFile));
         } catch (FileNotFoundException e) {
-            //
+            log.error("渲染模板文件失败：", e);
         }
-//        FileUtil.writeUtf8String(doRender(params, template), subFile);
     }
 
     protected File attemptRenameDir(File fileItem, Map<String, Object> projectGenerateParam) {

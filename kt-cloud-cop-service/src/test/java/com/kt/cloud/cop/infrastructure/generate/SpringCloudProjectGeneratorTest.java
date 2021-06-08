@@ -1,16 +1,15 @@
 package com.kt.cloud.cop.infrastructure.generate;
 
-import com.kt.cloud.cop.infrastructure.generate.project.JavaProjectGenerator;
-import com.kt.cloud.cop.infrastructure.generate.project.ProjectGenerator;
-import org.junit.Test;
+import com.kt.cloud.cop.infrastructure.generate.project.SpringCloudProjectGenerator;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JavaProjectGeneratorTest {
+public class SpringCloudProjectGeneratorTest {
 
-    private JavaProjectGenerator projectGenerator = new JavaProjectGenerator();
+    private SpringCloudProjectGenerator projectGenerator = new SpringCloudProjectGenerator();
 
     @Test
     public void generator() {
