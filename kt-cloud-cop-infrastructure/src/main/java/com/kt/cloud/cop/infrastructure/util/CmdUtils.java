@@ -23,7 +23,7 @@ public class CmdUtils {
             Process start = processBuilder.start();
             inputStream = start.getInputStream();
             String s = StreamUtils.copyToString(inputStream, Charset.defaultCharset());
-            Logs.debug(log, "exec command info: {}", s);
+            Logs.debug("exec command info: {}", s);
         } finally {
             if (inputStream != null) {
                 inputStream.close();

@@ -1,6 +1,8 @@
-package com.kt.cloud.cop.infrastructure.generate.engine;
+package com.kt.cloud.cop.infrastructure.generate;
 
 import cn.hutool.core.io.FileUtil;
+import com.kt.cloud.cop.module.codeproject.generate.engine.BeetlTemplateEngine;
+import com.kt.cloud.cop.module.codeproject.generate.engine.TemplateEngine;
 import org.beetl.core.Configuration;
 import org.beetl.core.GroupTemplate;
 import org.beetl.core.Template;

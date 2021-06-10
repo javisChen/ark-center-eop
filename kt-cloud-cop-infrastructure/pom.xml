@@ -35,6 +35,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.kt</groupId>
+            <artifactId>kt-component-dto</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.kt.cloud</groupId>
             <artifactId>kt-cloud-cop-manager</artifactId>
         </dependency>

@@ -28,12 +28,11 @@ public class CodeProjectConvertor {
         return vo;
     }
 
-    public static ProjectBasic convertToProjectBasic(CodeProjectCreateCmd cmd, String gitReposUrl) {
+    public static ProjectBasic convertToProjectBasic(CodeProjectCreateCmd cmd) {
         ProjectBasic entity = new ProjectBasic();
         entity.setName(cmd.getName());
         entity.setCode(cmd.getCode());
         entity.setDescription(cmd.getDescription());
-        entity.setGitReposUrl(gitReposUrl);
         entity.setExtProperties(cmd.getExtProperties());
         return entity;
     }

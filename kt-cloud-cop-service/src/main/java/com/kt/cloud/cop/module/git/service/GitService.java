@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.module.git;
+package com.kt.cloud.cop.module.git.service;
 
 import com.kt.cloud.cop.infrastructure.config.GitProperties;
 import com.kt.cloud.cop.infrastructure.constant.RedisKeyConst;
@@ -9,6 +9,8 @@ import com.kt.cloud.cop.manager.git.gitee.request.GiteeCreateReposRequest;
 import com.kt.cloud.cop.manager.git.gitee.request.GiteeGetTokenRequest;
 import com.kt.cloud.cop.manager.git.gitee.response.GiteeCreateReposResponse;
 import com.kt.cloud.cop.manager.git.gitee.response.GiteeGetTokenResponse;
+import com.kt.cloud.cop.module.git.GitCreate;
+import com.kt.cloud.cop.module.git.GitReposInfo;
 import com.kt.component.exception.BizException;
 import com.kt.component.redis.RedisService;
 import lombok.extern.slf4j.Slf4j;

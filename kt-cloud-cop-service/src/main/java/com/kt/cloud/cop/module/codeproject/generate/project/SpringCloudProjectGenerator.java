@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.infrastructure.generate.project;
+package com.kt.cloud.cop.module.codeproject.generate.project;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
@@ -7,9 +7,9 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
-import com.kt.cloud.cop.infrastructure.generate.code.DAOCodeGenerator;
-import com.kt.cloud.cop.infrastructure.generate.model.CodeGenerateModel;
-import com.kt.cloud.cop.infrastructure.generate.model.JavaProjectGenerateParam;
+import com.kt.cloud.cop.module.codeproject.generate.code.DAOCodeGenerator;
+import com.kt.cloud.cop.module.codeproject.generate.model.CodeGenerateModel;
+import com.kt.cloud.cop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,14 +26,14 @@ public class SpringCloudProjectGenerator extends AbstractProjectGenerator {
 
     @Override
     protected void postProcess(File rootProject, Map<String, Object> extProperties) {
-        JavaProjectGenerateParam param = convertToParam(extProperties);
+        SpringCloudProjectGenerateParam param = convertToParam(extProperties);
         if (param.getGenDAOCode()) {
             genDaoCode(rootProject, param);
         }
 
     }
 
-    private void genDaoCode(File rootProject, JavaProjectGenerateParam param) {
+    private void genDaoCode(File rootProject, SpringCloudProjectGenerateParam param) {
         String daoModulePath = findDaoModule(rootProject).getAbsolutePath() + "/src/main/java";
         CodeGenerateModel model = getCodeGenerateModel(param, daoModulePath);
         codeGenerator.execute(model);
@@ -48,11 +48,11 @@ public class SpringCloudProjectGenerator extends AbstractProjectGenerator {
                 .filter(file -> file.getName().endsWith("-dao")).findFirst().orElse(null);
     }
 
-    private JavaProjectGenerateParam convertToParam(Map<String, Object> extProperties) {
-        return BeanUtil.mapToBean(extProperties, JavaProjectGenerateParam.class, true, CopyOptions.create());
+    private SpringCloudProjectGenerateParam convertToParam(Map<String, Object> extProperties) {
+        return BeanUtil.mapToBean(extProperties, SpringCloudProjectGenerateParam.class, true, CopyOptions.create());
     }
 
-    private CodeGenerateModel getCodeGenerateModel(JavaProjectGenerateParam extProperties, String absolutePath) {
+    private CodeGenerateModel getCodeGenerateModel(SpringCloudProjectGenerateParam extProperties, String absolutePath) {
         CodeGenerateModel codeGenerateModel = new CodeGenerateModel();
         codeGenerateModel.setUrl(extProperties.getDsUrl());
         codeGenerateModel.setUsername(extProperties.getDsUsername());

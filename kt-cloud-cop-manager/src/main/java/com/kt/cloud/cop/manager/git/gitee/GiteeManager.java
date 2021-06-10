@@ -10,6 +10,7 @@ import com.kt.cloud.cop.manager.git.gitee.request.GiteeCreateReposRequest;
 import com.kt.cloud.cop.manager.git.gitee.request.GiteeGetTokenRequest;
 import com.kt.cloud.cop.manager.git.gitee.response.GiteeCreateReposResponse;
 import com.kt.cloud.cop.manager.git.gitee.response.GiteeGetTokenResponse;
+import com.kt.toolkit.log.Logs;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -23,15 +24,9 @@ public class GiteeManager implements GitManager {
         httpRequest.form("access_token", req.getAccessToken());
         httpRequest.form("name", req.getName());
         httpRequest.form("description", req.getDescription());
-        logDebug(String.format(TAG + "[创建仓库]-[请求参数]-[%s]", httpRequest.form()));
+        Logs.debug(String.format(TAG + "[创建仓库]-[请求参数]-[%s]", httpRequest.form()));
         HttpResponse response = getResponse(httpRequest);
         return JSONObject.parseObject(response.body(), GiteeCreateReposResponse.class);
-    }
-
-    private void logDebug(String s) {
-        if (log.isDebugEnabled()) {
-            log.debug(s);
-        }
     }
 
     @Override
@@ -43,7 +38,7 @@ public class GiteeManager implements GitManager {
         httpRequest.form("client_id", req.getClientId());
         httpRequest.form("client_secret", req.getClientSecret());
         httpRequest.form("scope", req.getScope());
-        logDebug(String.format(TAG + "[获取Token]-[请求参数]-[%s]", httpRequest.form()));
+        Logs.debug(String.format(TAG + "[获取Token]-[请求参数]-[%s]", httpRequest.form()));
         HttpResponse response = getResponse(httpRequest);
         return GiteeGetTokenResponse.fromString(response.body());
     }
@@ -56,8 +51,8 @@ public class GiteeManager implements GitManager {
             log.error(String.format(TAG + "[Body]-[%s]", response.body()));
             throw new GitApiException(response.getStatus(), String.format("Git创建仓库失败：[%s]", response.body()));
         }
-        logDebug(TAG + "成功");
-        logDebug(TAG + "响应：" + response.body());
+        Logs.debug(TAG + "成功");
+        Logs.debug(TAG + "响应：" + response.body());
         return response;
     }
 

@@ -1,11 +1,9 @@
-package com.kt.cloud.cop.infrastructure.generate.model;
+package com.kt.cloud.cop.module.codeproject.generate.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class JavaProjectGenerateParam extends ProjectGenerateParam {
+public class SpringCloudProjectGenerateParam  {
 
     private String artifactId;
     private String groupId;

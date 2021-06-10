@@ -8,7 +8,7 @@ import com.kt.cloud.cop.BaseTests;
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
 import com.kt.cloud.cop.client.codeproject.enums.GenerateModeEnums;
 import com.kt.cloud.cop.dao.entity.ProjectBasic;
-import com.kt.cloud.cop.infrastructure.generate.model.JavaProjectGenerateParam;
+import com.kt.cloud.cop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class CodeProjectServiceTest extends BaseTests {
         cmd.setDeleteTempFileAfterGen(false);
         cmd.setGenerateMode(GenerateModeEnums.SCAFFOLD.getValue());
 
-        JavaProjectGenerateParam javaProjectGenerateParam = new JavaProjectGenerateParam();
+        SpringCloudProjectGenerateParam javaProjectGenerateParam = new SpringCloudProjectGenerateParam();
         javaProjectGenerateParam.setArtifactId(artifactId);
         javaProjectGenerateParam.setGroupId(groupId);
         javaProjectGenerateParam.setPackageName(packageName);

@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.infrastructure.generate.code;
+package com.kt.cloud.cop.module.codeproject.generate.code;
 
 import cn.hutool.core.util.ArrayUtil;
 import com.baomidou.mybatisplus.annotation.DbType;
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.BeetlTemplateEngine;
 import com.baomidou.mybatisplus.generator.keywords.MySqlKeyWordsHandler;
-import com.kt.cloud.cop.infrastructure.generate.model.CodeGenerateModel;
+import com.kt.cloud.cop.module.codeproject.generate.model.CodeGenerateModel;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,7 +22,7 @@ public class DAOCodeGenerator {
 
     public static void main(String[] args) {
         CodeGenerateModel model = new CodeGenerateModel();
-        model.setUrl("jdbc:mysql://localhost:3306/cop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True");
+        model.setUrl("jdbc:mysql://localhost:3306/cop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC");
         model.setUsername("root");
         model.setPassword("Root1234!@#$");
         model.setOutputDir("/Users/chenjiawei/code/myself/kt-cloud-cop/kt-cloud-cop-dao/src/main/java");

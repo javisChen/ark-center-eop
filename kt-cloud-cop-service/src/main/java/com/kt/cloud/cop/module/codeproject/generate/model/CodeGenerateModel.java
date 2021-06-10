@@ -1,8 +1,6 @@
-package com.kt.cloud.cop.infrastructure.generate.model;
+package com.kt.cloud.cop.module.codeproject.generate.model;
 
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class CodeGenerateModel {
