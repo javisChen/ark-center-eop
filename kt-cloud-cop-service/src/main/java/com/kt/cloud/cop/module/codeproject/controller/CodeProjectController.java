@@ -3,12 +3,12 @@ package com.kt.cloud.cop.module.codeproject.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kt.cloud.cop.client.codeproject.CodeProjectApi;
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.cop.client.codeproject.query.CodeProjectListQuery;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectCreateVO;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectInfoVO;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO;
 import com.kt.cloud.cop.module.codeproject.service.ICodeProjectService;
 import com.kt.component.dto.PageResponse;
-import com.kt.component.dto.PagingQuery;
 import com.kt.component.dto.SingleResponse;
 import com.kt.component.web.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +26,8 @@ public class CodeProjectController extends BaseController implements CodeProject
     }
 
     @Override
-    public SingleResponse<PageResponse<CodeProjectListVO>> pageList(PagingQuery pagingQuery) {
-        IPage<CodeProjectListVO> vos = iCodeProjectService.pageListCodeProject(pagingQuery);
+    public SingleResponse<PageResponse<CodeProjectListVO>> pageList(CodeProjectListQuery query) {
+        IPage<CodeProjectListVO> vos = iCodeProjectService.pageListCodeProject(query);
         return SingleResponse.ok(PageResponse.build(vos));
     }
 

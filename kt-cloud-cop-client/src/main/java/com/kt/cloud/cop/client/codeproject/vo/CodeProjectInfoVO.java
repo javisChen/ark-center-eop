@@ -23,4 +23,8 @@ public class CodeProjectInfoVO {
 
     private String gitReposUrl;
 
+    private String reposStatus;
+
+    private String pushStatus;
+
 }

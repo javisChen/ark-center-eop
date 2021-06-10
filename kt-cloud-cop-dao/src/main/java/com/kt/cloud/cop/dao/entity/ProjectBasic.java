@@ -1,4 +1,5 @@
 package com.kt.cloud.cop.dao.entity;
+
 import com.kt.component.db.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.kt.component.common.enums.BasicEnums;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
 /**
  * <p>
  * 工程表
@@ -78,8 +80,8 @@ public class ProjectBasic extends BaseEntity {
     @Getter
     @AllArgsConstructor
     public enum Type implements BasicEnums {
-        BACKEND(1 , "后端应用"),
-                FRONTEND(2, "前端应用"),
+        BACKEND(1, "后端应用"),
+        FRONTEND(2, "前端应用"),
         ;
         private final Integer value;
         private final String text;
@@ -92,6 +94,7 @@ public class ProjectBasic extends BaseEntity {
             return EnumUtils.getTextByValue(values(), value);
         }
     }
+
     @Getter
     @AllArgsConstructor
     public enum Scaffold implements BasicEnums {
@@ -108,12 +111,13 @@ public class ProjectBasic extends BaseEntity {
             return EnumUtils.getTextByValue(values(), value);
         }
     }
+
     @Getter
     @AllArgsConstructor
     public enum PushStatus implements BasicEnums {
         NOT_PUSH(0, "未推送"),
-                SUCCESS(1, "推送成功"),
-                FAIL(2, "推送失败"),
+        SUCCESS(1, "推送成功"),
+        FAIL(2, "推送失败"),
         ;
         private final Integer value;
         private final String text;
@@ -126,12 +130,14 @@ public class ProjectBasic extends BaseEntity {
             return EnumUtils.getTextByValue(values(), value);
         }
     }
+
     @Getter
     @AllArgsConstructor
     public enum ReposStatus implements BasicEnums {
-        NOT_CREATE(0, "未推送"),
-                SUCCESS(1, "创建成功"),
-                FAIL(2, "创建失败"),
+        NOT_CREATE(0, "未创建"),
+        CREATING(1, "创建中"),
+        SUCCESS(2, "创建成功"),
+        FAIL(3, "创建失败"),
         ;
         private final Integer value;
         private final String text;

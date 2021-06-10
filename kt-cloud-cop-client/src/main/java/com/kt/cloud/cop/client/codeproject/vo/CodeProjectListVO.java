@@ -25,6 +25,10 @@ public class CodeProjectListVO {
 
     private String gitReposUrl;
 
+    private String reposStatus;
+
+    private String pushStatus;
+
     private LocalDateTime createTime;
 
 }

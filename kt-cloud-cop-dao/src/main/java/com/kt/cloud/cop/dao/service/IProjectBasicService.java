@@ -13,4 +13,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IProjectBasicService extends IService<ProjectBasic> {
 
+    void updatePushStatus(Long id, ProjectBasic.PushStatus pushStatus);
+
+    void updateReposStatus(Long id, ProjectBasic.ReposStatus reposStatus);
+
+    void updateReposStatusAndReposUrl(Long id, ProjectBasic.ReposStatus reposStatus, String reposUrl);
 }

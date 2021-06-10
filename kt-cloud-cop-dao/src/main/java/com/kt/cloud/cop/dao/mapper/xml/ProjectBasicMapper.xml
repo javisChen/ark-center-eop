@@ -15,5 +15,9 @@
         <result column="type" property="type" />
         <result column="scaffold" property="scaffold" />
         <result column="git_repos_url" property="gitReposUrl" />
+        <result column="ext_properties" property="extProperties" />
+        <result column="push_status" property="pushStatus" />
+        <result column="repos_status" property="reposStatus" />
+        <result column="is_deleted" property="isDeleted" />
     </resultMap>
 </mapper>

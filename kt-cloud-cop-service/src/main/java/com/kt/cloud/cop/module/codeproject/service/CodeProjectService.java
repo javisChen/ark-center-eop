@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.cop.client.codeproject.query.CodeProjectListQuery;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectCreateVO;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectInfoVO;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO;
@@ -15,8 +16,6 @@ import com.kt.cloud.cop.module.codeproject.CodeProjectValidator;
 import com.kt.cloud.cop.module.codeproject.convertor.CodeProjectConvertor;
 import com.kt.cloud.cop.module.codeproject.generate.project.ProjectGenerator;
 import com.kt.cloud.cop.module.codeproject.generate.work.GitPushTask;
-import com.kt.cloud.cop.module.git.service.GitService;
-import com.kt.component.dto.PagingQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +26,6 @@ import java.util.Map;
 @Service
 public class CodeProjectService implements ICodeProjectService {
 
-    @Autowired
-    private GitService gitService;
     @Autowired
     private Map<String, ProjectGenerator> projectGeneratorMap;
     @Autowired
@@ -49,25 +46,26 @@ public class CodeProjectService implements ICodeProjectService {
         // 执行工程生成
         File codeProject = projectGenerator.generator(params);
 
-        gitPushTask.push(codeProjectCmd, codeProject);
-
         // 持久化到存储
-        saveProject(codeProjectCmd);
+        ProjectBasic projectBasic = saveProject(codeProjectCmd);
 
+        gitPushTask.push(projectBasic.getId(), codeProjectCmd, codeProject);
         return new CodeProjectCreateVO();
 
     }
 
-    private void saveProject(CodeProjectCreateCmd codeProjectCmd) {
+    private ProjectBasic saveProject(CodeProjectCreateCmd codeProjectCmd) {
         ProjectBasic projectBasic = CodeProjectConvertor.convertToProjectBasic(codeProjectCmd);
         iProjectBasicService.save(projectBasic);
+        return projectBasic;
     }
 
     @Override
-    public IPage<CodeProjectListVO> pageListCodeProject(PagingQuery pagingQuery) {
+    public IPage<CodeProjectListVO> pageListCodeProject(CodeProjectListQuery query) {
         LambdaQueryWrapper<ProjectBasic> qw = new LambdaQueryWrapper<>();
-        qw.orderByDesc(ProjectBasic::getGmtCreate);
-        return iProjectBasicService.page(new Page<>(pagingQuery.getCurrent(), pagingQuery.getSize()), qw)
+        qw.like(ProjectBasic::getName, query.getProjectName())
+        .orderByDesc(ProjectBasic::getGmtCreate);
+        return iProjectBasicService.page(new Page<>(query.getCurrent(), query.getSize()), qw)
                 .convert(CodeProjectConvertor::convertToCodeProjectListVo);
     }
 

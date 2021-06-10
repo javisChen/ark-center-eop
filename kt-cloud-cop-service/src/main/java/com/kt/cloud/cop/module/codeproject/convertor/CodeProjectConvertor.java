@@ -2,8 +2,8 @@ package com.kt.cloud.cop.module.codeproject.convertor;
 
 import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectInfoVO;
-import com.kt.cloud.cop.dao.entity.ProjectBasic;
 import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.cop.dao.entity.ProjectBasic;
 import com.kt.cloud.cop.module.git.GitCreate;
 
 public class CodeProjectConvertor {
@@ -25,6 +25,8 @@ public class CodeProjectConvertor {
         vo.setScaffold(ProjectBasic.Scaffold.getText(projectBasic.getScaffold()));
         vo.setGitReposUrl(projectBasic.getGitReposUrl());
         vo.setCreateTime(projectBasic.getGmtCreate());
+        vo.setPushStatus(ProjectBasic.PushStatus.getText(projectBasic.getPushStatus()));
+        vo.setReposStatus(ProjectBasic.ReposStatus.getText(projectBasic.getReposStatus()));
         return vo;
     }
 
@@ -34,6 +36,7 @@ public class CodeProjectConvertor {
         entity.setCode(cmd.getCode());
         entity.setDescription(cmd.getDescription());
         entity.setExtProperties(cmd.getExtProperties());
+        entity.setReposStatus(ProjectBasic.ReposStatus.CREATING.getValue());
         return entity;
     }
 
@@ -46,6 +49,8 @@ public class CodeProjectConvertor {
         vo.setType(ProjectBasic.Type.getText(projectBasic.getType()));
         vo.setScaffold(ProjectBasic.Scaffold.getText(projectBasic.getScaffold()));
         vo.setGitReposUrl(projectBasic.getGitReposUrl());
+        vo.setPushStatus(ProjectBasic.PushStatus.getText(projectBasic.getPushStatus()));
+        vo.setReposStatus(ProjectBasic.ReposStatus.getText(projectBasic.getReposStatus()));
         return vo;
     }
 }

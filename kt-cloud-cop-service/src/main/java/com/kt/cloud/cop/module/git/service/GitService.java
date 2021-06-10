@@ -13,6 +13,7 @@ import com.kt.cloud.cop.module.git.GitCreate;
 import com.kt.cloud.cop.module.git.GitReposInfo;
 import com.kt.component.exception.BizException;
 import com.kt.component.redis.RedisService;
+import com.kt.toolkit.log.Logs;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class GitService {
         try {
             repos = gitManager.createRepos(giteeCreateReposRequest);
         } catch (GitApiException e) {
+            Logs.error("[Git仓库创建失败]：", e);
             throw new BizException(e.getMessage());
         }
         return new GitReposInfo(repos.getHtmlUrl(), gitCreate.getName());
@@ -71,10 +73,10 @@ public class GitService {
         return RedisKeyConst.GIT_ACCESS_TOKEN_KEY_PREFIX + clientId;
     }
 
-    public boolean intiAndPushToRepos(File file, GitReposInfo gitReposInfo) {
-        File dir = new File(file + File.separator + gitReposInfo.getReposName());
-        Map<String, String> environment = new HashMap<>();
-        environment.put("REPOS_PATH", gitReposInfo.getReposUrl());
+    public boolean intiAndPushToRepos(File file, String code, String gitReposUrl) {
+        File dir = new File(file + File.separator + code);
+        Map<String, String> environment = new HashMap<>(1);
+        environment.put("REPOS_PATH", gitReposUrl);
         try {
             CmdUtils.exec(environment, dir, "chmod", "+x", "git_init.sh");
             CmdUtils.exec(environment, dir, "./git_init.sh");
