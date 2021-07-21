@@ -25,4 +25,7 @@ public interface CodeProjectApi {
 
     @GetMapping("/info")
     SingleResponse<CodeProjectInfoVO> info(Long codeProjectId);
+
+    @GetMapping("/test")
+    SingleResponse<String> test();
 }

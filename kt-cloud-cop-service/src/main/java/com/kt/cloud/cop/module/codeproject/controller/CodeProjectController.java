@@ -36,4 +36,9 @@ public class CodeProjectController extends BaseController implements CodeProject
         CodeProjectInfoVO vo = iCodeProjectService.getCodeProjectInfo(codeProjectId);
         return SingleResponse.ok(vo);
     }
+
+    @Override
+    public SingleResponse<String> test() {
+        return SingleResponse.ok("haha");
+    }
 }

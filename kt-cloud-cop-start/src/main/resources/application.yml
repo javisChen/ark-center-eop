@@ -26,7 +26,11 @@ spring:
     database: 0
     host: localhost
     port: 6379
-
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: localhost:8848
 biz-module:
   git:
     client-id: dc7f80b02163e4f76fbcffb03eff926566aaf19f2c51a0339391a599d60b32ba
