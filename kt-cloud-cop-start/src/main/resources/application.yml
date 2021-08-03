@@ -31,6 +31,8 @@ spring:
       discovery:
         enabled: true
         server-addr: localhost:8848
+        namespace: a6bebdf0-e578-486f-ba12-df785ddfd2b2
+        group: DEFAULT_GROUP
 biz-module:
   git:
     client-id: dc7f80b02163e4f76fbcffb03eff926566aaf19f2c51a0339391a599d60b32ba
@@ -38,6 +40,8 @@ biz-module:
     email: javischen9548@foxmail.com
     password: javis9548chen
     scope: "user_info projects pull_requests issues notes keys hook groups gists enterprises"
+  generate:
+    temp-dir:
 logging:
   level:
     root: debug

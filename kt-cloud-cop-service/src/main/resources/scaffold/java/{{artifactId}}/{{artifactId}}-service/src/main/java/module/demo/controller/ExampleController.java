@@ -1,4 +1,4 @@
-package ${packageName}.module.demo.controller;
+package {{packageName}}.module.demo.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.kt.component.dto.MultiResponse;

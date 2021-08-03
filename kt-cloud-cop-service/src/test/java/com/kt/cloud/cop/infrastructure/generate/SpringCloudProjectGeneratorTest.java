@@ -14,7 +14,7 @@ public class SpringCloudProjectGeneratorTest {
     @Test
     public void generator() {
         Map<String, Object> map = new HashMap<>();
-        map.put("artifactId", "demo");
+        map.put("artifactId", "order");
         map.put("groupId", "com.kt.cloud");
         map.put("packageName", "com.kt.cloud");
         projectGenerator.generator(map);
@@ -22,7 +22,7 @@ public class SpringCloudProjectGeneratorTest {
 
     @Test
     public void test() {
-        File daoModule = projectGenerator.findDaoModule(new File("/Users/chenjiawei/code/myself/kt-cloud-cop/357315e697824a0cac06439b1a51990a"));
+        File daoModule = projectGenerator.findDaoModule(new File("/Users/chenjiawei/code/myself/kt-cloud"));
         System.out.println(daoModule);
     }
 }
