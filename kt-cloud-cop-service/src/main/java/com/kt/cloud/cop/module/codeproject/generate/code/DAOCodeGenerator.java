@@ -1,7 +1,5 @@
 package com.kt.cloud.cop.module.codeproject.generate.code;
 
-import cn.hutool.core.util.ArrayUtil;
-import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
@@ -31,28 +29,13 @@ public class DAOCodeGenerator {
     }
 
     public void execute(CodeGenerateModel model) {
-        // 代码生成器
-        AutoGenerator mpg = new AutoGenerator();
-
-        // 全局配置
-        mpg.setGlobalConfig(getGlobalConfig(model));
-
-        // 数据源配置
-        mpg.setDataSource(getDataSourceConfig(model));
-
-        // 包配置
-        PackageConfig pc = getPackageConfig(model);
-        mpg.setPackageInfo(pc);
-
-        // 配置模板
-        mpg.setTemplate(getTemplateConfig());
-
-        // 策略配置
-        mpg.setStrategy(getStrategyConfig(pc, model));
-
-        // 设置模板引擎
-        mpg.setTemplateEngine(getTemplateEngine());
-        mpg.execute();
+        AutoGenerator mpg = new AutoGenerator(getDataSourceConfig(model));
+        PackageConfig packageConfig = getPackageConfig(model);
+        mpg.global(getGlobalConfig(model))
+                .packageInfo(packageConfig)
+                .strategy(getStrategyConfig(packageConfig, model))
+                .template(getTemplateConfig());
+        mpg.execute(getTemplateEngine());
     }
 
     private BeetlTemplateEngine getTemplateEngine() {
@@ -60,64 +43,49 @@ public class DAOCodeGenerator {
     }
 
     private TemplateConfig getTemplateConfig() {
-        TemplateConfig templateConfig = new TemplateConfig();
-        templateConfig.setController("");
-        return templateConfig;
+        return new TemplateConfig.Builder()
+                .controller("")
+                .build();
     }
 
     private GlobalConfig getGlobalConfig(CodeGenerateModel model) {
-        GlobalConfig gc = new GlobalConfig();
-        gc.setBaseResultMap(true);
-        gc.setOutputDir(model.getOutputDir());
-        gc.setAuthor(author);
-        gc.setOpen(false);
-        gc.setFileOverride(true);
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
-        return gc;
+        return new GlobalConfig.Builder()
+                .outputDir(model.getOutputDir())
+                .author(author)
+                .disableOpenDir()
+                .fileOverride()
+                .build();
     }
 
-    private StrategyConfig getStrategyConfig(PackageConfig pc, CodeGenerateModel model) {
-        StrategyConfig strategy = new StrategyConfig();
-        strategy.setNaming(NamingStrategy.underline_to_camel);
-        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass(superEntityClass);
-        strategy.setEntityLombokModel(true);
-        strategy.setRestControllerStyle(true);
-        strategy.setSuperControllerClass(superControllerClass);
-        strategy.setSuperEntityColumns(superEntityColumns);
-        if (ArrayUtil.isNotEmpty(model.getInclude())) {
-            strategy.setInclude(model.getInclude());
-        }
-        strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
-        return strategy;
+    private StrategyConfig getStrategyConfig(PackageConfig packageConfig, CodeGenerateModel model) {
+        return new StrategyConfig.Builder()
+                .addInclude(model.getInclude())
+                .addTablePrefix(packageConfig.getModuleName() + "_")
+                .controllerBuilder()
+                    .enableHyphenStyle()
+                    .superClass(superControllerClass)
+                    .enableRestStyle()
+                .entityBuilder()
+                    .naming(NamingStrategy.underline_to_camel)
+                    .columnNaming(NamingStrategy.underline_to_camel)
+                    .enableLombok()
+                    .superClass(superEntityClass)
+                    .addSuperEntityColumns(superEntityColumns)
+                .build();
     }
 
     private PackageConfig getPackageConfig(CodeGenerateModel model) {
-        PackageConfig packageConfig = new PackageConfig();
-        packageConfig.setParent(model.getParent());
-        packageConfig.setController("");
-//        packageConfig.setModuleName();
-//        packageConfig.setEntity();
-//        packageConfig.setService();
-//        packageConfig.setServiceImpl();
-//        packageConfig.setMapper();
-//        packageConfig.setXml();
-//        packageConfig.setPathInfo();
-        return packageConfig;
+        return new PackageConfig.Builder()
+                .parent(model.getParent())
+                .controller("")
+                .build();
     }
 
     private DataSourceConfig getDataSourceConfig(CodeGenerateModel model) {
-        DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig.setDbQuery(new MySqlQuery());
-        dataSourceConfig.setDbType(DbType.MYSQL);
-        dataSourceConfig.setTypeConvert(new MySqlTypeConvert());
-        dataSourceConfig.setKeyWordsHandler(new MySqlKeyWordsHandler());
-        dataSourceConfig.setUrl(model.getUrl());
-        dataSourceConfig.setDriverName("com.mysql.cj.jdbc.Driver");
-        dataSourceConfig.setUsername(model.getUsername());
-        dataSourceConfig.setPassword(model.getPassword());
-        return dataSourceConfig;
+        return new DataSourceConfig.Builder(model.getUrl(), model.getUsername(), model.getPassword())
+                .dbQuery(new MySqlQuery())
+                .typeConvert(new MySqlTypeConvert())
+                .keyWordsHandler(new MySqlKeyWordsHandler()).build();
     }
 
 }

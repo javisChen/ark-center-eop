@@ -1,12 +1,12 @@
 package com.kt.cloud.cop.dao.entity;
 
-import com.kt.component.db.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.kt.component.common.enums.BasicEnums;
 import com.kt.component.common.enums.EnumUtils;
+import com.kt.component.db.base.BaseEntity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**

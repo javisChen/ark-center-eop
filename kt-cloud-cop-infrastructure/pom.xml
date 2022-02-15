@@ -45,6 +45,13 @@
         </dependency>
 
         <dependency>
+            <groupId>com.kt</groupId>
+            <artifactId>kt-component-web-spring-boot-starter</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
