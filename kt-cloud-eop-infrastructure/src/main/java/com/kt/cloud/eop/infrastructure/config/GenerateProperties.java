@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.infrastructure.config;
+package com.kt.cloud.eop.infrastructure.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

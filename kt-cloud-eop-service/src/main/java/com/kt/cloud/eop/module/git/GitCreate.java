@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.module.git;
+package com.kt.cloud.eop.module.git;
 
 import lombok.Data;
 

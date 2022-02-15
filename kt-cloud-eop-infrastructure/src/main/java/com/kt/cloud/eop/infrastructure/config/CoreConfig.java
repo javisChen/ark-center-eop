@@ -1,7 +1,7 @@
-package com.kt.cloud.cop.infrastructure.config;
+package com.kt.cloud.eop.infrastructure.config;
 
-import com.kt.cloud.cop.manager.git.GitManager;
-import com.kt.cloud.cop.manager.git.gitee.GiteeManager;
+import com.kt.cloud.eop.manager.git.GitManager;
+import com.kt.cloud.eop.manager.git.gitee.GiteeManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

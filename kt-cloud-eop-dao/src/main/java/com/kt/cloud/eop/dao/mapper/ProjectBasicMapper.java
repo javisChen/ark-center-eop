@@ -1,6 +1,6 @@
-package com.kt.cloud.cop.dao.mapper;
+package com.kt.cloud.eop.dao.mapper;
 
-import com.kt.cloud.cop.dao.entity.ProjectBasic;
+import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

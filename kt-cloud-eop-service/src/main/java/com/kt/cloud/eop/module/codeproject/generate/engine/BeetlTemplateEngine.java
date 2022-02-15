@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.module.codeproject.generate.engine;
+package com.kt.cloud.eop.module.codeproject.generate.engine;
 
 import org.beetl.core.Configuration;
 import org.beetl.core.GroupTemplate;

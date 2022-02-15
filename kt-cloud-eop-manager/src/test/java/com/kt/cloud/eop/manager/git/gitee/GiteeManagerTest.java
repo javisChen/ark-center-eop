@@ -1,8 +1,8 @@
-package com.kt.cloud.cop.manager.git.gitee;
+package com.kt.cloud.eop.manager.git.gitee;
 
 
-import com.kt.cloud.cop.manager.git.gitee.request.GiteeCreateReposRequest;
-import com.kt.cloud.cop.manager.git.gitee.response.GiteeCreateReposResponse;
+import com.kt.cloud.eop.manager.git.gitee.request.GiteeCreateReposRequest;
+import com.kt.cloud.eop.manager.git.gitee.response.GiteeCreateReposResponse;
 import org.junit.jupiter.api.Test;
 
 public class GiteeManagerTest {

@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.client.codeproject.cmd;
+package com.kt.cloud.eop.client.codeproject.cmd;
 
 import lombok.Data;
 
@@ -40,13 +40,13 @@ public class CodeProjectCreateCmd {
 
     /**
      * 仓库来源
-     * @see com.kt.cloud.cop.client.codeproject.enums.ReposSourceEnums
+     * @see com.kt.cloud.eop.client.codeproject.enums.ReposSourceEnums
      */
     private Integer reposSource;
 
     /**
      * 源码生成方式
-     * @see com.kt.cloud.cop.client.codeproject.enums.GenerateModeEnums
+     * @see com.kt.cloud.eop.client.codeproject.enums.GenerateModeEnums
      */
     private Integer generateMode;
 

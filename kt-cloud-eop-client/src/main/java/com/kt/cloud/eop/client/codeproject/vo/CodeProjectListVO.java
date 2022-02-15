@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.client.codeproject.vo;
+package com.kt.cloud.eop.client.codeproject.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

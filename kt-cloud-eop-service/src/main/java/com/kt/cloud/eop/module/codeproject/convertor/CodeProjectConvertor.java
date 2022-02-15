@@ -1,10 +1,10 @@
-package com.kt.cloud.cop.module.codeproject.convertor;
+package com.kt.cloud.eop.module.codeproject.convertor;
 
-import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectInfoVO;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO;
-import com.kt.cloud.cop.dao.entity.ProjectBasic;
-import com.kt.cloud.cop.module.git.GitCreate;
+import com.kt.cloud.eop.client.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.client.codeproject.vo.CodeProjectInfoVO;
+import com.kt.cloud.eop.client.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.eop.dao.entity.ProjectBasic;
+import com.kt.cloud.eop.module.git.GitCreate;
 
 public class CodeProjectConvertor {
 

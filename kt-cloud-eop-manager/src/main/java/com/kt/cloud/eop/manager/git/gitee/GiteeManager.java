@@ -1,15 +1,15 @@
-package com.kt.cloud.cop.manager.git.gitee;
+package com.kt.cloud.eop.manager.git.gitee;
 
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpStatus;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.kt.cloud.cop.manager.git.GitManager;
-import com.kt.cloud.cop.manager.git.gitee.request.GiteeCreateReposRequest;
-import com.kt.cloud.cop.manager.git.gitee.request.GiteeGetTokenRequest;
-import com.kt.cloud.cop.manager.git.gitee.response.GiteeCreateReposResponse;
-import com.kt.cloud.cop.manager.git.gitee.response.GiteeGetTokenResponse;
+import com.kt.cloud.eop.manager.git.GitManager;
+import com.kt.cloud.eop.manager.git.gitee.request.GiteeCreateReposRequest;
+import com.kt.cloud.eop.manager.git.gitee.request.GiteeGetTokenRequest;
+import com.kt.cloud.eop.manager.git.gitee.response.GiteeCreateReposResponse;
+import com.kt.cloud.eop.manager.git.gitee.response.GiteeGetTokenResponse;
 import com.kt.toolkit.log.Logs;
 import lombok.extern.slf4j.Slf4j;
 

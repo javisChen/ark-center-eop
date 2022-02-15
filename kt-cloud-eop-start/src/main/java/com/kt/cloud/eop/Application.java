@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication(scanBasePackages = "com.kt.cloud.**")
-@MapperScan("com.kt.cloud.cop.dao.mapper")
+@MapperScan("com.kt.cloud.eop.dao.mapper")
 @EnableDiscoveryClient
-public class CopApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(CopApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
 }

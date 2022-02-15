@@ -1,13 +1,13 @@
-package com.kt.cloud.cop.module.codeproject.controller;
+package com.kt.cloud.eop.module.codeproject.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.kt.cloud.cop.client.codeproject.CodeProjectApi;
-import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.cop.client.codeproject.query.CodeProjectListQuery;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectCreateVO;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectInfoVO;
-import com.kt.cloud.cop.client.codeproject.vo.CodeProjectListVO;
-import com.kt.cloud.cop.module.codeproject.service.ICodeProjectService;
+import com.kt.cloud.eop.client.codeproject.CodeProjectApi;
+import com.kt.cloud.eop.client.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.client.codeproject.query.CodeProjectListQuery;
+import com.kt.cloud.eop.client.codeproject.vo.CodeProjectCreateVO;
+import com.kt.cloud.eop.client.codeproject.vo.CodeProjectInfoVO;
+import com.kt.cloud.eop.client.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.eop.module.codeproject.service.ICodeProjectService;
 import com.kt.component.dto.PageResponse;
 import com.kt.component.dto.SingleResponse;
 import com.kt.component.web.base.BaseController;

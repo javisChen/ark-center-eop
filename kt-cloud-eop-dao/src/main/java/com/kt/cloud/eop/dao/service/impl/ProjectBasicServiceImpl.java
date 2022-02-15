@@ -1,9 +1,9 @@
-package com.kt.cloud.cop.dao.service.impl;
+package com.kt.cloud.eop.dao.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.kt.cloud.cop.dao.entity.ProjectBasic;
-import com.kt.cloud.cop.dao.mapper.ProjectBasicMapper;
-import com.kt.cloud.cop.dao.service.IProjectBasicService;
+import com.kt.cloud.eop.dao.entity.ProjectBasic;
+import com.kt.cloud.eop.dao.mapper.ProjectBasicMapper;
+import com.kt.cloud.eop.dao.service.IProjectBasicService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

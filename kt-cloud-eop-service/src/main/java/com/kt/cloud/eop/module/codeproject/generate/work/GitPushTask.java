@@ -1,15 +1,15 @@
-package com.kt.cloud.cop.module.codeproject.generate.work;
+package com.kt.cloud.eop.module.codeproject.generate.work;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.cop.client.codeproject.enums.ReposSourceEnums;
-import com.kt.cloud.cop.dao.entity.ProjectBasic;
-import com.kt.cloud.cop.dao.service.IProjectBasicService;
-import com.kt.cloud.cop.module.codeproject.convertor.CodeProjectConvertor;
-import com.kt.cloud.cop.module.git.GitCreate;
-import com.kt.cloud.cop.module.git.GitReposInfo;
-import com.kt.cloud.cop.module.git.service.GitService;
+import com.kt.cloud.eop.client.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.client.codeproject.enums.ReposSourceEnums;
+import com.kt.cloud.eop.dao.entity.ProjectBasic;
+import com.kt.cloud.eop.dao.service.IProjectBasicService;
+import com.kt.cloud.eop.module.codeproject.convertor.CodeProjectConvertor;
+import com.kt.cloud.eop.module.git.GitCreate;
+import com.kt.cloud.eop.module.git.GitReposInfo;
+import com.kt.cloud.eop.module.git.service.GitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;

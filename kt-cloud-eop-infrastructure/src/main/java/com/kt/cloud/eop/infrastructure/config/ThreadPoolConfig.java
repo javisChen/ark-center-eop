@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.infrastructure.config;
+package com.kt.cloud.eop.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;

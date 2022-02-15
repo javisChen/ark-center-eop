@@ -1,13 +1,13 @@
-package com.kt.cloud.cop.module.codeproject.generate.project;
+package com.kt.cloud.eop.module.codeproject.generate.project;
 
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.IdUtil;
-import com.kt.cloud.cop.infrastructure.config.GenerateProperties;
-import com.kt.cloud.cop.module.codeproject.generate.GenerateException;
-import com.kt.cloud.cop.module.codeproject.generate.engine.TemplateEngine;
+import com.kt.cloud.eop.infrastructure.config.GenerateProperties;
+import com.kt.cloud.eop.module.codeproject.generate.GenerateException;
+import com.kt.cloud.eop.module.codeproject.generate.engine.TemplateEngine;
 import com.kt.component.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

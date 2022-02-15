@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.manager.git.gitee.response;
+package com.kt.cloud.eop.manager.git.gitee.response;
 
 import lombok.Data;
 

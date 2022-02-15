@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kt.cloud</groupId>
-    <artifactId>kt-cloud-cop</artifactId>
+    <artifactId>kt-cloud-eop</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>kt-cloud-cop-dao</module>
-        <module>kt-cloud-cop-infrastructure</module>
-        <module>kt-cloud-cop-client</module>
-        <module>kt-cloud-cop-manager</module>
-        <module>kt-cloud-cop-service</module>
-        <module>kt-cloud-cop-start</module>
+        <module>kt-cloud-eop-dao</module>
+        <module>kt-cloud-eop-infrastructure</module>
+        <module>kt-cloud-eop-client</module>
+        <module>kt-cloud-eop-manager</module>
+        <module>kt-cloud-eop-service</module>
+        <module>kt-cloud-eop-start</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -48,32 +48,32 @@
             </dependency>
             <dependency>
                 <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-cop-dao</artifactId>
+                <artifactId>kt-cloud-eop-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-cop-client</artifactId>
+                <artifactId>kt-cloud-eop-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-cop-manager</artifactId>
+                <artifactId>kt-cloud-eop-manager</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-cop-service</artifactId>
+                <artifactId>kt-cloud-eop-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-cop-infrastructure</artifactId>
+                <artifactId>kt-cloud-eop-infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-cop-start</artifactId>
+                <artifactId>kt-cloud-eop-start</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

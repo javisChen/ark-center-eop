@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.manager.git.gitee;
+package com.kt.cloud.eop.manager.git.gitee;
 
 /**
  * 码云

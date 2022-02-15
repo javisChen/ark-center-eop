@@ -1,10 +1,10 @@
-package com.kt.cloud.cop.manager.git.gitee;
+package com.kt.cloud.eop.manager.git.gitee;
 
 
 import cn.hutool.core.util.RuntimeUtil;
-import com.kt.cloud.cop.manager.git.gitee.request.GiteeCreateReposRequest;
-import com.kt.cloud.cop.manager.git.gitee.request.GiteeGetTokenRequest;
-import com.kt.cloud.cop.manager.git.gitee.response.GiteeGetTokenResponse;
+import com.kt.cloud.eop.manager.git.gitee.request.GiteeCreateReposRequest;
+import com.kt.cloud.eop.manager.git.gitee.request.GiteeGetTokenRequest;
+import com.kt.cloud.eop.manager.git.gitee.response.GiteeGetTokenResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StreamUtils;

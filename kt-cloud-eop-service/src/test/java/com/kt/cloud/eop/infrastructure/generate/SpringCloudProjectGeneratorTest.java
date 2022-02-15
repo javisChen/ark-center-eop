@@ -1,6 +1,6 @@
-package com.kt.cloud.cop.infrastructure.generate;
+package com.kt.cloud.eop.infrastructure.generate;
 
-import com.kt.cloud.cop.module.codeproject.generate.project.SpringCloudProjectGenerator;
+import com.kt.cloud.eop.module.codeproject.generate.project.SpringCloudProjectGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

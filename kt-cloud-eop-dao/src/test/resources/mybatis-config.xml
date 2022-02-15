@@ -23,7 +23,7 @@
 
 
     <mappers>
-<!--        <package name="com.kt.cloud.cop.dao.mapper.xml"/>-->
+<!--        <package name="com.kt.cloud.eop.dao.mapper.xml"/>-->
         <mapper resource="com/kt/cloud/cop/dao/mapper/xml/ProjectBasicMapper.xml"/>
 <!--        <mapper resource="BlogMapperExt.xml"/>-->
     </mappers>

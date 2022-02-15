@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.infrastructure;
+package com.kt.cloud.eop.infrastructure;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

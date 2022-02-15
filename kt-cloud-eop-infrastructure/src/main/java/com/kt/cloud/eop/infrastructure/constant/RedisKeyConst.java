@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.infrastructure.constant;
+package com.kt.cloud.eop.infrastructure.constant;
 
 public interface RedisKeyConst {
 

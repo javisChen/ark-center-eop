@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.infrastructure.validator;
+package com.kt.cloud.eop.infrastructure.validator;
 
 
 import com.kt.component.dto.ResponseEnums;

@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.infrastructure.util;
+package com.kt.cloud.eop.infrastructure.util;
 
 import lombok.extern.slf4j.Slf4j;
 

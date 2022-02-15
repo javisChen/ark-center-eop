@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.dao.entity;
+package com.kt.cloud.eop.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.kt.component.common.enums.BasicEnums;

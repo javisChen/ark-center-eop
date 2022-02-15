@@ -1,6 +1,6 @@
-package com.kt.cloud.cop.dao.service;
+package com.kt.cloud.eop.dao.service;
 
-import com.kt.cloud.cop.dao.entity.ProjectBasic;
+import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

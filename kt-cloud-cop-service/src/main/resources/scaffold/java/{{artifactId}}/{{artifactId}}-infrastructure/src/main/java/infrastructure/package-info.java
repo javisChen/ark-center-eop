@@ -1,1 +1,0 @@
-package {{packageName}}.infrastructure;

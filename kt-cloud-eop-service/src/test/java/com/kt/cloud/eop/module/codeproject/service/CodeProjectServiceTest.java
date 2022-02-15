@@ -1,14 +1,14 @@
-package com.kt.cloud.cop.module.codeproject.service;
+package com.kt.cloud.eop.module.codeproject.service;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.kt.cloud.cop.BaseTests;
-import com.kt.cloud.cop.client.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.cop.client.codeproject.enums.GenerateModeEnums;
-import com.kt.cloud.cop.dao.entity.ProjectBasic;
-import com.kt.cloud.cop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
+import com.kt.cloud.eop.BaseTests;
+import com.kt.cloud.eop.client.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.client.codeproject.enums.GenerateModeEnums;
+import com.kt.cloud.eop.dao.entity.ProjectBasic;
+import com.kt.cloud.eop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

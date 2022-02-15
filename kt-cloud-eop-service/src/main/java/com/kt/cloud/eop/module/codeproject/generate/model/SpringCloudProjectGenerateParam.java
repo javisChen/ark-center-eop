@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.module.codeproject.generate.model;
+package com.kt.cloud.eop.module.codeproject.generate.model;
 
 import lombok.Data;
 

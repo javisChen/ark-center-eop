@@ -1,6 +1,6 @@
-package com.kt.cloud.cop.dao.mapper;
+package com.kt.cloud.eop.dao.mapper;
 
-import com.kt.cloud.cop.dao.entity.ProjectBasic;
+import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.BeforeAll;

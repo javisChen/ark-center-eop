@@ -42,9 +42,6 @@ biz-module:
     scope: "user_info projects pull_requests issues notes keys hook groups gists enterprises"
   generate:
     temp-dir:
-logging:
-  level:
-    root: debug
 
 mybatis-plus:
   global-config:

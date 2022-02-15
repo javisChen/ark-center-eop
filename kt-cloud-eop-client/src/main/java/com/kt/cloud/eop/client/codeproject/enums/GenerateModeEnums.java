@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.client.codeproject.enums;
+package com.kt.cloud.eop.client.codeproject.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

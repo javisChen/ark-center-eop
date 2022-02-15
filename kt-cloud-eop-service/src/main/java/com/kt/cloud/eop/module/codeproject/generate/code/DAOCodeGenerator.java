@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.module.codeproject.generate.code;
+package com.kt.cloud.eop.module.codeproject.generate.code;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.BeetlTemplateEngine;
 import com.baomidou.mybatisplus.generator.keywords.MySqlKeyWordsHandler;
-import com.kt.cloud.cop.module.codeproject.generate.model.CodeGenerateModel;
+import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,7 +24,7 @@ public class DAOCodeGenerator {
         model.setUsername("root");
         model.setPassword("Root1234!@#$");
         model.setOutputDir("/Users/chenjiawei/code/myself/kt-cloud-eop/kt-cloud-eop-dao/src/main/java");
-        model.setParent("com.kt.cloud.cop.dao");
+        model.setParent("com.kt.cloud.eop.dao");
         new DAOCodeGenerator().execute(model);
     }
 

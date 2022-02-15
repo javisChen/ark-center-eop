@@ -1,4 +1,4 @@
-package com.kt.cloud.cop.module.codeproject.generate.project;
+package com.kt.cloud.eop.module.codeproject.generate.project;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
@@ -7,9 +7,9 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
-import com.kt.cloud.cop.module.codeproject.generate.code.DAOCodeGenerator;
-import com.kt.cloud.cop.module.codeproject.generate.model.CodeGenerateModel;
-import com.kt.cloud.cop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
+import com.kt.cloud.eop.module.codeproject.generate.code.DAOCodeGenerator;
+import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
+import com.kt.cloud.eop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

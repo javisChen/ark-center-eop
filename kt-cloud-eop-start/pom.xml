@@ -50,7 +50,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.kt.cloud.cop.CopApplication</mainClass>
+                            <mainClass>com.kt.cloud.eop.Application</mainClass>
                         </configuration>
                     </execution>
                 </executions>
