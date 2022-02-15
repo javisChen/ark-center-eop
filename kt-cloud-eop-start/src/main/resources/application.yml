@@ -1,0 +1,53 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /cop
+spring:
+  application:
+    name: cop
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/cop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True
+      username: root
+      password: Root1234!@#$
+      name: defaultDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      initial-size: 10
+      max-active: 100
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+      max-wait: 60000
+      min-idle: 10
+      pool-prepared-statements: true
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: localhost:8848
+        namespace: a6bebdf0-e578-486f-ba12-df785ddfd2b2
+        group: DEFAULT_GROUP
+biz-module:
+  git:
+    client-id: dc7f80b02163e4f76fbcffb03eff926566aaf19f2c51a0339391a599d60b32ba
+    client-secret: b68bc45b2f30ee460e8dfa468242697f276b144778bfb9011e29ee4253e8d03d
+    email: javischen9548@foxmail.com
+    password: javis9548chen
+    scope: "user_info projects pull_requests issues notes keys hook groups gists enterprises"
+  generate:
+    temp-dir:
+logging:
+  level:
+    root: debug
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: is_deleted
+      logic-not-delete-value: 0
