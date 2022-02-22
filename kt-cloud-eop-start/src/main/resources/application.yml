@@ -24,7 +24,7 @@ spring:
       test-while-idle: true
   redis:
     database: 0
-    host: localhost
+    host: 127.0.0.1
     port: 6379
   cloud:
     nacos:
@@ -33,6 +33,8 @@ spring:
         server-addr: localhost:8848
         namespace: a6bebdf0-e578-486f-ba12-df785ddfd2b2
         group: DEFAULT_GROUP
+  main:
+    allow-bean-definition-overriding: true
 biz-module:
   git:
     client-id: dc7f80b02163e4f76fbcffb03eff926566aaf19f2c51a0339391a599d60b32ba

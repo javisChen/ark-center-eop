@@ -10,7 +10,9 @@ import com.kt.cloud.eop.module.codeproject.convertor.CodeProjectConvertor;
 import com.kt.cloud.eop.module.git.GitCreate;
 import com.kt.cloud.eop.module.git.GitReposInfo;
 import com.kt.cloud.eop.module.git.service.GitService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.kt.component.cache.redis.RedisService;
+import com.kt.component.exception.ExceptionFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
@@ -20,12 +22,18 @@ import java.io.File;
 
 @Component
 @EnableAsync
+@Slf4j
 public class GitPushTask {
 
-    @Autowired
-    private GitService gitService;
-    @Autowired
-    private IProjectBasicService iProjectBasicService;
+    private final GitService gitService;
+    private final IProjectBasicService iProjectBasicService;
+    private final RedisService redisService;
+
+    public GitPushTask(GitService gitService, IProjectBasicService iProjectBasicService, RedisService redisService) {
+        this.gitService = gitService;
+        this.iProjectBasicService = iProjectBasicService;
+        this.redisService = redisService;
+    }
 
     @Async("taskExecutor")
     @Transactional(rollbackFor = Exception.class)
@@ -49,6 +57,9 @@ public class GitPushTask {
                 } else {
                     iProjectBasicService.updatePushStatus(projectBasicId,ProjectBasic.PushStatus.SUCCESS);
                 }
+            } catch (Exception e) {
+                log.error("推送GIT服务失败", e);
+                throw ExceptionFactory.bizException(e.getMessage());
             } finally {
                 if (codeProjectCmd.getDeleteTempFileAfterGen()) {
                     FileUtil.del(codeProject);

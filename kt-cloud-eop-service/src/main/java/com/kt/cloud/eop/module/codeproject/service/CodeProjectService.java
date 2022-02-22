@@ -16,6 +16,7 @@ import com.kt.cloud.eop.module.codeproject.CodeProjectValidator;
 import com.kt.cloud.eop.module.codeproject.convertor.CodeProjectConvertor;
 import com.kt.cloud.eop.module.codeproject.generate.project.ProjectGenerator;
 import com.kt.cloud.eop.module.codeproject.generate.work.GitPushTask;
+import com.kt.component.cache.redis.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,8 @@ public class CodeProjectService implements ICodeProjectService {
     private IProjectBasicService iProjectBasicService;
     @Autowired
     private GitPushTask gitPushTask;
+    @Autowired
+    private RedisService redisService;
 
 
     @Override
@@ -49,6 +52,7 @@ public class CodeProjectService implements ICodeProjectService {
         // 持久化到存储
         ProjectBasic projectBasic = saveProject(codeProjectCmd);
 
+        redisService.set("redis", "66666");
         gitPushTask.push(projectBasic.getId(), codeProjectCmd, codeProject);
         return new CodeProjectCreateVO();
 

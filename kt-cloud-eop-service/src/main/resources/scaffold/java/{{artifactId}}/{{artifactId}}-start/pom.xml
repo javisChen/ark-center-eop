@@ -35,7 +35,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.kt.cloud.eop.Application</mainClass>
+                            <mainClass>{{packageName}}.Application</mainClass>
                         </configuration>
                     </execution>
                 </executions>

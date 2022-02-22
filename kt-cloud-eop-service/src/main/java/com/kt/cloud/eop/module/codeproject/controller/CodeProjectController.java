@@ -37,8 +37,4 @@ public class CodeProjectController extends BaseController implements CodeProject
         return SingleResponse.ok(vo);
     }
 
-    @Override
-    public SingleResponse<String> test() {
-        return SingleResponse.ok("haha");
-    }
 }

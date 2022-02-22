@@ -13,7 +13,6 @@ import com.kt.cloud.eop.module.git.GitCreate;
 import com.kt.cloud.eop.module.git.GitReposInfo;
 import com.kt.component.cache.redis.RedisService;
 import com.kt.component.exception.BizException;
-import com.kt.toolkit.log.Logs;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,14 +45,15 @@ public class GitService {
         try {
             repos = gitManager.createRepos(giteeCreateReposRequest);
         } catch (GitApiException e) {
-            Logs.error("[Git仓库创建失败]：", e);
+            log.error("[Git仓库创建失败]：", e);
             throw new BizException(e.getMessage());
         }
         return new GitReposInfo(repos.getHtmlUrl(), gitCreate.getName());
     }
 
     private String getAccessToken(GitProperties gitProperties) {
-        String accessToken = ((String) redisService.get(getAccessTokenRedisKey(gitProperties.getClientId())));
+        String accessTokenRedisKey = getAccessTokenRedisKey(gitProperties.getClientId());
+        String accessToken = (String) redisService.get(accessTokenRedisKey);
         if (StringUtils.isNotEmpty(accessToken)) {
             return accessToken;
         }
