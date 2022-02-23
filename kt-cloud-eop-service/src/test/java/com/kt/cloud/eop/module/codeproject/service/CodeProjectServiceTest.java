@@ -5,9 +5,9 @@ import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.kt.cloud.eop.BaseTests;
-import com.kt.cloud.eop.client.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.client.codeproject.enums.GenerateModeEnums;
-import com.kt.cloud.eop.client.codeproject.enums.ReposSourceEnums;
+import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.api.codeproject.enums.GenerateModeEnums;
+import com.kt.cloud.eop.api.codeproject.enums.ReposSourceEnums;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,9 +28,10 @@ public class CodeProjectServiceTest extends BaseTests {
     @Test
     public void testCreateCodeProject() {
         CodeProjectCreateCmd cmd = new CodeProjectCreateCmd();
-        String artifactId = "kt-cloud-identity";
+        String artifactId = "kt-cloud-identity3";
         String groupId = "com.kt.cloud";
         String packageName = "com.kt.cloud.identity";
+        cmd.setName("认证服务");
         cmd.setCode(artifactId);
         cmd.setReposSource(ReposSourceEnums.CREATE_NEW.getValue());
         cmd.setType(ProjectBasic.Type.BACKEND.getValue());

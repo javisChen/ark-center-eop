@@ -2,8 +2,8 @@ package com.kt.cloud.eop.module.codeproject.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kt.cloud.eop.BaseTests;
-import com.kt.cloud.eop.client.codeproject.query.CodeProjectListQuery;
-import com.kt.cloud.eop.client.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.eop.api.codeproject.query.CodeProjectListQuery;
+import com.kt.cloud.eop.api.codeproject.vo.CodeProjectListVO;
 import com.kt.component.cache.redis.RedisService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

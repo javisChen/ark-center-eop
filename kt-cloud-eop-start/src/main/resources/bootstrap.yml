@@ -1,7 +1,7 @@
 # 启动了consul配置中心，程序启动后会优先读取bootstrap.yml配置文件读取consul配置
 spring:
   application:
-    name: iam
+    name: eop
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
@@ -14,7 +14,7 @@ spring:
         file-extension: yaml
         group: DEFAULT_GROUP
         server-addr: 127.0.0.1:8848
-        prefix: iam
+        prefix: eop
         refresh-enabled: true
       password: nacos
       username: nacos

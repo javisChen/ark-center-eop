@@ -2,6 +2,7 @@ package com.kt.cloud.eop.manager.git.gitee;
 
 
 import cn.hutool.core.util.RuntimeUtil;
+import com.kt.cloud.eop.manager.git.config.GiteeConfiguration;
 import com.kt.cloud.eop.manager.git.gitee.request.GiteeCreateReposRequest;
 import com.kt.cloud.eop.manager.git.gitee.request.GiteeGetTokenRequest;
 import com.kt.cloud.eop.manager.git.gitee.response.GiteeGetTokenResponse;
@@ -16,15 +17,18 @@ import java.nio.charset.Charset;
 
 public class GitManagerTest {
 
-    private GiteeManager giteeManager = new GiteeManager();
+    private GiteeManager giteeManager;
     private String username = "javischen9548@foxmail.com";
     private String password = "javis9548chen";
     private String clientId = "dc7f80b02163e4f76fbcffb03eff926566aaf19f2c51a0339391a599d60b32ba";
     private String clientSecret = "b68bc45b2f30ee460e8dfa468242697f276b144778bfb9011e29ee4253e8d03d";
+    private String accessToken = "3814b82ee62c6d47511fd238879e2561";
 
     @BeforeAll
     public void setUp() throws Exception {
-
+        GiteeConfiguration giteeConfiguration = new GiteeConfiguration();
+        giteeConfiguration.setAccessToken(accessToken);
+        giteeManager = new GiteeManager(giteeConfiguration);
     }
 
     @Test
@@ -32,7 +36,6 @@ public class GitManagerTest {
         GiteeCreateReposRequest request = new GiteeCreateReposRequest();
         request.setName("cloudTest7");
         request.setDescription("cloudTest7");
-        request.setAccessToken("6b5e0d61ca32af36180baeda2e7e913c");
         giteeManager.createRepos(request);
     }
 

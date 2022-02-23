@@ -5,18 +5,18 @@ import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kt.cloud.eop.client.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.client.codeproject.query.CodeProjectListQuery;
-import com.kt.cloud.eop.client.codeproject.vo.CodeProjectCreateVO;
-import com.kt.cloud.eop.client.codeproject.vo.CodeProjectInfoVO;
-import com.kt.cloud.eop.client.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.api.codeproject.query.CodeProjectListQuery;
+import com.kt.cloud.eop.api.codeproject.vo.CodeProjectCreateVO;
+import com.kt.cloud.eop.api.codeproject.vo.CodeProjectInfoVO;
+import com.kt.cloud.eop.api.codeproject.vo.CodeProjectListVO;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.dao.service.IProjectBasicService;
 import com.kt.cloud.eop.module.codeproject.CodeProjectValidator;
 import com.kt.cloud.eop.module.codeproject.convertor.CodeProjectConvertor;
 import com.kt.cloud.eop.module.codeproject.generate.project.ProjectGenerator;
 import com.kt.cloud.eop.module.codeproject.generate.work.GitPushTask;
-import com.kt.component.cache.redis.RedisService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,8 +33,6 @@ public class CodeProjectService implements ICodeProjectService {
     private IProjectBasicService iProjectBasicService;
     @Autowired
     private GitPushTask gitPushTask;
-    @Autowired
-    private RedisService redisService;
 
 
     @Override
@@ -52,7 +50,6 @@ public class CodeProjectService implements ICodeProjectService {
         // 持久化到存储
         ProjectBasic projectBasic = saveProject(codeProjectCmd);
 
-        redisService.set("redis", "66666");
         gitPushTask.push(projectBasic.getId(), codeProjectCmd, codeProject);
         return new CodeProjectCreateVO();
 
@@ -67,7 +64,7 @@ public class CodeProjectService implements ICodeProjectService {
     @Override
     public IPage<CodeProjectListVO> pageListCodeProject(CodeProjectListQuery query) {
         LambdaQueryWrapper<ProjectBasic> qw = new LambdaQueryWrapper<>();
-        qw.like(ProjectBasic::getName, query.getProjectName())
+        qw.like(StringUtils.isNotEmpty(query.getProjectName()), ProjectBasic::getName, query.getProjectName())
         .orderByDesc(ProjectBasic::getGmtCreate);
         return iProjectBasicService.page(new Page<>(query.getCurrent(), query.getSize()), qw)
                 .convert(CodeProjectConvertor::convertToCodeProjectListVo);

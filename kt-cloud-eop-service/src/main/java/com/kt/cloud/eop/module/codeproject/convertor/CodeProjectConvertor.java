@@ -1,8 +1,8 @@
 package com.kt.cloud.eop.module.codeproject.convertor;
 
-import com.kt.cloud.eop.client.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.client.codeproject.vo.CodeProjectInfoVO;
-import com.kt.cloud.eop.client.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.api.codeproject.vo.CodeProjectInfoVO;
+import com.kt.cloud.eop.api.codeproject.vo.CodeProjectListVO;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.module.git.GitCreate;
 

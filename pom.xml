@@ -10,7 +10,7 @@
     <modules>
         <module>kt-cloud-eop-dao</module>
         <module>kt-cloud-eop-infrastructure</module>
-        <module>kt-cloud-eop-client</module>
+        <module>kt-cloud-eop-api</module>
         <module>kt-cloud-eop-manager</module>
         <module>kt-cloud-eop-service</module>
         <module>kt-cloud-eop-start</module>
@@ -53,7 +53,7 @@
             </dependency>
             <dependency>
                 <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-client</artifactId>
+                <artifactId>kt-cloud-eop-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

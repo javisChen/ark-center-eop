@@ -44,7 +44,7 @@
 
         <dependency>
             <groupId>com.kt.cloud</groupId>
-            <artifactId>kt-cloud-eop-client</artifactId>
+            <artifactId>kt-cloud-eop-api</artifactId>
         </dependency>
 
         <dependency>

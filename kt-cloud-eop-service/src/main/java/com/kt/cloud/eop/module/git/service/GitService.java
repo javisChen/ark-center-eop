@@ -1,21 +1,14 @@
 package com.kt.cloud.eop.module.git.service;
 
-import com.kt.cloud.eop.infrastructure.config.GitProperties;
-import com.kt.cloud.eop.infrastructure.constant.RedisKeyConst;
 import com.kt.cloud.eop.infrastructure.util.CmdUtils;
+import com.kt.cloud.eop.manager.git.GitCreateReposRequest;
+import com.kt.cloud.eop.manager.git.GitCreateReposResponse;
 import com.kt.cloud.eop.manager.git.GitManager;
 import com.kt.cloud.eop.manager.git.gitee.GitApiException;
-import com.kt.cloud.eop.manager.git.gitee.request.GiteeCreateReposRequest;
-import com.kt.cloud.eop.manager.git.gitee.request.GiteeGetTokenRequest;
-import com.kt.cloud.eop.manager.git.gitee.response.GiteeCreateReposResponse;
-import com.kt.cloud.eop.manager.git.gitee.response.GiteeGetTokenResponse;
 import com.kt.cloud.eop.module.git.GitCreate;
 import com.kt.cloud.eop.module.git.GitReposInfo;
-import com.kt.component.cache.redis.RedisService;
 import com.kt.component.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -27,23 +20,17 @@ import java.util.Map;
 @Slf4j
 public class GitService {
 
-    @Autowired
-    private GitManager gitManager;
+    private final GitManager gitManager;
 
-    @Autowired
-    private RedisService redisService;
-
-    @Autowired
-    private GitProperties gitProperties;
+    public GitService(GitManager gitManager) {
+        this.gitManager = gitManager;
+    }
 
     public GitReposInfo createRepository(GitCreate gitCreate) {
-        GiteeCreateReposRequest giteeCreateReposRequest = new GiteeCreateReposRequest();
-        giteeCreateReposRequest.setName(gitCreate.getName());
-        giteeCreateReposRequest.setDescription(gitCreate.getDescription());
-        giteeCreateReposRequest.setAccessToken(getAccessToken(gitProperties));
-        GiteeCreateReposResponse repos = null;
+        GitCreateReposRequest gitCreateReposRequest = createGitCreateReposRequest(gitCreate);
+        GitCreateReposResponse repos;
         try {
-            repos = gitManager.createRepos(giteeCreateReposRequest);
+            repos = gitManager.createRepos(gitCreateReposRequest);
         } catch (GitApiException e) {
             log.error("[Git仓库创建失败]：", e);
             throw new BizException(e.getMessage());
@@ -51,26 +38,11 @@ public class GitService {
         return new GitReposInfo(repos.getHtmlUrl(), gitCreate.getName());
     }
 
-    private String getAccessToken(GitProperties gitProperties) {
-        String accessTokenRedisKey = getAccessTokenRedisKey(gitProperties.getClientId());
-        String accessToken = (String) redisService.get(accessTokenRedisKey);
-        if (StringUtils.isNotEmpty(accessToken)) {
-            return accessToken;
-        }
-        GiteeGetTokenRequest req = new GiteeGetTokenRequest();
-        req.setUsername(gitProperties.getEmail());
-        req.setPassword(gitProperties.getPassword());
-        req.setClientId(gitProperties.getClientId());
-        req.setClientSecret(gitProperties.getClientSecret());
-        req.setScope(gitProperties.getScope());
-        GiteeGetTokenResponse getTokenResponse = gitManager.getToken(req);
-        accessToken = getTokenResponse.getAccessToken();
-        redisService.set(getAccessTokenRedisKey(gitProperties.getClientId()), accessToken, (long) (getTokenResponse.getExpiresIn() / 60));
-        return accessToken;
-    }
-
-    private String getAccessTokenRedisKey(String clientId) {
-        return RedisKeyConst.GIT_ACCESS_TOKEN_KEY_PREFIX + clientId;
+    private GitCreateReposRequest createGitCreateReposRequest(GitCreate gitCreate) {
+        GitCreateReposRequest gitCreateReposRequest = new GitCreateReposRequest();
+        gitCreateReposRequest.setName(gitCreate.getName());
+        gitCreateReposRequest.setDescription(gitCreate.getDescription());
+        return gitCreateReposRequest;
     }
 
     public boolean intiAndPushToRepos(File file, String code, String gitReposUrl) {

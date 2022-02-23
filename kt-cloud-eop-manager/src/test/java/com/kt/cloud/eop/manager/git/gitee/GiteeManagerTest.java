@@ -1,19 +1,20 @@
 package com.kt.cloud.eop.manager.git.gitee;
 
 
+import com.kt.cloud.eop.manager.git.GitCreateReposResponse;
+import com.kt.cloud.eop.manager.git.config.GiteeConfiguration;
 import com.kt.cloud.eop.manager.git.gitee.request.GiteeCreateReposRequest;
-import com.kt.cloud.eop.manager.git.gitee.response.GiteeCreateReposResponse;
 import org.junit.jupiter.api.Test;
 
 public class GiteeManagerTest {
 
     @Test
     public void testCreateRepos() {
-        GiteeManager giteeManager = new GiteeManager();
+        GiteeConfiguration giteeConfiguration = new GiteeConfiguration();
+        GiteeManager giteeManager = new GiteeManager(giteeConfiguration);
         GiteeCreateReposRequest request = new GiteeCreateReposRequest();
-        request.setName("cloudTest6");
+        request.setName("cloudTest888");
         request.setDescription("cloudTest5");
-        request.setAccessToken("6b968e86bb95da1fa20391af889013f1");
-        GiteeCreateReposResponse repos = giteeManager.createRepos(request);
+        GitCreateReposResponse repos = giteeManager.createRepos(request);
     }
 }

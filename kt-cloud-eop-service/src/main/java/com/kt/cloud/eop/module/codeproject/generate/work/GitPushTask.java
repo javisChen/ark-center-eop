@@ -2,8 +2,8 @@ package com.kt.cloud.eop.module.codeproject.generate.work;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import com.kt.cloud.eop.client.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.client.codeproject.enums.ReposSourceEnums;
+import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.api.codeproject.enums.ReposSourceEnums;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.dao.service.IProjectBasicService;
 import com.kt.cloud.eop.module.codeproject.convertor.CodeProjectConvertor;
@@ -13,7 +13,6 @@ import com.kt.cloud.eop.module.git.service.GitService;
 import com.kt.component.cache.redis.RedisService;
 import com.kt.component.exception.ExceptionFactory;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +34,7 @@ public class GitPushTask {
         this.redisService = redisService;
     }
 
-    @Async("taskExecutor")
+//    @Async("taskExecutor")
     @Transactional(rollbackFor = Exception.class)
     public void push(Long projectBasicId, CodeProjectCreateCmd codeProjectCmd, File codeProject) {
         if (codeProjectCmd.getReposSource().equals(ReposSourceEnums.CREATE_NEW.getValue())) {
