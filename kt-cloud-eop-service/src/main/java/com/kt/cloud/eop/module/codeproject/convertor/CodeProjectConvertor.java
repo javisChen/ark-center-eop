@@ -23,7 +23,9 @@ public class CodeProjectConvertor {
         vo.setDescription(projectBasic.getDescription());
         vo.setType(ProjectBasic.Type.getText(projectBasic.getType()));
         vo.setScaffold(ProjectBasic.Scaffold.getText(projectBasic.getScaffold()));
-        vo.setGitReposUrl(projectBasic.getGitReposUrl());
+        vo.setGitHtmlUrl(projectBasic.getGitHtmlUrl());
+        vo.setGitSshUrl(projectBasic.getGitSshUrl());
+        vo.setGitHttpsUrl(projectBasic.getGitHttpsUrl());
         vo.setCreateTime(projectBasic.getGmtCreate());
         vo.setPushStatus(ProjectBasic.PushStatus.getText(projectBasic.getPushStatus()));
         vo.setReposStatus(ProjectBasic.ReposStatus.getText(projectBasic.getReposStatus()));
@@ -48,7 +50,7 @@ public class CodeProjectConvertor {
         vo.setDescription(projectBasic.getDescription());
         vo.setType(ProjectBasic.Type.getText(projectBasic.getType()));
         vo.setScaffold(ProjectBasic.Scaffold.getText(projectBasic.getScaffold()));
-        vo.setGitReposUrl(projectBasic.getGitReposUrl());
+        vo.setGitReposUrl(projectBasic.getGitHtmlUrl());
         vo.setPushStatus(ProjectBasic.PushStatus.getText(projectBasic.getPushStatus()));
         vo.setReposStatus(ProjectBasic.ReposStatus.getText(projectBasic.getReposStatus()));
         return vo;

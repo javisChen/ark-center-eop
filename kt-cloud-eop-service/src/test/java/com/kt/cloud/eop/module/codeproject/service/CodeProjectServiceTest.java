@@ -28,16 +28,17 @@ public class CodeProjectServiceTest extends BaseTests {
     @Test
     public void testCreateCodeProject() {
         CodeProjectCreateCmd cmd = new CodeProjectCreateCmd();
-        String artifactId = "kt-cloud-identity3";
         String groupId = "com.kt.cloud";
-        String packageName = "com.kt.cloud.identity";
-        cmd.setName("认证服务");
+        String artifactId = "kt-cloud-order1";
+        String packageName = "com.kt.cloud.order1";
+        String description = "支付服务";
+        cmd.setName(description);
         cmd.setCode(artifactId);
         cmd.setReposSource(ReposSourceEnums.CREATE_NEW.getValue());
         cmd.setType(ProjectBasic.Type.BACKEND.getValue());
         cmd.setScaffold(ProjectBasic.Scaffold.SpringCloud.getValue());
-        cmd.setDescription("认证服务");
-        cmd.setDeleteTempFileAfterGen(false);
+        cmd.setDescription(description);
+        cmd.setDeleteTempFileAfterGen(true);
         cmd.setGenerateMode(GenerateModeEnums.SCAFFOLD.getValue());
         SpringCloudProjectGenerateParam javaProjectGenerateParam = new SpringCloudProjectGenerateParam();
         javaProjectGenerateParam.setArtifactId(artifactId);

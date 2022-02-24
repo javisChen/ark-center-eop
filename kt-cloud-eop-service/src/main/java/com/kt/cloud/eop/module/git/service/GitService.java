@@ -6,7 +6,6 @@ import com.kt.cloud.eop.manager.git.GitCreateReposResponse;
 import com.kt.cloud.eop.manager.git.GitManager;
 import com.kt.cloud.eop.manager.git.gitee.GitApiException;
 import com.kt.cloud.eop.module.git.GitCreate;
-import com.kt.cloud.eop.module.git.GitReposInfo;
 import com.kt.component.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -26,7 +25,7 @@ public class GitService {
         this.gitManager = gitManager;
     }
 
-    public GitReposInfo createRepository(GitCreate gitCreate) {
+    public GitCreateReposResponse createRepository(GitCreate gitCreate) {
         GitCreateReposRequest gitCreateReposRequest = createGitCreateReposRequest(gitCreate);
         GitCreateReposResponse repos;
         try {
@@ -35,7 +34,7 @@ public class GitService {
             log.error("[Git仓库创建失败]：", e);
             throw new BizException(e.getMessage());
         }
-        return new GitReposInfo(repos.getHtmlUrl(), gitCreate.getName());
+        return repos;
     }
 
     private GitCreateReposRequest createGitCreateReposRequest(GitCreate gitCreate) {

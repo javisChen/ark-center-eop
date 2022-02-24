@@ -39,7 +39,7 @@ public class ProjectBasicServiceImpl extends ServiceImpl<ProjectBasicMapper, Pro
         LambdaUpdateWrapper<ProjectBasic> uw = new LambdaUpdateWrapper<>();
         uw.eq(ProjectBasic::getId, id)
                 .set(ProjectBasic::getReposStatus, reposStatus.getValue())
-                .set(ProjectBasic::getGitReposUrl, reposUrl);
+                .set(ProjectBasic::getGitHtmlUrl, reposUrl);
         this.update(uw);
     }
 }

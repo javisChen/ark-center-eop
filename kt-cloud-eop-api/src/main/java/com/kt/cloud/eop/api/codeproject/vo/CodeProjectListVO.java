@@ -23,7 +23,11 @@ public class CodeProjectListVO {
 
     private String scaffold;
 
-    private String gitReposUrl;
+    private String gitHtmlUrl;
+
+    private String gitHttpsUrl;
+
+    private String gitSshUrl;
 
     private String reposStatus;
 

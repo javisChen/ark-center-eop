@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GitReposInfo {
 
-    private String reposUrl;
+    private String sshUrl;
     private String reposName;
 }

@@ -2,13 +2,14 @@ package com.kt.cloud.eop.module.codeproject.generate.work;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
 import com.kt.cloud.eop.api.codeproject.enums.ReposSourceEnums;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.dao.service.IProjectBasicService;
+import com.kt.cloud.eop.manager.git.GitCreateReposResponse;
 import com.kt.cloud.eop.module.codeproject.convertor.CodeProjectConvertor;
 import com.kt.cloud.eop.module.git.GitCreate;
-import com.kt.cloud.eop.module.git.GitReposInfo;
 import com.kt.cloud.eop.module.git.service.GitService;
 import com.kt.component.cache.redis.RedisService;
 import com.kt.component.exception.ExceptionFactory;
@@ -41,15 +42,14 @@ public class GitPushTask {
             try {
                 // 创建Git仓库
                 GitCreate gitCreate = CodeProjectConvertor.convertToGitCreate(codeProjectCmd);
-                GitReposInfo gitReposInfo = gitService.createRepository(gitCreate);
-                String gitReposUrl = gitReposInfo.getReposUrl();
+                GitCreateReposResponse gitCreateReposResponse = gitService.createRepository(gitCreate);
+                String gitReposUrl = gitCreateReposResponse.getSshUrl();
                 if (StrUtil.isEmpty(gitReposUrl)) {
                     iProjectBasicService.updateReposStatus(projectBasicId, ProjectBasic.ReposStatus.FAIL);
                     return;
                 }
-
                 // 创建成功后把生成的工程代码推送到仓库中
-                iProjectBasicService.updateReposStatusAndReposUrl(projectBasicId, ProjectBasic.ReposStatus.SUCCESS, gitReposUrl);
+                updateProjectGitInfo(projectBasicId, gitCreateReposResponse);
                 boolean initResult = gitService.intiAndPushToRepos(codeProject, codeProjectCmd.getCode(), gitReposUrl);
                 if (!initResult) {
                     iProjectBasicService.updatePushStatus(projectBasicId,ProjectBasic.PushStatus.FAIL);
@@ -65,6 +65,11 @@ public class GitPushTask {
                 }
             }
         }
+    }
+
+    private void updateProjectGitInfo(Long projectBasicId, GitCreateReposResponse gitReposUrl) {
+        LambdaUpdateWrapper<Object> uw = new LambdaUpdateWrapper<>();
+        iProjectBasicService.update(projectBasicId, ProjectBasic.ReposStatus.SUCCESS, gitReposUrl);
     }
 
 }

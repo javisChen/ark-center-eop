@@ -53,9 +53,19 @@ public class ProjectBasic extends BaseEntity {
     private Integer scaffold;
 
     /**
-     * Git仓库地址
+     * Git主页地址
      */
-    private String gitReposUrl;
+    private String gitHtmlUrl;
+
+    /**
+     * Git Clone HTTPS地址
+     */
+    private String gitHttpsUrl;
+
+    /**
+     * Git Clone SSH地址
+     */
+    private String gitSshUrl;
 
     /**
      * 工程的独有属性JSON

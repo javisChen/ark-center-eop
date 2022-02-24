@@ -45,7 +45,7 @@ biz-module:
       scope: "user_info projects pull_requests issues notes keys hook groups gists enterprises"
       access-token: 3814b82ee62c6d47511fd238879e2561
     github:
-      authorization: Basic amF2aXNDaGVuOmdocF80Mzdod2NDakpiQnBhZEZvN3lSQloyQXNoQUlMUzIzRnVZN2o=
+      authorization: Basic amF2aXNDaGVuOmdocF9xVWpzS1NVdHNBUUFRQ09zZEdkV1JOTERJbFFqQlgwbXJJa0s=
   generate:
     temp-dir:
 
