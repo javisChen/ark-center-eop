@@ -35,7 +35,7 @@ public class GitPushTask {
         this.redisService = redisService;
     }
 
-//    @Async("taskExecutor")
+    //    @Async("taskExecutor")
     @Transactional(rollbackFor = Exception.class)
     public void push(Long projectBasicId, CodeProjectCreateCmd codeProjectCmd, File codeProject) {
         if (codeProjectCmd.getReposSource().equals(ReposSourceEnums.CREATE_NEW.getValue())) {
@@ -52,9 +52,9 @@ public class GitPushTask {
                 updateProjectGitInfo(projectBasicId, gitCreateReposResponse);
                 boolean initResult = gitService.intiAndPushToRepos(codeProject, codeProjectCmd.getCode(), gitReposUrl);
                 if (!initResult) {
-                    iProjectBasicService.updatePushStatus(projectBasicId,ProjectBasic.PushStatus.FAIL);
+                    iProjectBasicService.updatePushStatus(projectBasicId, ProjectBasic.PushStatus.FAIL);
                 } else {
-                    iProjectBasicService.updatePushStatus(projectBasicId,ProjectBasic.PushStatus.SUCCESS);
+                    iProjectBasicService.updatePushStatus(projectBasicId, ProjectBasic.PushStatus.SUCCESS);
                 }
             } catch (Exception e) {
                 log.error("推送GIT服务失败", e);
@@ -67,9 +67,14 @@ public class GitPushTask {
         }
     }
 
-    private void updateProjectGitInfo(Long projectBasicId, GitCreateReposResponse gitReposUrl) {
-        LambdaUpdateWrapper<Object> uw = new LambdaUpdateWrapper<>();
-        iProjectBasicService.update(projectBasicId, ProjectBasic.ReposStatus.SUCCESS, gitReposUrl);
+    private void updateProjectGitInfo(Long projectBasicId, GitCreateReposResponse gitCreateReposResponse) {
+        LambdaUpdateWrapper<ProjectBasic> uw = new LambdaUpdateWrapper<>();
+        uw.eq(ProjectBasic::getId, projectBasicId)
+                .set(ProjectBasic::getReposStatus, ProjectBasic.ReposStatus.SUCCESS.getValue())
+                .set(ProjectBasic::getGitHtmlUrl, gitCreateReposResponse.getHtmlUrl())
+                .set(ProjectBasic::getGitSshUrl, gitCreateReposResponse.getSshUrl())
+                .set(ProjectBasic::getGitHttpsUrl, gitCreateReposResponse.getCloneUrl());
+        iProjectBasicService.update(uw);
     }
 
 }

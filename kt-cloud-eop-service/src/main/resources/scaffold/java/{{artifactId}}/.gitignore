@@ -33,4 +33,5 @@ build/
 .vscode/
 
 ### cop init sh ###
+git_init.bat
 git_init.sh

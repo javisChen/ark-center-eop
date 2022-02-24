@@ -1,5 +1,7 @@
 package com.kt.cloud.eop.module.git.service;
 
+import cn.hutool.system.SystemUtil;
+import cn.hutool.system.oshi.OshiUtil;
 import com.kt.cloud.eop.infrastructure.util.CmdUtils;
 import com.kt.cloud.eop.manager.git.GitCreateReposRequest;
 import com.kt.cloud.eop.manager.git.GitCreateReposResponse;
@@ -49,8 +51,13 @@ public class GitService {
         Map<String, String> environment = new HashMap<>(1);
         environment.put("REPOS_PATH", gitReposUrl);
         try {
-            CmdUtils.exec(environment, dir, "chmod", "+x", "git_init.sh");
-            CmdUtils.exec(environment, dir, "./git_init.sh");
+            boolean windows = SystemUtil.getOsInfo().isWindows();
+            if (windows) {
+                CmdUtils.exec(environment, dir, "cmd", "/c", "git_init.bat");
+            } else {
+                CmdUtils.exec(environment, dir, "chmod", "+x", "git_init.sh");
+                CmdUtils.exec(environment, dir, "./git_init.sh");
+            }
         } catch (IOException e) {
             log.error("[初始化仓库][失败]", e);
             return false;
