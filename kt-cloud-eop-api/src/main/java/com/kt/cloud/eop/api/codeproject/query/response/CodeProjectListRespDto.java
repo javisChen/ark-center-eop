@@ -1,4 +1,4 @@
-package com.kt.cloud.eop.api.codeproject.vo;
+package com.kt.cloud.eop.api.codeproject.query.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CodeProjectListVO {
+public class CodeProjectListRespDto {
 
     private Long id;
 

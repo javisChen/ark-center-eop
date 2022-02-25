@@ -9,6 +9,8 @@ import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
 import com.kt.cloud.eop.api.codeproject.enums.GenerateModeEnums;
 import com.kt.cloud.eop.api.codeproject.enums.ReposSourceEnums;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
+import com.kt.cloud.eop.module.codeproject.generate.code.DAOCodeGenerator;
+import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
 import com.kt.cloud.eop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +21,9 @@ public class CodeProjectServiceTest extends BaseTests {
 
     @Autowired
     private ICodeProjectService iCodeProjectService;
+    private final String dsUrl = "jdbc:mysql://gz-cynosdbmysql-grp-irl7x9ar.sql.tencentcdb.com:20716/commodity?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True";
+    private final String dsUsername = "kt_cloud8888";
+    private final String dsPassword = "Kt.cloud1234!@#$";
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -43,15 +48,27 @@ public class CodeProjectServiceTest extends BaseTests {
         javaProjectGenerateParam.setArtifactId(artifactId);
         javaProjectGenerateParam.setGroupId(groupId);
         javaProjectGenerateParam.setPackageName(packageName);
-        javaProjectGenerateParam.setDsUrl("jdbc:mysql://localhost:3306/cop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True");
-        javaProjectGenerateParam.setDsUsername("root");
-        javaProjectGenerateParam.setDsPassword("Root1234!@#$");
+        javaProjectGenerateParam.setDsUrl(dsUrl);
+        javaProjectGenerateParam.setDsUsername(dsUsername);
+        javaProjectGenerateParam.setDsPassword(dsPassword);
         javaProjectGenerateParam.setGenDAOCode(false);
 
         String extProperties = JSON.toJSONString(BeanUtil.beanToMap(javaProjectGenerateParam));
         cmd.setExtProperties(extProperties);
         System.out.println(JSONObject.toJSONString(cmd));
         iCodeProjectService.createCodeProject(cmd);
+    }
+
+    @Test
+    public void testGenDaoCode() {
+        CodeGenerateModel model = new CodeGenerateModel();
+        model.setUrl(dsUrl);
+        model.setUsername(dsUsername);
+        model.setPassword(dsPassword);
+        model.setOutputDir("/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-dao/src/main/java");
+        model.setParent("com.kt.cloud.commodity.dao");
+        new DAOCodeGenerator().execute(model);
+
     }
 
     @Test

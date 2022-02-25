@@ -2,7 +2,7 @@ package ${package.Entity};
 <% for(pkg in table.importPackages){ %>
 import ${pkg};
 <% } %>
-<% if(swagger2){ %>
+<% if(swagger){ %>
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 <% } %>
@@ -39,7 +39,7 @@ import lombok.experimental.Accessors;
 <% if(table.convert){ %>
 @TableName("${table.name}")
 <% } %>
-<% if(swagger2){ %>
+<% if(swagger){ %>
 @ApiModel(value="${entity}对象", description="${table.comment!''}")
 <% } %>
 <% if(isNotEmpty(superEntityClass)){ %>
@@ -63,7 +63,7 @@ public class ${entity} implements Serializable {
     %>
 
     <% if(isNotEmpty(field.comment)){ %>
-        <% if(swagger2){ %>
+        <% if(swagger){ %>
     @ApiModelProperty(value = "${field.comment}")
         <% }else{ %>
     /**

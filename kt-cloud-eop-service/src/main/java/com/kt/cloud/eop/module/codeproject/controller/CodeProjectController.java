@@ -2,10 +2,10 @@ package com.kt.cloud.eop.module.codeproject.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.api.codeproject.query.CodeProjectListQuery;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectCreateVO;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectInfoVO;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.eop.api.codeproject.query.request.CodeProjectListQueryReq;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectCreateRespDto;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectInfoRespDto;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectListRespDto;
 import com.kt.cloud.eop.module.codeproject.service.ICodeProjectService;
 import com.kt.component.dto.PageResponse;
 import com.kt.component.dto.SingleResponse;
@@ -24,19 +24,19 @@ public class CodeProjectController extends BaseController {
     private ICodeProjectService iCodeProjectService;
 
     @PostMapping("/create")
-    public SingleResponse<CodeProjectCreateVO> create(CodeProjectCreateCmd cmd) {
+    public SingleResponse<CodeProjectCreateRespDto> create(CodeProjectCreateCmd cmd) {
         return SingleResponse.ok(iCodeProjectService.createCodeProject(cmd));
     }
 
     @PostMapping("/pageList")
-    public SingleResponse<PageResponse<CodeProjectListVO>> pageList(CodeProjectListQuery query) {
-        IPage<CodeProjectListVO> vos = iCodeProjectService.pageListCodeProject(query);
+    public SingleResponse<PageResponse<CodeProjectListRespDto>> pageList(CodeProjectListQueryReq query) {
+        IPage<CodeProjectListRespDto> vos = iCodeProjectService.pageListCodeProject(query);
         return SingleResponse.ok(PageResponse.build(vos));
     }
 
     @GetMapping("/info")
-    public SingleResponse<CodeProjectInfoVO> info(Long codeProjectId) {
-        CodeProjectInfoVO vo = iCodeProjectService.getCodeProjectInfo(codeProjectId);
+    public SingleResponse<CodeProjectInfoRespDto> info(Long codeProjectId) {
+        CodeProjectInfoRespDto vo = iCodeProjectService.getCodeProjectInfo(codeProjectId);
         return SingleResponse.ok(vo);
     }
 

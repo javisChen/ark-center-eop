@@ -2,16 +2,16 @@ package com.kt.cloud.eop.module.codeproject.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.api.codeproject.query.CodeProjectListQuery;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectCreateVO;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectInfoVO;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.eop.api.codeproject.query.request.CodeProjectListQueryReq;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectCreateRespDto;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectInfoRespDto;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectListRespDto;
 
 public interface ICodeProjectService {
 
-    CodeProjectCreateVO createCodeProject(CodeProjectCreateCmd cmd);
+    CodeProjectCreateRespDto createCodeProject(CodeProjectCreateCmd cmd);
 
-    IPage<CodeProjectListVO> pageListCodeProject(CodeProjectListQuery query);
+    IPage<CodeProjectListRespDto> pageListCodeProject(CodeProjectListQueryReq query);
 
-    CodeProjectInfoVO getCodeProjectInfo(Long codeProjectId);
+    CodeProjectInfoRespDto getCodeProjectInfo(Long codeProjectId);
 }

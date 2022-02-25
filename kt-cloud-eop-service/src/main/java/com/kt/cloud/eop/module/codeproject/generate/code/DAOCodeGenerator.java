@@ -1,7 +1,9 @@
 package com.kt.cloud.eop.module.codeproject.generate.code;
 
+import cn.hutool.core.util.ArrayUtil;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.builder.Entity;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
@@ -16,17 +18,7 @@ public class DAOCodeGenerator {
     private final String superEntityClass = "com.kt.component.db.base.BaseEntity";
     private final String superControllerClass = "com.kt.component.web.base.BaseController";
     private final String[] superEntityColumns = new String[] {"id", "gmt_create", "gmt_modified", "creator", "modifier"};
-    private final String author = "COP";
-
-    public static void main(String[] args) {
-        CodeGenerateModel model = new CodeGenerateModel();
-        model.setUrl("jdbc:mysql://localhost:3306/cop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC");
-        model.setUsername("root");
-        model.setPassword("Root1234!@#$");
-        model.setOutputDir("/Users/chenjiawei/code/myself/kt-cloud-eop/kt-cloud-eop-dao/src/main/java");
-        model.setParent("com.kt.cloud.eop.dao");
-        new DAOCodeGenerator().execute(model);
-    }
+    private final String author = "EOP";
 
     public void execute(CodeGenerateModel model) {
         AutoGenerator mpg = new AutoGenerator(getDataSourceConfig(model));
@@ -58,9 +50,12 @@ public class DAOCodeGenerator {
     }
 
     private StrategyConfig getStrategyConfig(PackageConfig packageConfig, CodeGenerateModel model) {
-        return new StrategyConfig.Builder()
-                .addInclude(model.getInclude())
-                .addTablePrefix(packageConfig.getModuleName() + "_")
+        StrategyConfig.Builder strategyBuilder = new StrategyConfig.Builder()
+                .addTablePrefix(packageConfig.getModuleName() + "_");
+        if (ArrayUtil.isNotEmpty(model.getInclude())) {
+            strategyBuilder.addInclude(model.getInclude());
+        }
+        Entity.Builder builder = strategyBuilder
                 .controllerBuilder()
                     .enableHyphenStyle()
                     .superClass(superControllerClass)
@@ -70,7 +65,8 @@ public class DAOCodeGenerator {
                     .columnNaming(NamingStrategy.underline_to_camel)
                     .enableLombok()
                     .superClass(superEntityClass)
-                    .addSuperEntityColumns(superEntityColumns)
+                    .addSuperEntityColumns(superEntityColumns);
+        return builder
                 .build();
     }
 

@@ -1,8 +1,8 @@
 package com.kt.cloud.eop.module.codeproject.convertor;
 
 import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectInfoVO;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectInfoRespDto;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectListRespDto;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.module.git.GitCreate;
 
@@ -15,8 +15,8 @@ public class CodeProjectConvertor {
         return gitCreate;
     }
 
-    public static CodeProjectListVO convertToCodeProjectListVo(ProjectBasic projectBasic) {
-        CodeProjectListVO vo = new CodeProjectListVO();
+    public static CodeProjectListRespDto convertToCodeProjectListVo(ProjectBasic projectBasic) {
+        CodeProjectListRespDto vo = new CodeProjectListRespDto();
         vo.setId(projectBasic.getId());
         vo.setName(projectBasic.getName());
         vo.setCode(projectBasic.getCode());
@@ -42,15 +42,17 @@ public class CodeProjectConvertor {
         return entity;
     }
 
-    public static CodeProjectInfoVO convertToCodeProjectInfoVO(ProjectBasic projectBasic) {
-        CodeProjectInfoVO vo = new CodeProjectInfoVO();
+    public static CodeProjectInfoRespDto convertToCodeProjectInfoVO(ProjectBasic projectBasic) {
+        CodeProjectInfoRespDto vo = new CodeProjectInfoRespDto();
         vo.setId(projectBasic.getId());
         vo.setName(projectBasic.getName());
         vo.setCode(projectBasic.getCode());
         vo.setDescription(projectBasic.getDescription());
         vo.setType(ProjectBasic.Type.getText(projectBasic.getType()));
         vo.setScaffold(ProjectBasic.Scaffold.getText(projectBasic.getScaffold()));
-        vo.setGitReposUrl(projectBasic.getGitHtmlUrl());
+        vo.setGitHtmlUrl(projectBasic.getGitHtmlUrl());
+        vo.setGitHttpsUrl(projectBasic.getGitHttpsUrl());
+        vo.setGitSshUrl(projectBasic.getGitSshUrl());
         vo.setPushStatus(ProjectBasic.PushStatus.getText(projectBasic.getPushStatus()));
         vo.setReposStatus(ProjectBasic.ReposStatus.getText(projectBasic.getReposStatus()));
         return vo;
