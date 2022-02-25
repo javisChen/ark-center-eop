@@ -1,4 +1,4 @@
-package com.kt.cloud.eop.api.codeproject.vo;
+package com.kt.cloud.eop.api.codeproject.query.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CodeProjectInfoVO {
+public class CodeProjectInfoRespDto {
 
     private Long id;
 
@@ -21,7 +21,11 @@ public class CodeProjectInfoVO {
 
     private String scaffold;
 
-    private String gitReposUrl;
+    private String gitHtmlUrl;
+
+    private String gitHttpsUrl;
+
+    private String gitSshUrl;
 
     private String reposStatus;
 

@@ -35,7 +35,7 @@ public class SpringCloudProjectGenerator extends AbstractProjectGenerator {
 
     private void genDaoCode(File rootProject, SpringCloudProjectGenerateParam param) {
         String daoModulePath = findDaoModule(rootProject).getAbsolutePath() + "/src/main/java";
-        CodeGenerateModel model = getCodeGenerateModel(param, daoModulePath);
+        CodeGenerateModel model = createCodeGenerateModel(param, daoModulePath);
         codeGenerator.execute(model);
     }
 
@@ -52,7 +52,7 @@ public class SpringCloudProjectGenerator extends AbstractProjectGenerator {
         return BeanUtil.mapToBean(extProperties, SpringCloudProjectGenerateParam.class, true, CopyOptions.create());
     }
 
-    private CodeGenerateModel getCodeGenerateModel(SpringCloudProjectGenerateParam extProperties, String absolutePath) {
+    private CodeGenerateModel createCodeGenerateModel(SpringCloudProjectGenerateParam extProperties, String absolutePath) {
         CodeGenerateModel codeGenerateModel = new CodeGenerateModel();
         codeGenerateModel.setUrl(extProperties.getDsUrl());
         codeGenerateModel.setUsername(extProperties.getDsUsername());

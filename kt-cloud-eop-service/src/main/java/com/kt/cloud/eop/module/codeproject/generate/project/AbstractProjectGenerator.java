@@ -22,7 +22,7 @@ import java.util.Map;
 
 @Component
 @Slf4j
-public  abstract class AbstractProjectGenerator implements ProjectGenerator {
+public abstract class AbstractProjectGenerator implements ProjectGenerator {
 
     @Autowired
     private GenerateProperties properties;

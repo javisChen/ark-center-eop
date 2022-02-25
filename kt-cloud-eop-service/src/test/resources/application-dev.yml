@@ -1,0 +1,47 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: eop
+  datasource:
+    druid:
+      url: jdbc:mysql://gz-cynosdbmysql-grp-irl7x9ar.sql.tencentcdb.com:20716/eop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True
+      username: kt_cloud8888
+      password: Kt.cloud1234!@#$
+      name: defaultDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      initial-size: 10
+      max-active: 100
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+      max-wait: 60000
+      min-idle: 10
+      pool-prepared-statements: true
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+  main:
+    allow-bean-definition-overriding: true
+biz-module:
+  git:
+    gitee:
+      client-id: dc7f80b02163e4f76fbcffb03eff926566aaf19f2c51a0339391a599d60b32ba
+      client-secret: b68bc45b2f30ee460e8dfa468242697f276b144778bfb9011e29ee4253e8d03d
+      email: javischen9548@foxmail.com
+      password: javis9548chen
+      scope: "user_info projects pull_requests issues notes keys hook groups gists enterprises"
+      access-token: 3814b82ee62c6d47511fd238879e2561
+    github:
+      authorization: Basic amF2aXNDaGVuOmdocF80Mzdod2NDakpiQnBhZEZvN3lSQloyQXNoQUlMUzIzRnVZN2o=
+  generate:
+    temp-dir:
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: is_deleted
+      logic-not-delete-value: 0

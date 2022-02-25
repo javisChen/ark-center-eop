@@ -2,8 +2,8 @@ package com.kt.cloud.eop.module.codeproject.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kt.cloud.eop.BaseTests;
-import com.kt.cloud.eop.api.codeproject.query.CodeProjectListQuery;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.eop.api.codeproject.query.request.CodeProjectListQueryReq;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectListRespDto;
 import com.kt.component.cache.redis.RedisService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,10 @@ public class ICodeProjectServiceTest extends BaseTests {
 
     @Test
     public void listVos() {
-        CodeProjectListQuery pagingDTO = new CodeProjectListQuery();
+        CodeProjectListQueryReq pagingDTO = new CodeProjectListQueryReq();
         pagingDTO.setCurrent(0);
         pagingDTO.setSize(10);
-        IPage<CodeProjectListVO> codeProjectListVoIPage = iCodeProjectService.pageListCodeProject(pagingDTO);
+        IPage<CodeProjectListRespDto> codeProjectListVoIPage = iCodeProjectService.pageListCodeProject(pagingDTO);
         System.out.println(codeProjectListVoIPage);
         Assert.notNull(codeProjectListVoIPage, "");
     }

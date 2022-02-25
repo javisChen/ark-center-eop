@@ -6,10 +6,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.api.codeproject.query.CodeProjectListQuery;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectCreateVO;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectInfoVO;
-import com.kt.cloud.eop.api.codeproject.vo.CodeProjectListVO;
+import com.kt.cloud.eop.api.codeproject.query.request.CodeProjectListQueryReq;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectCreateRespDto;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectInfoRespDto;
+import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectListRespDto;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.dao.service.IProjectBasicService;
 import com.kt.cloud.eop.module.codeproject.CodeProjectValidator;
@@ -37,7 +37,7 @@ public class CodeProjectService implements ICodeProjectService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public CodeProjectCreateVO createCodeProject(CodeProjectCreateCmd codeProjectCmd) {
+    public CodeProjectCreateRespDto createCodeProject(CodeProjectCreateCmd codeProjectCmd) {
         ProjectGenerator projectGenerator = getProjectGenerator(codeProjectCmd);
         CodeProjectValidator.isNull(projectGenerator, "不存在该类型的工程");
 
@@ -51,7 +51,7 @@ public class CodeProjectService implements ICodeProjectService {
         ProjectBasic projectBasic = saveProject(codeProjectCmd);
 
         gitPushTask.push(projectBasic.getId(), codeProjectCmd, codeProject);
-        return new CodeProjectCreateVO();
+        return new CodeProjectCreateRespDto();
 
     }
 
@@ -62,7 +62,7 @@ public class CodeProjectService implements ICodeProjectService {
     }
 
     @Override
-    public IPage<CodeProjectListVO> pageListCodeProject(CodeProjectListQuery query) {
+    public IPage<CodeProjectListRespDto> pageListCodeProject(CodeProjectListQueryReq query) {
         LambdaQueryWrapper<ProjectBasic> qw = new LambdaQueryWrapper<>();
         qw.like(StringUtils.isNotEmpty(query.getProjectName()), ProjectBasic::getName, query.getProjectName())
         .orderByDesc(ProjectBasic::getGmtCreate);
@@ -71,7 +71,7 @@ public class CodeProjectService implements ICodeProjectService {
     }
 
     @Override
-    public CodeProjectInfoVO getCodeProjectInfo(Long codeProjectId) {
+    public CodeProjectInfoRespDto getCodeProjectInfo(Long codeProjectId) {
         ProjectBasic projectBasic = iProjectBasicService.getById(codeProjectId);
         return CodeProjectConvertor.convertToCodeProjectInfoVO(projectBasic);
     }

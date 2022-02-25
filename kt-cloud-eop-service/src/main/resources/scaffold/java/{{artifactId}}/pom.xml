@@ -62,11 +62,6 @@
             </dependency>
             <dependency>
                 <groupId>{{groupId}}</groupId>
-                <artifactId>{{artifactId}}-infrastructure</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>{{groupId}}</groupId>
                 <artifactId>{{artifactId}}-manager</artifactId>
                 <version>${project.version}</version>
             </dependency>
