@@ -67,9 +67,13 @@ public class GitPushTask {
         }
     }
 
-    private void updateProjectGitInfo(Long projectBasicId, GitCreateReposResponse gitReposUrl) {
-        LambdaUpdateWrapper<Object> uw = new LambdaUpdateWrapper<>();
-        iProjectBasicService.update(projectBasicId, ProjectBasic.ReposStatus.SUCCESS, gitReposUrl);
+    private void updateProjectGitInfo(Long projectBasicId, GitCreateReposResponse gitCreateReposResponse) {
+        LambdaUpdateWrapper<ProjectBasic> uw = new LambdaUpdateWrapper<>();
+        uw.set(ProjectBasic::getGitHtmlUrl, gitCreateReposResponse.getHtmlUrl())
+                        .eq(ProjectBasic::getGitHtmlUrl, gitCreateReposResponse.getHtmlUrl())
+                        .eq(ProjectBasic::getGitSshUrl, gitCreateReposResponse.getSshUrl())
+                        .eq(ProjectBasic::getGitHttpsUrl, gitCreateReposResponse.getCloneUrl());
+        iProjectBasicService.update(uw);
     }
 
 }

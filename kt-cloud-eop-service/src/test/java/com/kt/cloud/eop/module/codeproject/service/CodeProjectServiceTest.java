@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
-
 public class CodeProjectServiceTest extends BaseTests {
 
     @Autowired
