@@ -29,7 +29,7 @@ public class CodeProjectServiceTest extends BaseTests {
     public void testCreateCodeProject() {
         CodeProjectCreateCmd cmd = new CodeProjectCreateCmd();
         String groupId = "com.kt.cloud";
-        String artifactId = "kt-cloud-order12";
+        String artifactId = "kt-cloud-order13";
         String packageName = "com.kt.cloud.order11";
         String description = "支付服务";
         cmd.setName(description);
