@@ -5,17 +5,18 @@ import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.api.codeproject.query.request.CodeProjectListQueryReq;
-import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectCreateRespDto;
-import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectInfoRespDto;
-import com.kt.cloud.eop.api.codeproject.query.response.CodeProjectListRespDto;
+import com.kt.cloud.eop.module.codeproject.dto.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.module.codeproject.dto.query.request.CodeProjectListQueryReq;
+import com.kt.cloud.eop.module.codeproject.dto.query.response.CodeProjectCreateRespDto;
+import com.kt.cloud.eop.module.codeproject.dto.query.response.CodeProjectInfoRespDto;
+import com.kt.cloud.eop.module.codeproject.dto.query.response.CodeProjectListRespDto;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.dao.service.IProjectBasicService;
-import com.kt.cloud.eop.module.codeproject.CodeProjectValidator;
 import com.kt.cloud.eop.module.codeproject.convertor.CodeProjectConvertor;
 import com.kt.cloud.eop.module.codeproject.generate.project.ProjectGenerator;
 import com.kt.cloud.eop.module.codeproject.generate.work.GitPushTask;
+import com.kt.component.common.ParamsChecker;
+import com.kt.component.exception.ExceptionFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,12 +35,11 @@ public class CodeProjectService implements ICodeProjectService {
     @Autowired
     private GitPushTask gitPushTask;
 
-
     @Override
     @Transactional(rollbackFor = Exception.class)
     public CodeProjectCreateRespDto createCodeProject(CodeProjectCreateCmd codeProjectCmd) {
         ProjectGenerator projectGenerator = getProjectGenerator(codeProjectCmd);
-        CodeProjectValidator.isNull(projectGenerator, "不存在该类型的工程");
+        ParamsChecker.throwIfIsNull(projectGenerator, ExceptionFactory.userException("选择的脚手架类型不存在"));
 
         // 转换工程扩展属性
         Map<String, Object> params = convertToMap(codeProjectCmd.getExtProperties());

@@ -1,6 +1,10 @@
-package com.kt.cloud.eop.api.codeproject.cmd;
+package com.kt.cloud.eop.module.codeproject.dto.cmd;
 
+import com.kt.cloud.eop.module.codeproject.dto.enums.GenerateModeEnums;
+import com.kt.cloud.eop.module.codeproject.dto.enums.ReposSourceEnums;
 import lombok.Data;
+
+import javax.validation.constraints.NotEmpty;
 
 /**
  * 工程创建
@@ -11,6 +15,7 @@ public class CodeProjectCreateCmd {
     /**
      * 工程名称
      */
+    @NotEmpty(message = "工程名称不能为空")
     private String name;
 
     /**
@@ -40,13 +45,13 @@ public class CodeProjectCreateCmd {
 
     /**
      * 仓库来源
-     * @see com.kt.cloud.eop.api.codeproject.enums.ReposSourceEnums
+     * @see ReposSourceEnums
      */
     private Integer reposSource;
 
     /**
      * 源码生成方式
-     * @see com.kt.cloud.eop.api.codeproject.enums.GenerateModeEnums
+     * @see GenerateModeEnums
      */
     private Integer generateMode;
 

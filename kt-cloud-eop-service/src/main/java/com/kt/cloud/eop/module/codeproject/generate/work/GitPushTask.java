@@ -3,8 +3,8 @@ package com.kt.cloud.eop.module.codeproject.generate.work;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.kt.cloud.eop.api.codeproject.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.api.codeproject.enums.ReposSourceEnums;
+import com.kt.cloud.eop.module.codeproject.dto.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.module.codeproject.dto.enums.ReposSourceEnums;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.dao.service.IProjectBasicService;
 import com.kt.cloud.eop.manager.git.GitCreateReposResponse;
@@ -58,7 +58,7 @@ public class GitPushTask {
                 }
             } catch (Exception e) {
                 log.error("推送GIT服务失败", e);
-                throw ExceptionFactory.bizException(e.getMessage());
+                throw ExceptionFactory.sysException(e.getMessage());
             } finally {
                 if (codeProjectCmd.getDeleteTempFileAfterGen()) {
                     FileUtil.del(codeProject);

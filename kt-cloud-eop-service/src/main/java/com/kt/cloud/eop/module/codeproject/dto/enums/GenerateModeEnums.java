@@ -1,4 +1,4 @@
-package com.kt.cloud.eop.api.codeproject.enums;
+package com.kt.cloud.eop.module.codeproject.dto.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,15 +8,14 @@ import java.util.Optional;
 
 @Getter
 @AllArgsConstructor
-public enum ReposSourceEnums {
+public enum GenerateModeEnums {
 
-    CREATE_NEW(1, "创建新仓库"),
-    BIND(2, "关联已有仓库"),
+    SCAFFOLD(1, "基于脚手架生成器"),
     ;
     private final Integer value;
     private final String text;
 
-    public static ReposSourceEnums getByValue(Integer value) {
+    public static GenerateModeEnums getByValue(Integer value) {
         return Arrays.stream(values())
                 .filter(enums -> enums.getValue().equals(value))
                 .findFirst()
@@ -25,7 +24,7 @@ public enum ReposSourceEnums {
 
     public static String getText(Integer value) {
         return Optional.ofNullable(getByValue(value))
-                .map(ReposSourceEnums::getText)
+                .map(GenerateModeEnums::getText)
                 .orElse("");
     }
 }

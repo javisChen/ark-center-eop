@@ -1,4 +1,4 @@
-package com.kt.cloud.eop.api.codeproject.query.response;
+package com.kt.cloud.eop.module.codeproject.dto.query.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.kt.cloud.eop.api.codeproject.query.request;
+package com.kt.cloud.eop.module.codeproject.dto.query.request;
 
 import com.kt.component.dto.PagingQuery;
 import lombok.Data;
