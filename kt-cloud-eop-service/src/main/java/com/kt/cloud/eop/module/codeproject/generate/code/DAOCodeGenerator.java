@@ -10,6 +10,8 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.BeetlTemplateEngine;
 import com.baomidou.mybatisplus.generator.keywords.MySqlKeyWordsHandler;
 import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
+import com.kt.component.db.base.BaseEntity;
+import com.kt.component.web.base.BaseController;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -57,14 +59,14 @@ public class DAOCodeGenerator {
         }
         Entity.Builder builder = strategyBuilder
                 .controllerBuilder()
+                    .superClass(BaseController.class)
                     .enableHyphenStyle()
-                    .superClass(superControllerClass)
                     .enableRestStyle()
                 .entityBuilder()
                     .naming(NamingStrategy.underline_to_camel)
                     .columnNaming(NamingStrategy.underline_to_camel)
                     .enableLombok()
-                    .superClass(superEntityClass)
+                    .superClass(BaseEntity.class)
                     .addSuperEntityColumns(superEntityColumns);
         return builder
                 .build();
