@@ -3,20 +3,22 @@ package com.kt.cloud.eop.module.codeproject.service;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.kt.cloud.eop.BaseTests;
+import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.module.codeproject.dto.cmd.CodeProjectCreateCmd;
 import com.kt.cloud.eop.module.codeproject.dto.enums.GenerateModeEnums;
 import com.kt.cloud.eop.module.codeproject.dto.enums.ReposSourceEnums;
-import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.module.codeproject.generate.code.DAOCodeGenerator;
 import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
 import com.kt.cloud.eop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.io.File;
+
+@ActiveProfiles("dev")
 public class CodeProjectServiceTest extends BaseTests {
 
     @Autowired
@@ -33,9 +35,9 @@ public class CodeProjectServiceTest extends BaseTests {
     public void testCreateCodeProject() {
         CodeProjectCreateCmd cmd = new CodeProjectCreateCmd();
         String groupId = "com.kt.cloud";
-        String artifactId = "kt-cloud-order13";
-        String packageName = "com.kt.cloud.order11";
-        String description = "支付服务";
+        String artifactId = "kt-cloud-oss";
+        String packageName = "com.kt.cloud.oss";
+        String description = "OSS服务";
         cmd.setName(description);
         cmd.setCode(artifactId);
         cmd.setReposSource(ReposSourceEnums.CREATE_NEW.getValue());
@@ -55,7 +57,6 @@ public class CodeProjectServiceTest extends BaseTests {
 
         String extProperties = JSON.toJSONString(BeanUtil.beanToMap(javaProjectGenerateParam));
         cmd.setExtProperties(extProperties);
-        System.out.println(JSONObject.toJSONString(cmd));
         iCodeProjectService.createCodeProject(cmd);
     }
 

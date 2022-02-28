@@ -11,7 +11,6 @@ import com.kt.cloud.eop.manager.git.GitManager;
 import com.kt.cloud.eop.manager.git.config.GiteeConfiguration;
 import com.kt.cloud.eop.manager.git.gitee.request.GiteeGetTokenRequest;
 import com.kt.cloud.eop.manager.git.gitee.response.GiteeGetTokenResponse;
-import com.kt.toolkit.log.Logs;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -31,7 +30,7 @@ public class GiteeManager implements GitManager {
         httpRequest.form("access_token", giteeConfiguration.getAccessToken());
         httpRequest.form("name", req.getName());
         httpRequest.form("description", req.getDescription());
-        Logs.debug(String.format(TAG + "[创建仓库]-[请求参数]-[%s]", httpRequest.form()));
+        log.debug(String.format(TAG + "[创建仓库]-[请求参数]-[%s]", httpRequest.form()));
         HttpResponse response = getResponse(httpRequest);
         return JSONObject.parseObject(response.body(), GitCreateReposResponse.class);
     }
@@ -45,7 +44,7 @@ public class GiteeManager implements GitManager {
         httpRequest.form("client_id", req.getClientId());
         httpRequest.form("client_secret", req.getClientSecret());
         httpRequest.form("scope", req.getScope());
-        Logs.debug(String.format(TAG + "[获取Token]-[请求参数]-[%s]", httpRequest.form()));
+        log.debug(String.format(TAG + "[获取Token]-[请求参数]-[%s]", httpRequest.form()));
         HttpResponse response = getResponse(httpRequest);
         return GiteeGetTokenResponse.fromString(response.body());
     }
@@ -58,8 +57,8 @@ public class GiteeManager implements GitManager {
             log.error(String.format(TAG + "[Body]-[%s]", response.body()));
             throw new GitApiException(response.getStatus(), String.format("Git创建仓库失败：[%s]", response.body()));
         }
-        Logs.debug(TAG + "成功");
-        Logs.debug(TAG + "响应：" + response.body());
+        log.debug(TAG + "成功");
+        log.debug(TAG + "响应：" + response.body());
         return response;
     }
 

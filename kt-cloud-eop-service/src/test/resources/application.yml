@@ -5,9 +5,9 @@ spring:
     name: eop
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/eop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True
-      username: root
-      password: Root1234!@#$
+      url: jdbc:mysql://gz-cynosdbmysql-grp-irl7x9ar.sql.tencentcdb.com:20716/eop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True
+      username: kt_cloud8888
+      password: Kt.cloud1234!@#$
       name: defaultDataSource
       driver-class-name: com.mysql.cj.jdbc.Driver
       initial-size: 10
@@ -24,13 +24,6 @@ spring:
     database: 0
     host: 127.0.0.1
     port: 6379
-  cloud:
-    nacos:
-      discovery:
-        enabled: true
-        server-addr: localhost:8848
-        namespace: a6bebdf0-e578-486f-ba12-df785ddfd2b2
-        group: DEFAULT_GROUP
   main:
     allow-bean-definition-overriding: true
 biz-module:
@@ -43,7 +36,7 @@ biz-module:
       scope: "user_info projects pull_requests issues notes keys hook groups gists enterprises"
       access-token: 3814b82ee62c6d47511fd238879e2561
     github:
-      authorization: Basic amF2aXNDaGVuOmdocF9xVWpzS1NVdHNBUUFRQ09zZEdkV1JOTERJbFFqQlgwbXJJa0s=
+      authorization: Basic amF2aXNDaGVuOmdocF80Mzdod2NDakpiQnBhZEZvN3lSQloyQXNoQUlMUzIzRnVZN2o=
   generate:
     temp-dir:
 
