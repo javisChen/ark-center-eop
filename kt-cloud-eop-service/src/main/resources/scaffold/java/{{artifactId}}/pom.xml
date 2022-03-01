@@ -11,8 +11,8 @@
         <module>{{artifactId}}-api</module>
         <module>{{artifactId}}-acl</module>
         <module>{{artifactId}}-dao</module>
-        <module>{{artifactId}}-manager</module>
         <module>{{artifactId}}-service</module>
+        <module>{{artifactId}}-manager</module>
         <module>{{artifactId}}-start</module>
     </modules>
     <packaging>pom</packaging>

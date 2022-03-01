@@ -41,7 +41,7 @@
         <!-- 服务自身工程依赖 -->
         <dependency>
             <groupId>{{groupId}</groupId>
-            <artifactId>{{artifactId}}-dao</artifactId>
+            <artifactId>{{artifactId}}-manager</artifactId>
         </dependency>
 
         <dependency>

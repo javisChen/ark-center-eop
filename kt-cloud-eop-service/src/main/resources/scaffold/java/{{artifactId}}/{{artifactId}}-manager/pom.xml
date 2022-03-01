@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>com.kt.cloud</groupId>
-            <artifactId>{{artifactId}}-manager</artifactId>
+            <artifactId>{{artifactId}}-dao</artifactId>
         </dependency>
     </dependencies>
 </project>
