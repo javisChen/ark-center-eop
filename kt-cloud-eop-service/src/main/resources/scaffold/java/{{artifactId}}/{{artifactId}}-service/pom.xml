@@ -40,17 +40,12 @@
 
         <!-- 服务自身工程依赖 -->
         <dependency>
-            <groupId>com.kt.cloud</groupId>
-            <artifactId>{{artifactId}}-manager</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.kt.cloud</groupId>
+            <groupId>{{groupId}</groupId>
             <artifactId>{{artifactId}}-dao</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.kt.cloud</groupId>
+            <groupId>{{groupId}</groupId>
             <artifactId>{{artifactId}}-acl</artifactId>
         </dependency>
         <!-- 服务自身工程依赖 -->

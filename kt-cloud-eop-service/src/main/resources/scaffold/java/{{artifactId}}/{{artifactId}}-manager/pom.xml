@@ -15,4 +15,10 @@
     <properties>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.kt.cloud</groupId>
+            <artifactId>{{artifactId}}-manager</artifactId>
+        </dependency>
+    </dependencies>
 </project>
