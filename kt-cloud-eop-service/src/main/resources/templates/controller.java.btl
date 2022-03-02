@@ -1,10 +1,10 @@
 package ${packageName};
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import ${package.respDtoPackageName}.${entity}CreateReqDTO;
-import ${package.updateReqDtoPackageName}.${entity}UpdateReqDTO;
-import ${package.pageQueryReqDtoPageName}.${entity}PageQueryReqDTO;
-import ${package.respDtoPackageName}.${entity}RespDTO;
+import ${createReqDtoPackageName}.${entity}CreateReqDTO;
+import ${updateReqDtoPackageName}.${entity}UpdateReqDTO;
+import ${pageQueryReqDtoPackageName}.${entity}PageQueryReqDTO;
+import ${respDtoPackageName}.${entity}RespDTO;
 import com.kt.cloud.commodity.module.${controllerMappingHyphen}.dto.response.${entity}RespDTO;
 import com.kt.cloud.commodity.module.${controllerMappingHyphen}.service.${entity}Service;
 import com.kt.component.dto.PageResponse;
