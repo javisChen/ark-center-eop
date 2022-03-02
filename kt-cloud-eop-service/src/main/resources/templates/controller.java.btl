@@ -1,10 +1,10 @@
 package ${packageName};
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import ${package.CreateReqDTO}.${entity}CreateReqDTO;
-import ${package.UpdateReqDTO}.${entity}UpdateReqDTO;
-import ${package.PageQueryReqDTO}.${entity}PageQueryReqDTO;
-import ${package.RespDTO}.${entity}RespDTO;
+import ${package.respDtoPackageName}.${entity}CreateReqDTO;
+import ${package.updateReqDtoPackageName}.${entity}UpdateReqDTO;
+import ${package.pageQueryReqDtoPageName}.${entity}PageQueryReqDTO;
+import ${package.respDtoPackageName}.${entity}RespDTO;
 import com.kt.cloud.commodity.module.${controllerMappingHyphen}.dto.response.${entity}RespDTO;
 import com.kt.cloud.commodity.module.${controllerMappingHyphen}.service.${entity}Service;
 import com.kt.component.dto.PageResponse;
@@ -34,7 +34,7 @@ import ${superControllerClassPackage};
  * @author ${author}
  * @since ${date}
  */
-@Api(tags = "${table.comment!}")
+@Api(tags = "${table.comment!}[")
 @Validated
 <% if(restControllerStyle){ %>
 @RestController

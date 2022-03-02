@@ -1,4 +1,4 @@
-package ${packageName};
+package ${pageQueryReqDtoPackageName};
 
 import java.io.Serializable;
 <% if(swagger){ %>

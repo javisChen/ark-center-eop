@@ -1,4 +1,4 @@
-package ${package.RespDTO};
+package ${respDtoPackageName};
 
 import java.io.Serializable;
 <% if(swagger){ %>
