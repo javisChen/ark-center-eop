@@ -1,9 +1,9 @@
 package ${packageName};
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
-import ${package.Entity}.${entity};
-import ${package.Mapper}.${table.mapperName};
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import ${entityPackageName}.${entity};
+import ${mapperPackageName}.${table.mapperName};
 import ${createReqDtoPackageName}.${entity}CreateReqDTO;
 import ${updateReqDtoPackageName}.${entity}UpdateReqDTO;
 import ${pageQueryReqDtoPackageName}.${entity}PageQueryReqDTO;
@@ -12,7 +12,6 @@ import ${superServiceImplClassPackage};
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
 import com.kt.component.web.util.bean.BeanConvertor;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * <p>
@@ -38,7 +37,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
 
     public IPage<${entity}RespDTO> getPageList(${entity}PageQueryReqDTO queryDTO) {
         return lambdaQuery()
-                .page(new PageDTO<>(queryDTO.getCurrent(), queryDTO.getSize()))
+                .page(new Page<>(queryDTO.getCurrent(), queryDTO.getSize()))
                 .convert(item -> BeanConvertor.copy(item, ${entity}RespDTO.class));
     }
 

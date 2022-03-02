@@ -10,6 +10,10 @@ public class DaoCodeTest {
     private final String dsUrl = "jdbc:mysql://gz-cynosdbmysql-grp-irl7x9ar.sql.tencentcdb.com:20716/commodity?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True";
     private final String dsUsername = "kt_cloud8888";
     private final String dsPassword = "Kt.cloud1234!@#$";
+    private final String daoOutputDir = "D:\\code\\javis\\kt-cloud-commodity\\kt-cloud-commodity-dao\\src\\main\\java";
+//    private final String daoOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-dao/src/main/java";
+private final String serviceOutputDir = "D:\\code\\javis\\kt-cloud-commodity\\kt-cloud-commodity-service\\src\\main\\java";
+//    private final String serviceOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-service/src/main/java";
 
     @Test
     public void testGenDaoCode() {
@@ -17,7 +21,7 @@ public class DaoCodeTest {
         model.setUrl(dsUrl);
         model.setUsername(dsUsername);
         model.setPassword(dsPassword);
-        model.setOutputDir("/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-dao/src/main/java");
+        model.setOutputDir(daoOutputDir);
         model.setParent("com.kt.cloud.commodity.dao");
         model.setInclude(new String[]{"category"});
         new DaoCodeGenerator().execute(model);
@@ -29,7 +33,7 @@ public class DaoCodeTest {
         model.setUrl(dsUrl);
         model.setUsername(dsUsername);
         model.setPassword(dsPassword);
-        model.setOutputDir("/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-service/src/main/java");
+        model.setOutputDir(serviceOutputDir);
         model.setParent("com.kt.cloud.commodity.module");
         model.setInclude(new String[]{"category"});
         new ServiceCodeGenerator().execute(model);

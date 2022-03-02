@@ -1,7 +1,9 @@
 package com.kt.cloud.eop.module.codeproject.generate.code;
 
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
+import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -16,6 +18,15 @@ public class DaoCodeGenerator extends AbstractCodeGenerator {
                 .service("")
                 .controller("")
                 .serviceImpl("")
+                .build();
+    }
+
+    @Override
+    protected GlobalConfig getGlobalConfig(CodeGenerateModel model) {
+        return new GlobalConfig.Builder()
+                .outputDir(model.getOutputDir())
+                .author(author)
+                .disableOpenDir()
                 .build();
     }
 

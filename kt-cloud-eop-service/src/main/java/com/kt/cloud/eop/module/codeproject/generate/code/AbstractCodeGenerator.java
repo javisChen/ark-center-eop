@@ -16,7 +16,7 @@ import com.kt.component.web.base.BaseController;
 public class AbstractCodeGenerator {
 
     private final String[] superEntityColumns = new String[] {"id", "gmt_create", "gmt_modified", "creator", "modifier"};
-    private final String author = "EOP";
+    protected final String author = "EOP";
 
     public void execute(CodeGenerateModel model) {
         AutoGenerator mpg = new AutoGenerator(getDataSourceConfig(model));
@@ -41,7 +41,7 @@ public class AbstractCodeGenerator {
         return null;
     }
 
-    private GlobalConfig getGlobalConfig(CodeGenerateModel model) {
+    protected GlobalConfig getGlobalConfig(CodeGenerateModel model) {
         return new GlobalConfig.Builder()
                 .outputDir(model.getOutputDir())
                 .author(author)
