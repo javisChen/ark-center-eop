@@ -1,0 +1,88 @@
+package ${packageName};
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import ${package.CreateReqDTO}.${entity}CreateReqDTO;
+import ${package.UpdateReqDTO}.${entity}UpdateReqDTO;
+import ${package.PageQueryReqDTO}.${entity}PageQueryReqDTO;
+import ${package.RespDTO}.${entity}RespDTO;
+import com.kt.cloud.commodity.module.${controllerMappingHyphen}.dto.response.${entity}RespDTO;
+import com.kt.cloud.commodity.module.${controllerMappingHyphen}.service.${entity}Service;
+import com.kt.component.dto.PageResponse;
+import com.kt.component.dto.SingleResponse;
+import com.kt.component.web.util.bean.BeanConvertor;
+import org.springframework.web.bind.annotation.RequestMapping;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.validation.annotation.Validated;
+import javax.validation.constraints.NotNull;
+
+<% if(restControllerStyle){ %>
+import org.springframework.web.bind.annotation.RestController;
+<% }else{ %>
+import org.springframework.stereotype.Controller;
+<% } %>
+<% if(isNotEmpty(superControllerClassPackage)){ %>
+import ${superControllerClassPackage};
+<% } %>
+
+/**
+ * <p>
+ * ${table.comment!} 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Api(tags = "${table.comment!}")
+@Validated
+<% if(restControllerStyle){ %>
+@RestController
+<% }else{ %>
+@Controller
+<% } %>
+@RequestMapping("/v1<% if(isNotEmpty(package.ModuleName)){ %>/${package.ModuleName}<% } %>/<% if(isNotEmpty(controllerMappingHyphenStyle)){ %>${controllerMappingHyphen}<% }else{ %>${table.entityPath}<% } %>")
+<% if(kotlin){ %>
+class ${table.controllerName}<% if(isNotEmpty(superControllerClass)){ %> : ${superControllerClass}()<% } %>
+<% }else{ %>
+    <% if(isNotEmpty(superControllerClass)){ %>
+public class ${table.controllerName} extends ${superControllerClass} {
+    <% }else{ %>
+public class ${table.controllerName} {
+    <% } %>
+
+    private final ${entity}Service ${controllerMappingHyphen}Service;
+
+    public ${entity}Controller(${entity}Service ${controllerMappingHyphen}Service) {
+        this.${controllerMappingHyphen}Service = ${controllerMappingHyphen}Service;
+    }
+
+    @ApiOperation(value = "创建")
+    @PostMapping("/create")
+    public SingleResponse<Long> create(@RequestBody @Validated ${entity}CreateReqDTO reqDTO) {
+        return SingleResponse.ok(${controllerMappingHyphen}Service.create${entity}(reqDTO));
+    }
+
+    @ApiOperation(value = "修改")
+    @PostMapping("/update")
+    public SingleResponse<Long> update(@RequestBody @Validated ${entity}UpdateReqDTO reqDTO) {
+        return SingleResponse.ok(${controllerMappingHyphen}Service.update${entity}(reqDTO));
+    }
+
+    @ApiOperation(value = "查询分页列表")
+    @PostMapping("/page")
+    public SingleResponse<PageResponse<${entity}RespDTO>> pageList(@RequestBody @Validated ${entity}PageQueryReqDTO queryDTO) {
+        IPage<${entity}RespDTO> page = ${controllerMappingHyphen}Service.getPageList(queryDTO);
+        return SingleResponse.ok(BeanConvertor.copyPage(page, ${entity}RespDTO.class));
+    }
+
+    @ApiOperation(value = "查询详情")
+    @ApiImplicitParam(name = "id", value = "id", required = true)
+    @GetMapping("/info")
+    public SingleResponse<${entity}RespDTO> info(@RequestParam(required = false) @NotNull(message = "id不能为空") Long id) {
+        return SingleResponse.ok(${controllerMappingHyphen}Service.get${entity}Info(id));
+    }
+
+
+}
+<% } %>

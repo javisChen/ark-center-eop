@@ -12,13 +12,9 @@ import com.baomidou.mybatisplus.generator.keywords.MySqlKeyWordsHandler;
 import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
 import com.kt.component.db.base.BaseEntity;
 import com.kt.component.web.base.BaseController;
-import org.springframework.stereotype.Component;
 
-@Component
-public class DAOCodeGenerator {
+public class AbstractCodeGenerator {
 
-    private final String superEntityClass = "com.kt.component.db.base.BaseEntity";
-    private final String superControllerClass = "com.kt.component.web.base.BaseController";
     private final String[] superEntityColumns = new String[] {"id", "gmt_create", "gmt_modified", "creator", "modifier"};
     private final String author = "EOP";
 
@@ -26,28 +22,31 @@ public class DAOCodeGenerator {
         AutoGenerator mpg = new AutoGenerator(getDataSourceConfig(model));
         PackageConfig packageConfig = getPackageConfig(model);
         mpg.global(getGlobalConfig(model))
+                .injection(getInjectionConfig())
                 .packageInfo(packageConfig)
                 .strategy(getStrategyConfig(packageConfig, model))
                 .template(getTemplateConfig());
         mpg.execute(getTemplateEngine());
     }
 
+    protected InjectionConfig getInjectionConfig() {
+        return null;
+    }
+
     private BeetlTemplateEngine getTemplateEngine() {
         return new BeetlTemplateEngine();
     }
 
-    private TemplateConfig getTemplateConfig() {
-        return new TemplateConfig.Builder()
-                .controller("")
-                .build();
+    protected TemplateConfig getTemplateConfig() {
+        return null;
     }
 
     private GlobalConfig getGlobalConfig(CodeGenerateModel model) {
         return new GlobalConfig.Builder()
                 .outputDir(model.getOutputDir())
                 .author(author)
+                .enableSwagger()
                 .disableOpenDir()
-                .fileOverride()
                 .build();
     }
 
@@ -58,11 +57,16 @@ public class DAOCodeGenerator {
             strategyBuilder.addInclude(model.getInclude());
         }
         Entity.Builder builder = strategyBuilder
+                .serviceBuilder()
+                    .fileOverride()
+                    .formatServiceImplFileName("%sService")
                 .controllerBuilder()
+                    .fileOverride()
                     .superClass(BaseController.class)
                     .enableHyphenStyle()
                     .enableRestStyle()
                 .entityBuilder()
+                    .fileOverride()
                     .naming(NamingStrategy.underline_to_camel)
                     .columnNaming(NamingStrategy.underline_to_camel)
                     .enableLombok()
@@ -74,8 +78,8 @@ public class DAOCodeGenerator {
 
     private PackageConfig getPackageConfig(CodeGenerateModel model) {
         return new PackageConfig.Builder()
+                .serviceImpl("service")
                 .parent(model.getParent())
-                .controller("")
                 .build();
     }
 

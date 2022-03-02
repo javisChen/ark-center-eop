@@ -8,8 +8,6 @@ import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.module.codeproject.dto.cmd.CodeProjectCreateCmd;
 import com.kt.cloud.eop.module.codeproject.dto.enums.GenerateModeEnums;
 import com.kt.cloud.eop.module.codeproject.dto.enums.ReposSourceEnums;
-import com.kt.cloud.eop.module.codeproject.generate.code.DAOCodeGenerator;
-import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
 import com.kt.cloud.eop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,18 +56,6 @@ public class CodeProjectServiceTest extends BaseTests {
         String extProperties = JSON.toJSONString(BeanUtil.beanToMap(javaProjectGenerateParam));
         cmd.setExtProperties(extProperties);
         iCodeProjectService.createCodeProject(cmd);
-    }
-
-    @Test
-    public void testGenDaoCode() {
-        CodeGenerateModel model = new CodeGenerateModel();
-        model.setUrl(dsUrl);
-        model.setUsername(dsUsername);
-        model.setPassword(dsPassword);
-        model.setOutputDir("/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-dao/src/main/java");
-        model.setParent("com.kt.cloud.commodity.dao");
-        new DAOCodeGenerator().execute(model);
-
     }
 
     @Test

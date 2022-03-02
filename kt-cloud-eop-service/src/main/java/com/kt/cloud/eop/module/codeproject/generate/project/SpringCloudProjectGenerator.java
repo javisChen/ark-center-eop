@@ -7,10 +7,11 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
-import com.kt.cloud.eop.module.codeproject.generate.code.DAOCodeGenerator;
+import com.kt.cloud.eop.module.codeproject.generate.code.DaoCodeGenerator;
+import com.kt.cloud.eop.module.codeproject.generate.code.ServiceCodeGenerator;
 import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
 import com.kt.cloud.eop.module.codeproject.generate.model.SpringCloudProjectGenerateParam;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -21,8 +22,13 @@ import java.util.stream.Stream;
 @Component("SpringCloudProjectGenerator")
 public class SpringCloudProjectGenerator extends AbstractProjectGenerator {
 
-    @Autowired
-    private DAOCodeGenerator codeGenerator;
+    private final DaoCodeGenerator daoCodeGenerator;
+    private final ServiceCodeGenerator serviceCodeGenerator;
+
+    public SpringCloudProjectGenerator(DaoCodeGenerator codeGenerator, ServiceCodeGenerator serviceCodeGenerator) {
+        this.daoCodeGenerator = codeGenerator;
+        this.serviceCodeGenerator = serviceCodeGenerator;
+    }
 
     @Override
     protected void postProcess(File rootProject, Map<String, Object> extProperties) {
@@ -30,36 +36,47 @@ public class SpringCloudProjectGenerator extends AbstractProjectGenerator {
         if (param.getGenDAOCode()) {
             genDaoCode(rootProject, param);
         }
+        if (param.getGenDAOCode()) {
+            genServiceCode(rootProject, param);
+        }
 
+    }
+
+    private void genServiceCode(File rootProject, SpringCloudProjectGenerateParam param) {
+        String daoModulePath = findModule(rootProject, "service").getAbsolutePath() + "/src/main/java";
+        CodeGenerateModel model = createCodeGenerateModel(param, daoModulePath, "service");
+        daoCodeGenerator.execute(model);
     }
 
     private void genDaoCode(File rootProject, SpringCloudProjectGenerateParam param) {
-        String daoModulePath = findDaoModule(rootProject).getAbsolutePath() + "/src/main/java";
-        CodeGenerateModel model = createCodeGenerateModel(param, daoModulePath);
-        codeGenerator.execute(model);
+        String daoModulePath = findModule(rootProject, "dao").getAbsolutePath() + "/src/main/java";
+        CodeGenerateModel model = createCodeGenerateModel(param, daoModulePath, "module");
+        serviceCodeGenerator.execute(model);
     }
 
-    public File findDaoModule(File rootProject) {
+
+    @Nullable
+    private File findModule(File rootProject, String module) {
         if (rootProject == null || ArrayUtil.isEmpty(rootProject.listFiles())) {
             return null;
         }
         return Stream
                 .of(rootProject.listFiles()[0].listFiles())
-                .filter(file -> file.getName().endsWith("-dao")).findFirst().orElse(null);
+                .filter(file -> file.getName().endsWith("-" + module)).findFirst().orElse(null);
     }
 
     private SpringCloudProjectGenerateParam convertToParam(Map<String, Object> extProperties) {
         return BeanUtil.mapToBean(extProperties, SpringCloudProjectGenerateParam.class, true, CopyOptions.create());
     }
 
-    private CodeGenerateModel createCodeGenerateModel(SpringCloudProjectGenerateParam extProperties, String absolutePath) {
+    private CodeGenerateModel createCodeGenerateModel(SpringCloudProjectGenerateParam extProperties, String absolutePath, String module) {
         CodeGenerateModel codeGenerateModel = new CodeGenerateModel();
         codeGenerateModel.setUrl(extProperties.getDsUrl());
         codeGenerateModel.setUsername(extProperties.getDsUsername());
         codeGenerateModel.setPassword(extProperties.getDsPassword());
         codeGenerateModel.setOutputDir(absolutePath);
         codeGenerateModel.setGenDaoCode(extProperties.getGenDAOCode());
-        codeGenerateModel.setParent(extProperties.getPackageName() + ".dao");
+        codeGenerateModel.setParent(extProperties.getPackageName() + "." + module);
         codeGenerateModel.setInclude(extProperties.getInclude());
         return codeGenerateModel;
     }

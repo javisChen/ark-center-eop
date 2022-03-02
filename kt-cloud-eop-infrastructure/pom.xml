@@ -13,21 +13,9 @@
     <artifactId>kt-cloud-eop-infrastructure</artifactId>
 
     <properties>
-        <beefl.version>3.3.2.RELEASE</beefl.version>
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ibeetl</groupId>
-            <artifactId>beetl</artifactId>
-            <version>${beefl.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>com.kt</groupId>

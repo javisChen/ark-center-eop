@@ -1,0 +1,57 @@
+package ${packageName};
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.CreateReqDTO}.${entity}CreateReqDTO;
+import ${package.UpdateReqDTO}.${entity}UpdateReqDTO;
+import ${package.PageQueryReqDTO}.${entity}PageQueryReqDTO;
+import ${package.RespDTO}.${entity}RespDTO;
+import ${superServiceImplClassPackage};
+import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.stereotype.Service;
+import com.kt.component.web.util.bean.BeanConvertor;
+import org.apache.commons.lang3.StringUtils;
+
+/**
+ * <p>
+ * ${table.comment!} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+<% if(kotlin){ %>
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+
+}
+<% }else{ %>
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${superServiceClass}<${entity}> {
+
+    public Long create${entity}(${entity}CreateReqDTO reqDTO) {
+            ${entity} entity = BeanConvertor.copy(reqDTO, ${entity}.class);
+            save(entity);
+            return entity.getId();
+        }
+
+    public IPage<${entity}RespDTO> getPageList(${entity}PageQueryReqDTO queryDTO) {
+        return lambdaQuery()
+                .page(new PageDTO<>(queryDTO.getCurrent(), queryDTO.getSize()))
+                .convert(item -> BeanConvertor.copy(item, ${entity}RespDTO.class));
+    }
+
+    public Long update${entity}(${entity}UpdateReqDTO reqDTO) {
+        ${entity} entity = BeanConvertor.copy(reqDTO, ${entity}.class);
+        updateById(entity);
+        return entity.getId();
+    }
+
+    public ${entity}RespDTO get${entity}Info(Long ${entity}Id) {
+        ${entity} ${entity} = getById(${entity}Id);
+        return BeanConvertor.copy(${entity}, ${entity}RespDTO.class);
+    }
+
+}
+<% } %>
