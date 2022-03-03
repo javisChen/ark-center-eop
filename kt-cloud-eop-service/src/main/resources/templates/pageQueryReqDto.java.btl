@@ -1,6 +1,5 @@
 package ${pageQueryReqDtoPackageName};
 
-import java.io.Serializable;
 <% if(swagger){ %>
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -32,17 +31,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
     <% } %>
 <% } %>
-<% if(table.convert){ %>
-@TableName("${table.name}")
-<% } %>
 <% if(swagger){ %>
-@ApiModel(value="${clazzName}对象", description="${table.comment!''}")
+@ApiModel(value = "${clazzName}对象", description = "${table.comment!''}")
 <% } %>
-public class ${clazzName} extends PagingQuery implements Serializable {
-
-<% if(entitySerialVersionUID){ %>
-    private static final long serialVersionUID = 1L;
-<% } %>
+public class ${clazzName} extends PagingQuery {
 
 <% /** -----------BEGIN 字段循环遍历----------- **/ %>
 <% for(field in table.fields){ %>

@@ -26,17 +26,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
     <% } %>
 <% } %>
-<% if(table.convert){ %>
-@TableName("${table.name}")
-<% } %>
 <% if(swagger){ %>
-@ApiModel(value="${clazzName}对象", description="${table.comment!''}")
+@ApiModel(value = "${clazzName}对象", description = "${table.comment!''}")
 <% } %>
 public class ${clazzName} implements Serializable {
-
-<% if(entitySerialVersionUID){ %>
-    private static final long serialVersionUID = 1L;
-<% } %>
 
 <% /** -----------BEGIN 字段循环遍历----------- **/ %>
 <% for(field in table.fields){ %>

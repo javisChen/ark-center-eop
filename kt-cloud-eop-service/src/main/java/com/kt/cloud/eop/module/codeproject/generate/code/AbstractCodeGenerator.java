@@ -50,9 +50,11 @@ public class AbstractCodeGenerator {
                 .build();
     }
 
-    private StrategyConfig getStrategyConfig(PackageConfig packageConfig, CodeGenerateModel model) {
-        StrategyConfig.Builder strategyBuilder = new StrategyConfig.Builder()
-                .addTablePrefix(packageConfig.getModuleName() + "_");
+    protected StrategyConfig getStrategyConfig(PackageConfig packageConfig, CodeGenerateModel model) {
+        StrategyConfig.Builder strategyBuilder = new StrategyConfig.Builder();
+        if (ArrayUtil.isNotEmpty(model.getTablePrefix())) {
+            strategyBuilder.addTablePrefix(model.getTablePrefix());
+        }
         if (ArrayUtil.isNotEmpty(model.getInclude())) {
             strategyBuilder.addInclude(model.getInclude());
         }
@@ -66,7 +68,9 @@ public class AbstractCodeGenerator {
                     .enableHyphenStyle()
                     .enableRestStyle()
                 .entityBuilder()
+                    .disableSerialVersionUID()
                     .fileOverride()
+                    .formatFileName(getEntityFormatFile())
                     .naming(NamingStrategy.underline_to_camel)
                     .columnNaming(NamingStrategy.underline_to_camel)
                     .enableLombok()
@@ -74,6 +78,10 @@ public class AbstractCodeGenerator {
                     .addSuperEntityColumns(superEntityColumns);
         return builder
                 .build();
+    }
+
+    protected String getEntityFormatFile() {
+        return "%s";
     }
 
     private PackageConfig getPackageConfig(CodeGenerateModel model) {

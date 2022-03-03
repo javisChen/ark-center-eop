@@ -11,6 +11,7 @@ public class CodeGenerateModel {
     private String outputDir;
     private String parent;
     private String[] include;
+    private String[] tablePrefix;
     /**
      * 生成dao层基础代码
      */

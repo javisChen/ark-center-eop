@@ -27,11 +27,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
     <% } %>
 <% } %>
-<% if(table.convert){ %>
-@TableName("${table.name}")
-<% } %>
 <% if(swagger){ %>
-@ApiModel(value="${clazzName}对象", description="${table.comment!''}")
+@ApiModel(value = "${clazzName}对象", description = "${table.comment!''}")
 <% } %>
 public class ${clazzName} implements Serializable {
 

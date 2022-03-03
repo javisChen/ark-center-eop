@@ -36,9 +36,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
     <% } %>
 <% } %>
-<% if(table.convert){ %>
 @TableName("${table.name}")
-<% } %>
 <% if(swagger){ %>
 @ApiModel(value="${entity}对象", description="${table.comment!''}")
 <% } %>
@@ -48,10 +46,6 @@ public class ${entity} extends ${superEntityClass}<% if(activeRecord){ %><${enti
 public class ${entity} extends Model<${entity}> {
 <% }else{ %>
 public class ${entity} implements Serializable {
-<% } %>
-
-<% if(entitySerialVersionUID){ %>
-    private static final long serialVersionUID = 1L;
 <% } %>
 
 <% /** -----------BEGIN 字段循环遍历----------- **/ %>
@@ -184,7 +178,7 @@ public class ${entity} implements Serializable {
     var value = arr2[2];
     %>
         ${enumName}(${value}, "${text}"),
-        <% } %>;
+    <% } %>;
         private final Integer value;
         private final String text;
 

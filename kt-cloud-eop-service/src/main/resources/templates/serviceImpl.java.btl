@@ -2,14 +2,15 @@ package ${packageName};
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import ${entityPackageName}.${entity};
-import ${mapperPackageName}.${table.mapperName};
+import ${entityPackageName}.${entity}DO;
+import ${mapperPackageName}.${entity}Mapper;
 import ${createReqDtoPackageName}.${entity}CreateReqDTO;
 import ${updateReqDtoPackageName}.${entity}UpdateReqDTO;
 import ${pageQueryReqDtoPackageName}.${entity}PageQueryReqDTO;
 import ${respDtoPackageName}.${entity}RespDTO;
 import ${superServiceImplClassPackage};
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.kt.component.dto.PageResponse;
 import org.springframework.stereotype.Service;
 import com.kt.component.web.util.bean.BeanConvertor;
 
@@ -23,33 +24,34 @@ import com.kt.component.web.util.bean.BeanConvertor;
  */
 @Service
 <% if(kotlin){ %>
-open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}DO>(), ${table.serviceName} {
 
 }
 <% }else{ %>
-public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${superServiceClass}<${entity}> {
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}DO> implements ${superServiceClass}<${entity}DO> {
 
     public Long create${entity}(${entity}CreateReqDTO reqDTO) {
-            ${entity} entity = BeanConvertor.copy(reqDTO, ${entity}.class);
-            save(entity);
-            return entity.getId();
-        }
+        ${entity}DO entity = BeanConvertor.copy(reqDTO, ${entity}DO.class);
+        save(entity);
+        return entity.getId();
+    }
 
-    public IPage<${entity}RespDTO> getPageList(${entity}PageQueryReqDTO queryDTO) {
-        return lambdaQuery()
+    public PageResponse<${entity}RespDTO> getPageList(${entity}PageQueryReqDTO queryDTO) {
+        IPage<CategoryRespDTO> page = lambdaQuery()
                 .page(new Page<>(queryDTO.getCurrent(), queryDTO.getSize()))
                 .convert(item -> BeanConvertor.copy(item, ${entity}RespDTO.class));
+        return BeanConvertor.copyPage(page, ${entity}RespDTO.class);
     }
 
     public Long update${entity}(${entity}UpdateReqDTO reqDTO) {
-        ${entity} entity = BeanConvertor.copy(reqDTO, ${entity}.class);
+        ${entity}DO entity = BeanConvertor.copy(reqDTO, ${entity}DO.class);
         updateById(entity);
         return entity.getId();
     }
 
     public ${entity}RespDTO get${entity}Info(Long ${entity}Id) {
-        ${entity} ${entity} = getById(${entity}Id);
-        return BeanConvertor.copy(${entity}, ${entity}RespDTO.class);
+        ${entity}DO entity = getById(${entity}Id);
+        return BeanConvertor.copy(entity, ${entity}RespDTO.class);
     }
 
 }

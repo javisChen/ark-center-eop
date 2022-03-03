@@ -40,4 +40,8 @@ public class DaoCodeGenerator extends AbstractCodeGenerator {
 
     }
 
+    @Override
+    protected String getEntityFormatFile() {
+        return "%sDO";
+    }
 }

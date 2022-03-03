@@ -35,7 +35,7 @@ import ${superControllerClassPackage};
  * @author ${author}
  * @since ${date}
  */
-@Api(tags = "${table.comment!}[")
+@Api(tags = "${table.comment!}")
 @Validated
 <% if(restControllerStyle){ %>
 @RestController
@@ -73,8 +73,7 @@ public class ${table.controllerName} {
     @ApiOperation(value = "查询分页列表")
     @PostMapping("/page")
     public SingleResponse<PageResponse<${entity}RespDTO>> pageList(@RequestBody @Validated ${entity}PageQueryReqDTO queryDTO) {
-        IPage<${entity}RespDTO> page = ${controllerMappingHyphen}Service.getPageList(queryDTO);
-        return SingleResponse.ok(BeanConvertor.copyPage(page, ${entity}RespDTO.class));
+        return SingleResponse.ok(${controllerMappingHyphen}Service.getPageList(queryDTO));
     }
 
     @ApiOperation(value = "查询详情")
