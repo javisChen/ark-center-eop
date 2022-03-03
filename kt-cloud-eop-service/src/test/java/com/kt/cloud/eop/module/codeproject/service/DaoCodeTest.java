@@ -24,7 +24,7 @@ public class DaoCodeTest {
         model.setOutputDir(daoOutputDir);
         model.setParent("com.kt.cloud.commodity.dao");
         model.setTablePrefix(new String[]{"co"});
-        model.setInclude(new String[]{"co_category_brand_rel"});
+        model.setInclude(new String[]{"co_category"});
         new DaoCodeGenerator().execute(model);
     }
 

@@ -4,7 +4,6 @@ import cn.hutool.core.util.ArrayUtil;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.builder.Entity;
-import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.BeetlTemplateEngine;
@@ -15,7 +14,7 @@ import com.kt.component.web.base.BaseController;
 
 public class AbstractCodeGenerator {
 
-    private final String[] superEntityColumns = new String[] {"id", "gmt_create", "gmt_modified", "creator", "modifier"};
+    private final String[] superEntityColumns = new String[] {"id", "gmt_create", "gmt_modified", "creator", "modifier", "is_deleted"};
     protected final String author = "EOP";
 
     public void execute(CodeGenerateModel model) {
@@ -94,7 +93,7 @@ public class AbstractCodeGenerator {
     private DataSourceConfig getDataSourceConfig(CodeGenerateModel model) {
         return new DataSourceConfig.Builder(model.getUrl(), model.getUsername(), model.getPassword())
                 .dbQuery(new MySqlQuery())
-                .typeConvert(new MySqlTypeConvert())
+                .typeConvert(new MySqlTypeConvertCustom())
                 .keyWordsHandler(new MySqlKeyWordsHandler()).build();
     }
 

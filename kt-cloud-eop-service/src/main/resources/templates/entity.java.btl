@@ -85,7 +85,7 @@ public class ${entity} implements Serializable {
         <% }else{ %>
     @TableField(fill = FieldFill.${field.fill})
         <% } %>
-    <% }else if(field.convert){ %>
+    <% }else { %>
     @TableField("${field.annotationColumnName}")
     <% } %>
     <%
