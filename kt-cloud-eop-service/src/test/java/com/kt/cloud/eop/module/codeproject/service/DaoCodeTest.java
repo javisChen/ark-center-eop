@@ -14,6 +14,8 @@ public class DaoCodeTest {
     private final String daoOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-dao/src/main/java";
 //private final String serviceOutputDir = "D:\\code\\javis\\kt-cloud-commodity\\kt-cloud-commodity-service\\src\\main\\java";
     private final String serviceOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-service/src/main/java";
+    String[] include = {"co_attr_template", "co_attr", "co_attr_spu", "co_sku", "co_spu_sales", "co_spu"};
+
 
     @Test
     public void testGenDaoCode() {
@@ -23,8 +25,8 @@ public class DaoCodeTest {
         model.setPassword(dsPassword);
         model.setOutputDir(daoOutputDir);
         model.setParent("com.kt.cloud.commodity.dao");
-        model.setTablePrefix(new String[]{"co"});
-        model.setInclude(new String[]{"co_category"});
+        model.setTablePrefix(new String[]{"co_"});
+        model.setInclude(include);
         new DaoCodeGenerator().execute(model);
     }
 
@@ -37,7 +39,7 @@ public class DaoCodeTest {
         model.setOutputDir(serviceOutputDir);
         model.setParent("com.kt.cloud.commodity.module");
         model.setTablePrefix(new String[]{"co_"});
-        model.setInclude(new String[]{"co_category"});
+        model.setInclude(include);
         new ServiceCodeGenerator().execute(model);
     }
 }

@@ -6,6 +6,7 @@ import ${pkg};
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 <% } %>
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.kt.component.common.enums.BasicEnums;
 import com.kt.component.common.enums.EnumUtils;
 <% if(entityLombokModel){ %>
