@@ -31,6 +31,8 @@ import lombok.experimental.Accessors;
 <% } %>
 public class ${clazzName} implements Serializable {
 
+    @ApiModelProperty(value = "id", required = true)
+    private Long id;
 <% /** -----------BEGIN 字段循环遍历----------- **/ %>
 <% for(field in table.fields){ %>
     <%

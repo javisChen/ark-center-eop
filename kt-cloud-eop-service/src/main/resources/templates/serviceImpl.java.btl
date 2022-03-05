@@ -37,7 +37,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     }
 
     public PageResponse<${entity}RespDTO> getPageList(${entity}PageQueryReqDTO queryDTO) {
-        IPage<CategoryRespDTO> page = lambdaQuery()
+        IPage<${entity}RespDTO> page = lambdaQuery()
                 .page(new Page<>(queryDTO.getCurrent(), queryDTO.getSize()))
                 .convert(item -> BeanConvertor.copy(item, ${entity}RespDTO.class));
         return BeanConvertor.copyPage(page, ${entity}RespDTO.class);

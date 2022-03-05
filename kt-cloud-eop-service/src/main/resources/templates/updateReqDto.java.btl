@@ -32,6 +32,9 @@ import lombok.experimental.Accessors;
 <% } %>
 public class ${clazzName} implements Serializable {
 
+    @ApiModelProperty(value = "id", required = true)
+    @NotNull(message = "id不能为空")
+    private Long id;
 <% /** -----------BEGIN 字段循环遍历----------- **/ %>
 <% for(field in table.fields){ %>
     <%
