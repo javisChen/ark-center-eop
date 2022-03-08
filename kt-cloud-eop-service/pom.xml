@@ -13,7 +13,7 @@
     <artifactId>kt-cloud-eop-service</artifactId>
 
     <properties>
-        <beefl.version>3.3.2.RELEASE</beefl.version>
+        <beefl.version>3.9.3.RELEASE</beefl.version>
     </properties>
 
     <dependencies>
