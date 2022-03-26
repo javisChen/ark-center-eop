@@ -3,15 +3,15 @@ package com.kt.cloud.eop.module.codeproject.generate.work;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.kt.cloud.eop.module.codeproject.dto.cmd.CodeProjectCreateCmd;
-import com.kt.cloud.eop.module.codeproject.dto.enums.ReposSourceEnums;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
 import com.kt.cloud.eop.dao.service.IProjectBasicService;
 import com.kt.cloud.eop.manager.git.GitCreateReposResponse;
 import com.kt.cloud.eop.module.codeproject.convertor.CodeProjectConvertor;
+import com.kt.cloud.eop.module.codeproject.dto.cmd.CodeProjectCreateCmd;
+import com.kt.cloud.eop.module.codeproject.dto.enums.ReposSourceEnums;
 import com.kt.cloud.eop.module.git.GitCreate;
 import com.kt.cloud.eop.module.git.service.GitService;
-import com.kt.component.cache.redis.RedisService;
+import com.kt.component.cache.CacheService;
 import com.kt.component.exception.ExceptionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -27,12 +27,12 @@ public class GitPushTask {
 
     private final GitService gitService;
     private final IProjectBasicService iProjectBasicService;
-    private final RedisService redisService;
+    private final CacheService cacheService;
 
-    public GitPushTask(GitService gitService, IProjectBasicService iProjectBasicService, RedisService redisService) {
+    public GitPushTask(GitService gitService, IProjectBasicService iProjectBasicService, CacheService cacheService) {
         this.gitService = gitService;
         this.iProjectBasicService = iProjectBasicService;
-        this.redisService = redisService;
+        this.cacheService = cacheService;
     }
 
     //    @Async("taskExecutor")

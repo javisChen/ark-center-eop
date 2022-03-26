@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kt.cloud.eop.BaseTests;
 import com.kt.cloud.eop.module.codeproject.dto.query.request.CodeProjectListQueryReq;
 import com.kt.cloud.eop.module.codeproject.dto.query.response.CodeProjectListRespDto;
-import com.kt.component.cache.redis.RedisService;
+import com.kt.component.cache.CacheService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -15,11 +15,11 @@ public class ICodeProjectServiceTest extends BaseTests {
     @Autowired
     private ICodeProjectService iCodeProjectService;
     @Autowired
-    private RedisService redisService;
+    private CacheService cacheService;
 
     @Test
     public void createCodeProject() {
-        redisService.set("key", "test");
+        cacheService.set("key", "test");
     }
 
     @Test
