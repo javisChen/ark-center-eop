@@ -3,7 +3,7 @@ package com.kt.cloud.eop.dao.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.kt.component.common.enums.BasicEnums;
 import com.kt.component.common.enums.EnumUtils;
-import com.kt.component.db.base.BaseEntity;
+import com.kt.component.orm.mybatis.base.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.BeetlTemplateEngine;
 import com.baomidou.mybatisplus.generator.keywords.MySqlKeyWordsHandler;
 import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
-import com.kt.component.db.base.BaseEntity;
+import com.kt.component.orm.mybatis.base.BaseEntity;
 import com.kt.component.web.base.BaseController;
 
 public class AbstractCodeGenerator {
