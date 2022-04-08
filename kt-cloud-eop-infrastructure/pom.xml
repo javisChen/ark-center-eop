@@ -18,12 +18,12 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.kt</groupId>
-            <artifactId>kt-component-exception</artifactId>
+            <groupId>com.kt.exception</groupId>
+            <artifactId>kt-component-exception-core</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.kt</groupId>
+            <groupId>com.kt.dto</groupId>
             <artifactId>kt-component-dto</artifactId>
         </dependency>
 
@@ -33,7 +33,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.kt</groupId>
+            <groupId>com.kt.web</groupId>
             <artifactId>kt-component-web-spring-boot-starter</artifactId>
             <scope>provided</scope>
         </dependency>
