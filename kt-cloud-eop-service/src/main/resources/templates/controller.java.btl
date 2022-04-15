@@ -59,13 +59,13 @@ public class ${table.controllerName} {
 
     @ApiOperation(value = "创建${table.comment!}")
     @PostMapping("/create")
-    public SingleResponse<Long> create(@RequestBody @Validated ${entity}CreateReqDTO reqDTO) {
+    public SingleResponse<Long> create(@RequestBody @Validated ${entity}UpdateReqDTO reqDTO) {
         return SingleResponse.ok(${entityFirstLower}Service.create${entity}(reqDTO));
     }
 
     @ApiOperation(value = "修改${table.comment!}")
     @PostMapping("/update")
-    public SingleResponse<Long> update(@RequestBody @Validated ${entity}UpdateReqDTO reqDTO) {
+    public SingleResponse<Long> update(@RequestBody @Validated(ValidateGroup.Update.class) ${entity}UpdateReqDTO reqDTO) {
         return SingleResponse.ok(${entityFirstLower}Service.update${entity}(reqDTO));
     }
 
