@@ -7,15 +7,15 @@ import org.junit.jupiter.api.Test;
 
 public class DaoCodeTest {
 
-    private final String dsUrl = "jdbc:mysql://gz-cynosdbmysql-grp-irl7x9ar.sql.tencentcdb.com:20716/order?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True";
+    private final String dsUrl = "jdbc:mysql://gz-cynosdbmysql-grp-irl7x9ar.sql.tencentcdb.com:20716/commodity?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True";
     private final String dsUsername = "kt_cloud8888";
     private final String dsPassword = "Kt.cloud1234!@#$";
 //    private final String daoOutputDir = "D:\\code\\javis\\kt-cloud-commodity\\kt-cloud-commodity-dao\\src\\main\\java";
-    private final String daoOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-components/kt-component-statemachine/kt-component-statemachine-core/src/test/java";
+    private final String daoOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-dao/src/test/java";
 //private final String serviceOutputDir = "D:\\code\\javis\\kt-cloud-commodity\\kt-cloud-commodity-service\\src\\main\\java";
-    private final String serviceOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-components/kt-component-statemachine/kt-component-statemachine-core/src/test/java";
+    private final String serviceOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-dao/src/test/java";
     String[] include = {
-            "od_order",
+            "co_attachment",
     };
 
 
@@ -26,8 +26,8 @@ public class DaoCodeTest {
         model.setUsername(dsUsername);
         model.setPassword(dsPassword);
         model.setOutputDir(daoOutputDir);
-        model.setParent("com.kt.component.statemachine.dao");
-        model.setTablePrefix(new String[]{"od_"});
+        model.setParent("com.kt.cloud.commodity.dao");
+        model.setTablePrefix(new String[]{"co_"});
         model.setInclude(include);
         new DaoCodeGenerator().execute(model);
     }
