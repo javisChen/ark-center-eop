@@ -15,9 +15,8 @@ public class DaoCodeTest {
 //private final String serviceOutputDir = "D:\\code\\javis\\kt-cloud-commodity\\kt-cloud-commodity-service\\src\\main\\java";
     private final String serviceOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-service/src/main/java";
     String[] include = {
-            "co_attachment",
+            "co_spu_attr",
     };
-
 
     @Test
     public void testGenDaoCode() {
