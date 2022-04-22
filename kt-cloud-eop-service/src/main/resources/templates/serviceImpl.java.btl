@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.kt.component.dto.PageResponse;
 import org.springframework.stereotype.Service;
 import com.kt.component.web.util.bean.BeanConvertor;
+import com.kt.component.orm.mybatis.base.BaseEntity;
 
 /**
  * <p>

@@ -11,9 +11,9 @@ public class DaoCodeTest {
     private final String dsUsername = "kt_cloud8888";
     private final String dsPassword = "Kt.cloud1234!@#$";
 //    private final String daoOutputDir = "D:\\code\\javis\\kt-cloud-commodity\\kt-cloud-commodity-dao\\src\\main\\java";
-    private final String daoOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-dao/src/test/java";
+    private final String daoOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-dao/src/main/java";
 //private final String serviceOutputDir = "D:\\code\\javis\\kt-cloud-commodity\\kt-cloud-commodity-service\\src\\main\\java";
-    private final String serviceOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-dao/src/test/java";
+    private final String serviceOutputDir = "/Users/chenjiawei/code/myself/kt-cloud/kt-cloud-commodity/kt-cloud-commodity-service/src/main/java";
     String[] include = {
             "co_attachment",
     };
