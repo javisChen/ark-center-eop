@@ -57,8 +57,10 @@ public class ${clazzName} implements Serializable {
     <% if(!field.metaInfo.nullable) { %>
         <% if(field.propertyType == 'Integer') { %>
     @NotNull(message = "${field.comment}不能为空")
+        <% } else if(field.propertyType == 'Long') { %>
+    @NotNull(message = "${field.comment}不能为空")
         <% } else { %>
-    @NotEmpty(message = "${field.comment}不能为空")
+    @NotBlank(message = "${field.comment}不能为空")
         <% } %>
     <% } %>
     private ${field.propertyType} ${field.propertyName};
