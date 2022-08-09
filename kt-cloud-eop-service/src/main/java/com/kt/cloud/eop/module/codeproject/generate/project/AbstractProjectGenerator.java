@@ -116,6 +116,7 @@ public abstract class AbstractProjectGenerator implements ProjectGenerator {
             templateEngine.renderTo(params, template, new FileOutputStream(subFile));
         } catch (FileNotFoundException e) {
             log.error("渲染模板文件失败：", e);
+            throw new BizException("渲染模板文件失败");
         }
     }
 

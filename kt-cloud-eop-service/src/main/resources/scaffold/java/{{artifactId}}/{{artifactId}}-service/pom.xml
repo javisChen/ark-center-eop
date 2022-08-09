@@ -40,12 +40,12 @@
 
         <!-- 服务自身工程依赖 -->
         <dependency>
-            <groupId>{{groupId}</groupId>
+            <groupId>{{groupId}}</groupId>
             <artifactId>{{artifactId}}-manager</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>{{groupId}</groupId>
+            <groupId>{{groupId}}</groupId>
             <artifactId>{{artifactId}}-acl</artifactId>
         </dependency>
         <!-- 服务自身工程依赖 -->

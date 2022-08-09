@@ -54,6 +54,6 @@ public class ExampleController {
         Map<String, Object> map = new HashMap<>();
         map.put("name", "hello");
         map.put("age", 18);
-        return PageResponse.build(1, 10 , 10, CollectionUtil.newArrayList(map));
+        return PageResponse.of(1, 10 , 10, CollectionUtil.newArrayList(map));
     }
 }

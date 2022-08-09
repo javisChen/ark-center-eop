@@ -1,5 +1,6 @@
 package ${respDtoPackageName};
 
+import java.time.LocalDateTime;
 import java.io.Serializable;
 <% if(swagger){ %>
 import io.swagger.annotations.ApiModel;
