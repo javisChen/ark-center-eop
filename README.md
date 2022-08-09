@@ -1,6 +1,7 @@
 # 介绍
 
 # 运行
+EOP依赖改造过的mybatis-generator
 
 ## Docker Build
 ```shell

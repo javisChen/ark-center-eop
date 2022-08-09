@@ -29,7 +29,7 @@ public class CodeProjectController extends BaseController {
     @PostMapping("/pageList")
     public SingleResponse<PageResponse<CodeProjectListRespDto>> pageList(CodeProjectListQueryReq query) {
         IPage<CodeProjectListRespDto> vos = iCodeProjectService.pageListCodeProject(query);
-        return SingleResponse.ok(PageResponse.build(vos));
+        return SingleResponse.ok(PageResponse.of(vos));
     }
 
     @GetMapping("/info")
