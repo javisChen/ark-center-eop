@@ -2,6 +2,7 @@ package ${package.Entity};
 <% for(pkg in table.importPackages){ %>
 import ${pkg};
 <% } %>
+import java.time.LocalDateTime;
 <% if(swagger){ %>
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
