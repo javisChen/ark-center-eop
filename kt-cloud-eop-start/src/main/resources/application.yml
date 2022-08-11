@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   application:
-    name: kt-cloud-eop
+    name: eop
   datasource:
     druid:
       url: jdbc:mysql://localhost:3306/eop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True

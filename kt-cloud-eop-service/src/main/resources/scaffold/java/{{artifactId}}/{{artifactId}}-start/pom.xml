@@ -17,7 +17,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.kt.cloud</groupId>
+            <groupId>{{groupId}}</groupId>
             <artifactId>{{artifactId}}-service</artifactId>
         </dependency>
     </dependencies>

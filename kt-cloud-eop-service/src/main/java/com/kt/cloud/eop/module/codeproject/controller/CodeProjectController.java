@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v1/code-project")
 @RestController
 public class CodeProjectController extends BaseController {
-
     private final ICodeProjectService iCodeProjectService;
 
     public CodeProjectController(ICodeProjectService iCodeProjectService) {
@@ -27,6 +26,7 @@ public class CodeProjectController extends BaseController {
     public SingleResponse<CodeProjectCreateRespDto> create(@RequestBody @Validated CodeProjectCreateCmd cmd) {
         return SingleResponse.ok(iCodeProjectService.createCodeProject(cmd));
     }
+
     @PostMapping("/pageList")
     public SingleResponse<PageResponse<CodeProjectListRespDto>> pageList(CodeProjectListQueryReq query) {
         IPage<CodeProjectListRespDto> vos = iCodeProjectService.pageListCodeProject(query);

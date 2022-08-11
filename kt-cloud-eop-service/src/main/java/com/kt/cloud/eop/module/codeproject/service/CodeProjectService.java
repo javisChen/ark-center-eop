@@ -65,7 +65,7 @@ public class CodeProjectService implements ICodeProjectService {
     public IPage<CodeProjectListRespDto> pageListCodeProject(CodeProjectListQueryReq query) {
         LambdaQueryWrapper<ProjectBasic> qw = new LambdaQueryWrapper<>();
         qw.like(StringUtils.isNotEmpty(query.getProjectName()), ProjectBasic::getName, query.getProjectName())
-        .orderByDesc(ProjectBasic::getGmtCreate);
+                .orderByDesc(ProjectBasic::getGmtCreate);
         return iProjectBasicService.page(new Page<>(query.getCurrent(), query.getSize()), qw)
                 .convert(CodeProjectConvertor::convertToCodeProjectListVo);
     }
@@ -77,7 +77,8 @@ public class CodeProjectService implements ICodeProjectService {
     }
 
     private Map<String, Object> convertToMap(String extProperties) {
-        return JSONObject.parseObject(extProperties, new TypeReference<Map<String, Object>>(){});
+        return JSONObject.parseObject(extProperties, new TypeReference<Map<String, Object>>() {
+        });
     }
 
     private ProjectGenerator getProjectGenerator(CodeProjectCreateCmd cmd) {

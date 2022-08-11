@@ -1,6 +1,7 @@
 package com.kt.cloud.eop.module.codeproject.generate.work;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.IORuntimeException;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.kt.cloud.eop.dao.entity.ProjectBasic;
@@ -51,17 +52,21 @@ public class GitPushTask {
                 // 创建成功后把生成的工程代码推送到仓库中
                 updateProjectGitInfo(projectBasicId, gitCreateReposResponse);
                 boolean initResult = gitService.intiAndPushToRepos(codeProject, codeProjectCmd.getCode(), gitReposUrl);
-                if (!initResult) {
-                    iProjectBasicService.updatePushStatus(projectBasicId, ProjectBasic.PushStatus.FAIL);
-                } else {
+                if (initResult) {
                     iProjectBasicService.updatePushStatus(projectBasicId, ProjectBasic.PushStatus.SUCCESS);
+                } else {
+                    iProjectBasicService.updatePushStatus(projectBasicId, ProjectBasic.PushStatus.FAIL);
                 }
             } catch (Exception e) {
                 log.error("推送GIT服务失败", e);
                 throw ExceptionFactory.sysException(e.getMessage());
             } finally {
                 if (codeProjectCmd.getDeleteTempFileAfterGen()) {
-                    FileUtil.del(codeProject);
+                    try {
+                        FileUtil.del(codeProject);
+                    } catch (IORuntimeException e) {
+                        log.error("删除生成项目失败", e);
+                    }
                 }
             }
         }
