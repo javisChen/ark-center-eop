@@ -7,17 +7,18 @@ import org.junit.jupiter.api.Test;
 
 public class DaoCodeTest {
 
-    private final String dsUrl = "jdbc:mysql://gz-cynosdbmysql-grp-irl7x9ar.sql.tencentcdb.com:20716/pay?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True";
-    private final String dsUsername = "kt_cloud8888";
-    private final String dsPassword = "Kt.cloud1234!@#$";
+    //    private final String dsUrl = "jdbc:mysql://gz-cynosdbmysql-grp-irl7x9ar.sql.tencentcdb.com:20716/pay?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True";
+//    private final String dsUsername = "kt_cloud8888";
+//    private final String dsPassword = "Kt.cloud1234!@#$";
+    private final String dsUrl = "jdbc:oracle:thin:@localhost:1521:XE";
+    private final String dsUsername = "system";
+    private final String dsPassword = "root";
 //    private final String daoOutputDir = "D:\\code\\javis\\kt-cloud-commodity\\kt-cloud-commodity-dao\\src\\main\\java";
-    private final String daoOutputDir = "C:\\Code\\kt\\kt-cloud-pay\\kt-cloud-pay-dao\\src\\main\\java";
+    private final String daoOutputDir = "C:\\Code\\sp-server\\sz-common\\src\\main\\java";
 //private final String serviceOutputDir = "D:\\code\\javis\\kt-cloud-commodity\\kt-cloud-commodity-service\\src\\main\\java";
     private final String serviceOutputDir = "C:\\Code\\kt\\kt-cloud-pay\\kt-cloud-pay-service\\src\\main\\java";
     private final String[] include = {
-            "pa_pay_notify_record",
-            "pa_pay_order",
-            "pa_pay_type",
+            "TF_EMPLOYEE_VIEW",
     };
 
     @Test
@@ -27,8 +28,8 @@ public class DaoCodeTest {
         model.setUsername(dsUsername);
         model.setPassword(dsPassword);
         model.setOutputDir(daoOutputDir);
-        model.setParent("com.kt.cloud.pay.dao");
-        model.setTablePrefix(new String[]{"pa_"});
+        model.setParent("com.szunicom.sp");
+//        model.setTablePrefix(new String[]{"pa_"});
         model.setInclude(include);
         new DaoCodeGenerator().execute(model);
     }

@@ -4,10 +4,13 @@ import cn.hutool.core.util.ArrayUtil;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.builder.Entity;
+import com.baomidou.mybatisplus.generator.config.converts.OracleTypeConvert;
 import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
+import com.baomidou.mybatisplus.generator.config.querys.OracleQuery;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.BeetlTemplateEngine;
 import com.baomidou.mybatisplus.generator.keywords.MySqlKeyWordsHandler;
+import com.baomidou.mybatisplus.generator.keywords.PostgreSqlKeyWordsHandler;
 import com.kt.cloud.eop.module.codeproject.generate.model.CodeGenerateModel;
 import com.kt.component.orm.mybatis.base.BaseEntity;
 import com.kt.component.web.base.BaseController;
@@ -91,10 +94,14 @@ public class AbstractCodeGenerator {
     }
 
     private DataSourceConfig getDataSourceConfig(CodeGenerateModel model) {
+//        return new DataSourceConfig.Builder(model.getUrl(), model.getUsername(), model.getPassword())
+//                .dbQuery(new MySqlQuery())
+//                .typeConvert(new MySqlTypeConvertCustom())
+//                .keyWordsHandler(new MySqlKeyWordsHandler()).build();
         return new DataSourceConfig.Builder(model.getUrl(), model.getUsername(), model.getPassword())
-                .dbQuery(new MySqlQuery())
-                .typeConvert(new MySqlTypeConvertCustom())
-                .keyWordsHandler(new MySqlKeyWordsHandler()).build();
+                .dbQuery(new OracleQuery())
+                .typeConvert(new OracleTypeConvert())
+                .keyWordsHandler(new PostgreSqlKeyWordsHandler()).build();
     }
 
 }

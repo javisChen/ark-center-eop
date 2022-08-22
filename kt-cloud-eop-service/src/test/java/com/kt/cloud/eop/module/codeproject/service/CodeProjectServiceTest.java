@@ -32,10 +32,10 @@ public class CodeProjectServiceTest extends BaseTests {
     @Test
     public void testCreateCodeProject() {
         CodeProjectCreateCmd cmd = new CodeProjectCreateCmd();
-        String groupId = "com.kt.cloud";
-        String artifactId = "kt-cloud-pay";
-        String packageName = "com.kt.cloud.pay";
-        String description = "中心服务-支付";
+        String groupId = "com.kt.app.shop";
+        String artifactId = "kt-app-shop";
+        String packageName = "com.kt.app.shop";
+        String description = "应用服务-商城";
         cmd.setName(description);
         cmd.setCode(artifactId);
         cmd.setReposSource(ReposSourceEnums.CREATE_NEW.getValue());

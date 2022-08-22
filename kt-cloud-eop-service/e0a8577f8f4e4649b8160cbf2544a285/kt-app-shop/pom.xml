@@ -4,20 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kt.cloud</groupId>
-    <artifactId>kt-cloud-eop</artifactId>
+    <groupId>com.kt.app.shop</groupId>
+    <artifactId>kt-app-shop</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>kt-cloud-eop-dao</module>
-        <module>kt-cloud-eop-infrastructure</module>
-        <module>kt-cloud-eop-api</module>
-        <module>kt-cloud-eop-manager</module>
-        <module>kt-cloud-eop-service</module>
-        <module>kt-cloud-eop-start</module>
+        <module>kt-app-shop-api</module>
+        <module>kt-app-shop-acl</module>
+        <module>kt-app-shop-dao</module>
+        <module>kt-app-shop-service</module>
+        <module>kt-app-shop-manager</module>
+        <module>kt-app-shop-start</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <kt.dependencies.version>1.0.0-SNAPSHOT</kt.dependencies.version>
     </properties>
 
@@ -28,6 +30,10 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -40,52 +46,33 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-dao</artifactId>
+                <groupId>com.kt.app.shop</groupId>
+                <artifactId>kt-app-shop-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-api</artifactId>
+                <groupId>com.kt.app.shop</groupId>
+                <artifactId>kt-app-shop-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-manager</artifactId>
+                <groupId>com.kt.app.shop</groupId>
+                <artifactId>kt-app-shop-acl</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-service</artifactId>
+                <groupId>com.kt.app.shop</groupId>
+                <artifactId>kt-app-shop-manager</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-infrastructure</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-start</artifactId>
+                <groupId>com.kt.app.shop</groupId>
+                <artifactId>kt-app-shop-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
 
     </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
