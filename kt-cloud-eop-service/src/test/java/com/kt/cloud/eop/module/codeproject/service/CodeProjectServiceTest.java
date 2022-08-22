@@ -32,9 +32,9 @@ public class CodeProjectServiceTest extends BaseTests {
     @Test
     public void testCreateCodeProject() {
         CodeProjectCreateCmd cmd = new CodeProjectCreateCmd();
-        String groupId = "com.kt.app.shop";
-        String artifactId = "kt-app-shop";
-        String packageName = "com.kt.app.shop";
+        String groupId = "com.kt.app.shop2";
+        String artifactId = "kt-app-shop2";
+        String packageName = "com.kt.app.shop2";
         String description = "应用服务-商城";
         cmd.setName(description);
         cmd.setCode(artifactId);

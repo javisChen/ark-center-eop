@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -99,8 +100,7 @@ public abstract class AbstractProjectGenerator implements ProjectGenerator {
         if (!mkSuccess) {
             throw new BizException("临时目录创建失败");
         }
-        FileUtil.copyContent(scaffoldFile, tempDir, true);
-        return tempDir;
+        return FileUtil.copyContent(scaffoldFile, tempDir, true);
     }
 
     private String getTempDir() {
@@ -112,9 +112,9 @@ public abstract class AbstractProjectGenerator implements ProjectGenerator {
 
     protected void processFile(File subFile, Map<String, Object> params) {
         String template = FileUtil.readUtf8String(subFile);
-        try {
-            templateEngine.renderTo(params, template, new FileOutputStream(subFile));
-        } catch (FileNotFoundException e) {
+        try (FileOutputStream outputStream = new FileOutputStream(subFile)) {
+            templateEngine.renderTo(params, template, outputStream);
+        } catch (IOException e) {
             log.error("渲染模板文件失败：", e);
             throw new BizException("渲染模板文件失败");
         }
