@@ -94,14 +94,14 @@ public class AbstractCodeGenerator {
     }
 
     private DataSourceConfig getDataSourceConfig(CodeGenerateModel model) {
-//        return new DataSourceConfig.Builder(model.getUrl(), model.getUsername(), model.getPassword())
-//                .dbQuery(new MySqlQuery())
-//                .typeConvert(new MySqlTypeConvertCustom())
-//                .keyWordsHandler(new MySqlKeyWordsHandler()).build();
         return new DataSourceConfig.Builder(model.getUrl(), model.getUsername(), model.getPassword())
-                .dbQuery(new OracleQuery())
-                .typeConvert(new OracleTypeConvert())
-                .keyWordsHandler(new PostgreSqlKeyWordsHandler()).build();
+                .dbQuery(new MySqlQuery())
+                .typeConvert(new MySqlTypeConvertCustom())
+                .keyWordsHandler(new MySqlKeyWordsHandler()).build();
+//        return new DataSourceConfig.Builder(model.getUrl(), model.getUsername(), model.getPassword())
+//                .dbQuery(new OracleQuery())
+//                .typeConvert(new OracleTypeConvert())
+//                .keyWordsHandler(new PostgreSqlKeyWordsHandler()).build();
     }
 
 }
