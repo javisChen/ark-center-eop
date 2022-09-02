@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class DaoCodeTest {
 
-        private final String dsUrl = "jdbc:mysql://gz-cynosdbmysql-grp-irl7x9ar.sql.tencentcdb.com:20716/pay?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True";
+        private final String dsUrl = "jdbc:mysql://gz-cynosdbmysql-grp-irl7x9ar.sql.tencentcdb.com:20716/order?useSSL=false&useUnicode=true&characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&serverTimezone=UTC&allowPublicKeyRetrieval=True";
     private final String dsUsername = "kt_cloud8888";
     private final String dsPassword = "Kt.cloud1234!@#$";
 //    private final String dsUrl = "jdbc:oracle:thin:@localhost:1521:XE";
