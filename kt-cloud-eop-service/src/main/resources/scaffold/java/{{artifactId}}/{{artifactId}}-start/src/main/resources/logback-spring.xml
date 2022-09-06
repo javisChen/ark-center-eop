@@ -71,6 +71,8 @@
         <appender-ref ref="ROLLING"/>
     </appender>
 
+    <logger name="{{groupId}}.dao.mapper" level="DEBUG"/>
+
     <root level="info">
         <springProfile name="local,dev,test,sit">
             <!-- local本地配置时候打开控制台输出 -->
