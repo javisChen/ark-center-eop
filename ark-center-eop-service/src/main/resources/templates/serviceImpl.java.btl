@@ -1,0 +1,59 @@
+package ${packageName};
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import ${entityPackageName}.${entity}DO;
+import ${mapperPackageName}.${entity}Mapper;
+import ${updateReqDtoPackageName}.${entity}UpdateReqDTO;
+import ${pageQueryReqDtoPackageName}.${entity}PageQueryReqDTO;
+import ${respDtoPackageName}.${entity}RespDTO;
+import ${superServiceImplClassPackage};
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.ark.component.dto.PageResponse;
+import org.springframework.stereotype.Service;
+import com.ark.component.web.util.bean.BeanConvertor;
+import com.ark.component.orm.mybatis.base.BaseEntity;
+
+/**
+ * <p>
+ * ${table.comment!} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+<% if(kotlin){ %>
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}DO>(), ${table.serviceName} {
+
+}
+<% }else{ %>
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}DO> implements ${superServiceClass}<${entity}DO> {
+
+    public Long create${entity}(${entity}UpdateReqDTO reqDTO) {
+        ${entity}DO entity = BeanConvertor.copy(reqDTO, ${entity}DO.class);
+        save(entity);
+        return entity.getId();
+    }
+
+    public PageResponse<${entity}RespDTO> getPageList(${entity}PageQueryReqDTO queryDTO) {
+        IPage<${entity}RespDTO> page = lambdaQuery()
+                .orderByDesc(BaseEntity::getGmtCreate)
+                .page(new Page<>(queryDTO.getCurrent(), queryDTO.getSize()))
+                .convert(item -> BeanConvertor.copy(item, ${entity}RespDTO.class));
+        return BeanConvertor.copyPage(page, ${entity}RespDTO.class);
+    }
+
+    public Long update${entity}(${entity}UpdateReqDTO reqDTO) {
+        ${entity}DO entity = BeanConvertor.copy(reqDTO, ${entity}DO.class);
+        updateById(entity);
+        return entity.getId();
+    }
+
+    public ${entity}RespDTO get${entity}Info(Long ${entity}Id) {
+        ${entity}DO entity = getById(${entity}Id);
+        return BeanConvertor.copy(entity, ${entity}RespDTO.class);
+    }
+
+}
+<% } %>

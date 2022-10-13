@@ -4,21 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kt.cloud</groupId>
-    <artifactId>kt-cloud-eop</artifactId>
+    <groupId>com.ark.center</groupId>
+    <artifactId>ark-center-eop</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>kt-cloud-eop-dao</module>
-        <module>kt-cloud-eop-infrastructure</module>
-        <module>kt-cloud-eop-api</module>
-        <module>kt-cloud-eop-manager</module>
-        <module>kt-cloud-eop-service</module>
-        <module>kt-cloud-eop-start</module>
+        <module>ark-center-eop-dao</module>
+        <module>ark-center-eop-infrastructure</module>
+        <module>ark-center-eop-api</module>
+        <module>ark-center-eop-manager</module>
+        <module>ark-center-eop-service</module>
+        <module>ark-center-eop-start</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
-        <kt.dependencies.version>1.0.0-SNAPSHOT</kt.dependencies.version>
+        <ark.dependencies.version>1.0.0-SNAPSHOT</ark.dependencies.version>
     </properties>
 
     <dependencies>
@@ -33,40 +33,40 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.kt.boot</groupId>
-                <artifactId>kt-dependencies</artifactId>
+                <groupId>com.ark.boot</groupId>
+                <artifactId>ark-dependencies</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-dao</artifactId>
+                <groupId>com.ark.center</groupId>
+                <artifactId>ark-center-eop-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-api</artifactId>
+                <groupId>com.ark.center</groupId>
+                <artifactId>ark-center-eop-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-manager</artifactId>
+                <groupId>com.ark.center</groupId>
+                <artifactId>ark-center-eop-manager</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-service</artifactId>
+                <groupId>com.ark.center</groupId>
+                <artifactId>ark-center-eop-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-infrastructure</artifactId>
+                <groupId>com.ark.center</groupId>
+                <artifactId>ark-center-eop-infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.kt.cloud</groupId>
-                <artifactId>kt-cloud-eop-start</artifactId>
+                <groupId>com.ark.center</groupId>
+                <artifactId>ark-center-eop-start</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
